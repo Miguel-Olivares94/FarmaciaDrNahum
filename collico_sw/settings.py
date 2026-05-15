@@ -10,14 +10,10 @@ DEBUG = config('DEBUG', default=True, cast=bool)
 SECRET_KEY = config('SECRET_KEY', default='django-insecure-f_w_k(ibheyyjwjz&dx*bbk!pn3r9s)#6zh!p$)d-h5amfje+6')
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='localhost,127.0.0.1', cast=lambda v: [s.strip() for s in v.split(',')])
 
-# Solo HTTPS en producción
-if not DEBUG:
-    CSRF_COOKIE_SECURE = True
-    SESSION_COOKIE_SECURE = True
-    SECURE_SSL_REDIRECT = True
-else:
-    CSRF_COOKIE_SECURE = False
-    SESSION_COOKIE_SECURE = False
+# HTTPS lo maneja el proxy (Railway/Nginx) — nunca redirigir aquí
+SECURE_SSL_REDIRECT = False
+CSRF_COOKIE_SECURE = False
+SESSION_COOKIE_SECURE = False
 
 CSRF_USE_SESSIONS = True
 
