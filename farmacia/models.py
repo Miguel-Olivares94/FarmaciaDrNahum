@@ -677,7 +677,7 @@ class Boleta(models.Model):
     
     # Datos de la farmacia
     rut_farmacia = models.CharField(max_length=20)
-    nombre_farmacia = models.CharField(max_length=255, default='FARMACIA COLLICO')
+    nombre_farmacia = models.CharField(max_length=255, default='FARMACIA DR. NAHUM')
     direccion_farmacia = models.CharField(max_length=255)
     telefono_farmacia = models.CharField(max_length=20, blank=True)
     

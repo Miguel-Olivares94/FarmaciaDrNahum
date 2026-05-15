@@ -750,7 +750,7 @@ def build_cap10(doc):
         "Cambia las contraseñas por defecto antes de usar el sistema en producción.")
 
     add_section(doc, "Soporte y Contacto")
-    add_bullet(doc, "📧 Email: admin@farmaciodrcollico.cl")
+    add_bullet(doc, "📧 Email: admin@farmaciadrnahum.cl")
     add_bullet(doc, "📱 WhatsApp: +56 9 4265 2487")
     add_bullet(doc, f"🌐 Sistema: {URL_SISTEMA}")
     add_bullet(doc, "⏰ Horario soporte: Lunes a Viernes, 09:00 – 18:00 hrs")

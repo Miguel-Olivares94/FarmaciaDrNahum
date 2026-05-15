@@ -72,7 +72,7 @@ def generar_pdf_boleta(boleta):
     )
     
     # === HEADER ===
-    story.append(Paragraph("FARMACIA COLLICO", titulo_style))
+    story.append(Paragraph("FARMACIA DR. NAHUM", titulo_style))
     story.append(Paragraph(f"RUT: {boleta.rut_farmacia}", header_style))
     story.append(Paragraph(boleta.direccion_farmacia, header_style))
     story.append(Spacer(1, 0.1*inch))

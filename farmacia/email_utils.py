@@ -40,7 +40,7 @@ def enviar_boleta_email(boleta, destinatario_email=None):
             'carrito': boleta.carrito,
             'items': boleta.carrito.items.all(),
             'pago': boleta.pago,
-            'farmacia_nombre': 'Farmacia Collico',
+            'farmacia_nombre': 'Farmacia Dr. Nahum',
             'farmacia_telefono': '+56 9 1234 5678',
             'farmacia_email': settings.DEFAULT_FROM_EMAIL,
         }
@@ -51,7 +51,7 @@ def enviar_boleta_email(boleta, destinatario_email=None):
         
         # Crear email con alternativa HTML
         email = EmailMultiAlternatives(
-            subject=f'Boleta #{boleta.numero_boleta} - Farmacia Collico',
+            subject=f'Boleta #{boleta.numero_boleta} - Farmacia Dr. Nahum',
             body=plain_message,
             from_email=settings.DEFAULT_FROM_EMAIL,
             to=[destinatario_email],
@@ -92,7 +92,7 @@ def enviar_confirmacion_venta(venta, email_cliente):
             'medicamento': venta.medicamento,
             'cantidad': venta.cantidad,
             'precio': venta.precio,
-            'farmacia_nombre': 'Farmacia Collico',
+            'farmacia_nombre': 'Farmacia Dr. Nahum',
         }
         
         html_message = render_to_string('farmacia/emails/confirmacion_venta.html', context)
@@ -136,7 +136,7 @@ def enviar_alerta_stock_bajo(medicamento, email_farmacista):
         context = {
             'medicamento': medicamento,
             'stock_actual': medicamento.stock,
-            'farmacia': 'Farmacia Collico',
+            'farmacia': 'Farmacia Dr. Nahum',
         }
         
         subject = f'⚠️ ALERTA: Stock bajo de {medicamento.nombre}'

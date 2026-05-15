@@ -494,8 +494,8 @@ def pos_procesar_pago(request):
                         folio=folio,
                         carrito=carrito,
                         rut_farmacia='12.345.678-9',  # TODO: Configurar
-                        nombre_farmacia='FARMACIA COLLICO',
-                        direccion_farmacia='Collico, Región del Biobío',
+                        nombre_farmacia='FARMACIA DR. NAHUM',
+                        direccion_farmacia='Región del Biobío, Chile',
                         cliente_rut=carrito.cliente.rut_dni if carrito.cliente else None,
                         cliente_nombre=f"{carrito.cliente.nombre} {carrito.cliente.apellido}" if carrito.cliente else None,
                         subtotal=carrito.subtotal,

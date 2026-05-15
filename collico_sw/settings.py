@@ -187,8 +187,8 @@ else:
     EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD', default='')
 
 # Remitente por defecto para todas las boletas
-DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL', default='no-reply@farmaciocollico.cl')
-SERVER_EMAIL = config('SERVER_EMAIL', default='sistema@farmaciocollico.cl')
+DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL', default='no-reply@farmaciadrnahum.cl')
+SERVER_EMAIL = config('SERVER_EMAIL', default='sistema@farmaciadrnahum.cl')
 
 # Timeout para envío de emails (segundos)
 EMAIL_TIMEOUT = 10

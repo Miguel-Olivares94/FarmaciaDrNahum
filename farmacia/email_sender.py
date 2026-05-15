@@ -30,7 +30,7 @@ def enviar_boleta_email(boleta, email_destinatario):
             'cliente_nombre': boleta.cliente_nombre or 'Consumidor Final',
             'total': f"${int(boleta.total):,}".replace(',', '.'),
             'fecha': boleta.fecha_emision.strftime('%d/%m/%Y %H:%M'),
-            'farmacia': 'FARMACIA COLLICO',
+            'farmacia': 'FARMACIA DR. NAHUM',
         }
         
         # Renderizar HTML del email
@@ -38,7 +38,7 @@ def enviar_boleta_email(boleta, email_destinatario):
         
         # Crear email
         email = EmailMessage(
-            subject=f'Boleta {boleta.numero_boleta} - Farmacia Collico',
+            subject=f'Boleta {boleta.numero_boleta} - Farmacia Dr. Nahum',
             body=f'Adjunto encontrará su boleta #{boleta.numero_boleta}',
             from_email=settings.DEFAULT_FROM_EMAIL,
             to=[email_destinatario],

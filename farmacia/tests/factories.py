@@ -117,7 +117,7 @@ class BouletaFactory(factory.django.DjangoModelFactory):
     folio = factory.Sequence(lambda n: n + 1)
     carrito = factory.SubFactory(CarritoVentaFactory)
     rut_farmacia = '12.345.678-9'
-    nombre_farmacia = 'FARMACIA COLLICO'
+    nombre_farmacia = 'FARMACIA DR. NAHUM'
     direccion_farmacia = 'Collico, Biobío'
     cliente_rut = None
     cliente_nombre = None
