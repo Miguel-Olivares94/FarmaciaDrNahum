@@ -5,21 +5,13 @@ ENV PYTHONUNBUFFERED=1
 
 WORKDIR /app
 
-RUN apt-get update && apt-get install -y \
-    libpq-dev gcc \
-    && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y libpq-dev gcc && rm -rf /var/lib/apt/lists/*
 
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-# Crear directorio de archivos estáticos para que WhiteNoise no falle
 RUN mkdir -p /app/staticfiles
 
-CMD python manage.py migrate --noinput && \
-    gunicorn collico_sw.wsgi:application \
-    --bind 0.0.0.0:$PORT \
-    --workers 1 \
-    --log-level debug \
-    --timeout 120
+CMD ["/bin/bash", "-c", "python manage.py collectstatic --noinput && python manage.py migrate --noinput && exec gunicorn collico_sw.wsgi:application --bind 0.0.0.0:${PORT:-8080} --workers 1 --timeout 120 --log-level debug --access-logfile - --error-logfile -"]

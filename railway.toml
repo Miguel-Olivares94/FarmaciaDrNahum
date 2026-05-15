@@ -1,6 +1,5 @@
 [build]
-builder = "nixpacks"
+builder = "dockerfile"
 
 [deploy]
-startCommand = "python manage.py migrate --noinput && echo 'Gunicorn iniciando en puerto '$PORT && gunicorn collico_sw.wsgi:application --bind 0.0.0.0:$PORT --workers 1 --timeout 120 --log-level debug 2>&1"
 restartPolicyType = "on_failure"
