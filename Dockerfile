@@ -5,20 +5,14 @@ ENV PYTHONUNBUFFERED=1
 
 WORKDIR /app
 
-# Dependencias del sistema
 RUN apt-get update && apt-get install -y \
     libpq-dev gcc \
     && rm -rf /var/lib/apt/lists/*
 
-# Instalar dependencias Python
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copiar código
 COPY . .
 
-# Todo corre en runtime cuando las variables de entorno están disponibles
-CMD python manage.py collectstatic --noinput && \
-    python manage.py migrate --noinput && \
-    python manage.py loaddata datos_farmacia.json --ignorenonexistent && \
+CMD python manage.py migrate --noinput && \
     gunicorn collico_sw.wsgi:application --bind 0.0.0.0:$PORT --workers 2 --timeout 120
