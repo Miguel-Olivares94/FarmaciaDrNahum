@@ -11,10 +11,12 @@ DEBUG = False
 
 SECRET_KEY = os.environ.get('SECRET_KEY', SECRET_KEY)
 
-ALLOWED_HOSTS = os.environ.get(
+_allowed = os.environ.get(
     'ALLOWED_HOSTS',
-    '.railway.app,.up.railway.app,healthcheck.railway.app,.onrender.com,localhost,127.0.0.1'
+    '.railway.app,.up.railway.app,.onrender.com,localhost,127.0.0.1'
 ).split(',')
+# Railway healthcheck usa este host — siempre debe estar permitido
+ALLOWED_HOSTS = list(set(_allowed + ['healthcheck.railway.app']))
 
 CSRF_TRUSTED_ORIGINS = [
     f"https://{h}" for h in ALLOWED_HOSTS if h.startswith('.')
