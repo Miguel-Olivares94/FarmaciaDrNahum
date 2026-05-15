@@ -1,0 +1,4073 @@
+[
+{
+  "model": "admin.logentry",
+  "pk": 1,
+  "fields": {
+    "action_time": "2026-04-27T21:45:26.523Z",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "1",
+    "object_repr": "Juan González (18.456.789-0)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$FOb0lUZTNpR1L27xEwsZoB$cMNWsS+FNAXXBVslCZplu8V1NooZryYRbuYu/ymNYaM=",
+    "last_login": "2026-05-15T01:09:05.766Z",
+    "is_superuser": true,
+    "username": "admin",
+    "first_name": "",
+    "last_name": "",
+    "email": "admin@farmacia.local",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2026-04-27T14:27:00.783Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 2,
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$60c3jCXmnUwqX63lIczjRZ$tYFegrWLFDxILdosHToZNfznk9zhQI902P9HPnCGCuI=",
+    "last_login": "2026-05-02T18:25:13.431Z",
+    "is_superuser": false,
+    "username": "vendedor1",
+    "first_name": "Juan",
+    "last_name": "Pérez",
+    "email": "juan@farmacia.cl",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-04-28T02:35:22.815Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 3,
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$1jyaxcaCOYYpk4XPV5RKPf$2zHNpLr3burUz4AV2tt2JsGTg8XC3le0q57QxHknki8=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "vendedor2",
+    "first_name": "María",
+    "last_name": "González",
+    "email": "maria@farmacia.cl",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-04-28T02:35:23.759Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 4,
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$cdv9WuXKeuLxxhBTWldFhO$UjwL7CjSbaBJaJVQfTBrfEct2ePeI+qyXSOzcm+kWKI=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "gerente",
+    "first_name": "Carlos",
+    "last_name": "López",
+    "email": "gerente@farmacia.cl",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2026-04-28T02:35:24.566Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 5,
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$zHvHVOay8ihDnyX8x3bEGp$8SmdqWSqAo1RHHNEuARhlF1RwF2EAx65DXTmqkLeuV0=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "contador",
+    "first_name": "Patricia",
+    "last_name": "Rodríguez",
+    "email": "contador@farmacia.cl",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2026-04-28T02:35:25.533Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 6,
+  "fields": {
+    "password": "",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "dr_nahum",
+    "first_name": "Dr.",
+    "last_name": "Nahúm",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-05-02T18:03:31.056Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "01i7d7omgf01lidxmib2rtkwafo59saj",
+  "fields": {
+    "session_data": ".eJxVjMsKgzAUBf8l61LM09hlhe5aah8LV3K9SYgUFZIIhdJ_bwpu3M6ZOR_SYQwuzS87kQNR7VRf9RzkhZnmfRKi1TekabDV-dH0_k52pIMl-W6JNnSDyQndsh4wX_0HB2EEHGC_orivl5jm8Zm142ptUg_R545LZSWnUlJkDG1hBAoDwExBy0I5RjkvrVZQmQp4Dw6BgXBKA1NcMaTk-wPbe0Tx:1wJgSk:gfpXA_oelbzF0MSUu4QudjasTpte7QGavCm_COmxLKY",
+    "expire_date": "2026-05-17T23:43:02.857Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "0q398omih7q6l2xkwny066rjqv43abef",
+  "fields": {
+    "session_data": ".eJxVjMsKwjAUBf8la5GkSZrUnY-VIKWioKuS3NzQKrXYpFAQ_90I3XQ7Z-Z8SA1h8LF_4otsSNlGe6_OZW79VHbbCg5Maji9L3g76ok_yIrUZoxNPQYc6talhC2ZNZCu_oM3Q2egNesZhfV-DLHvrknbzdYibUxoUmcpyII77RxFQOYcqlxIawXVngnvlKAZ11zlGlArBHASC1PIjGcolabk-wNdKkXH:1wIDXg:71rrlCuxeqKsCX82hRaeY6QyFnGFsXGms6xuLCAmUn8",
+    "expire_date": "2026-05-13T22:38:04.995Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "1n9umk276hq26k8tvix3x1wssz5d1i6b",
+  "fields": {
+    "session_data": ".eJxVizsLwjAQgP_LzSK5PDR2tIN0EXzhWC6XxNZqK0nrIv53EVxcv8cLas4pjkMXeihgrHbD_mqqfa9LfGzS8mnkJI7nyyGLrbgJmEFN09jUUw6pbj0UgP_MEXeh_4pI6U7c0vyH8ryc8jjcTzmk9a_6WxvKDRSgNdJCMSvlEZlsXAnrgpGSo3ekDFqSzqIJ6KUKTEzWu6hXBrVFFBreH-8lRTg:1wNgUA:9DuF3vTIzyfgHPuNex21CrjE2usdHvJkGvZF5QhU_yc",
+    "expire_date": "2026-05-29T00:33:02.774Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "3vtwk9f27htohuai27uqfkt1i70o0yoa",
+  "fields": {
+    "session_data": ".eJxVjMkOgjAURf-la0NsQyd3ThsT4xAJumpe-yAMASIFFxr_3ZqwYXvuOfdDjPN9PnR11pIVOanxXq-HzcW35_0jTp5lKo63Cv0uvR5e1ZssiIFxKMzos96UGBI6ZxZcuPoPOfQNuBKiCfloO_qha5KgbSZrlhbgi9AxENIJkMh0pmlMUeScKS1RACjJcoZKoObKOmd1DJoiZ0yJjPOl5Qwo-f4AmVxFyA:1wJEFv:_aCv53orSNSLAAEhqDarcoiBNlOE_FWZH9Xhdjb6dnM",
+    "expire_date": "2026-05-16T17:35:55.629Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "4sgun635696yh1cg2eb9m89du7cfraam",
+  "fields": {
+    "session_data": ".eJxVjLEOgjAURf-lszGltLR1hGhCHFiUtWlfH4IGiBSIxvjvYsLCeu4590MMhKEa-wd25ECGrIf2fS_lRZ_TF3vmt2LOj5bOqmBdeWrIjhg7jbWZAg6m8UsSbZmzsFz9h8oOrYXG7lcU9tkUxr69Llq6Wpu0tqFeOkdB6Ngr7ykCRt6jTLhwjlNVRbzyklMWq1gmClBJBPACtdWCxQyFVJR8f3iZRes:1wIDUM:kId-u4h81z3ZbARmO8XxJpkudInAszp6PBiosgPbhzg",
+    "expire_date": "2026-05-13T22:34:38.064Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "9eu1xfxw5l3ozk9q4srfifs03818t55o",
+  "fields": {
+    "session_data": "eyJfY3NyZnRva2VuIjoiOUhNeU44UmJCSTFwWWVDUll5QzhiSkpWODkwc2ZieTcifQ:1wNgRL:8mgAsDnfXRdUbcmRfwf2-WCpsCFJFqAUGAXfNKWPOxc",
+    "expire_date": "2026-05-29T00:30:07.206Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "aa2xw3lxl6t29tqmpdb5lrfqgciii3q1",
+  "fields": {
+    "session_data": ".eJxVi70KwjAQgN_lZpFekkrsWLE4OYiKuITLJbG1tEqTqiC-uwguXb-fNxiOQ0i31vdQwK5Jj_XxXi7E5aSu98pW6hw323PzCv2z3zuYgaEx1WaMfjCNgwJwyixx6_ufCDR0xA3N_yjOV2NMt-4Q_VD-q8laU6yhAKWQFpJZSofIpMMy09bnQnBwlmSOmoTVmHt0QnomJu1sUMsclUbMFHy-wbtGbQ:1wNgwy:fa4bPkw-KxgSxOf66Mgbq_dJLCK1WeHFVLSOzH3Rn_g",
+    "expire_date": "2026-05-29T01:02:48.215Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "cscqpm5259tji98sknaw3a77whtw3drn",
+  "fields": {
+    "session_data": ".eJxVi08LgjAUwL_LO4f03NTpzQo6dCnMoJO8vW1oYtKmRETfPYIuXn9_3tBw8G4ae3uHAp7pQT78fpffjn5TXl_1pTz5czV1JttnqrrCChqap7aZg_VNZ6AAXDJN3Nv7TzjyA3FH0R-FaDuHaRzqYP3mXy3WlkILBUiJlApmIQwik3L5WmmbxDE7o0kkqCjWChOLJhaWiUkZ7WSeoFSIawmfLzFhRZk:1wNh33:-gVbZGeHRNCefsOUjCRyCGK7rPlTvf4RdtqvvAhdI3s",
+    "expire_date": "2026-05-29T01:09:05.780Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "d4qw410xtboijtihttnvrvegvidonojg",
+  "fields": {
+    "session_data": "eyJfY3NyZnRva2VuIjoiaDR0cmhZbjZTMFNOcXpCeTR4MUJJYmNLZXpGa05ER0EifQ:1wKg5a:juwRUoEZjcIc6x_bnI-dU58h9aOJVyo0rh91Yf1lHqE",
+    "expire_date": "2026-05-20T17:31:14.439Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "pvkx2su7w51wr8kmt09h6dupgmwibbwe",
+  "fields": {
+    "session_data": ".eJxVjL0OgjAURt-lszGFtrQ4StDJRAcTnJq29_IrklAaNcZ3FxMW1vOd832Idn4sp6HDB9mR0_1Wnw_VM1N5f1HStnlbQNbZ1xCqInsfyYZoE6ZaB4-jbmBOojWzxs1X_6E0Y29cY7YL8tss-Gnor7O2X6xVWhtfz52lTqQMFABFhxEAyoQLazlVZcRLkJzGTDGZKIdKonMgMDWpiFmMQipKvj-_UUZc:1wIDJv:bL_G2gfXnDUwx7DjuO6Fa1L-X9VVH2R1CEneMCF2rtI",
+    "expire_date": "2026-05-13T22:23:51.482Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "t5ntdn8vv0k6lb5c1ihinuzcym5sybqy",
+  "fields": {
+    "session_data": "eyJfY3NyZnRva2VuIjoiSExZVVFLTnFIM2lKZGFwNXVRRm9JbU5hZkRLZW1FeUIifQ:1wHlDt:--CowiUB4-tZ17takhEFwgeMPrapC71M2fU_Ze7zibo",
+    "expire_date": "2026-05-12T16:23:45.420Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "wb975oueon5drppmb8y8vfjavla1h3y1",
+  "fields": {
+    "session_data": "eyJfY3NyZnRva2VuIjoick9jRG85ek0ycW9zdVNnN2ZHVmlLRmY5bEx3Nm9SbU4ifQ:1wHXgw:dCcA5hG8rsXx4U1OP8E3_4LKxTIWP1KhyPn67WmYG2Y",
+    "expire_date": "2026-05-12T01:56:50.883Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "xd34x2hesd1ccsmtiocjrfq7jrcmyjtg",
+  "fields": {
+    "session_data": "eyJfY3NyZnRva2VuIjoicjl4YkR3S1g0RHJyNXlGUXdGSTlNSDgwdlZBQjF4TzQifQ:1wIAhj:-fgVlHmydwz7YYCORgMtXerxqvqj_DKAwevNsBvC6Rg",
+    "expire_date": "2026-05-13T19:36:15.782Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "y0ahefr5xvkpmpgq29i8euvn4ekh3l7s",
+  "fields": {
+    "session_data": "eyJfY3NyZnRva2VuIjoiU25FVmtWVFBIT3VQVHU1Z1RXa3NBV2hKSXlXTkhWeWEifQ:1wJEn4:URneQzcSxnqDgVPz2hdGrx6aX2PKviHfAhYMjZaw5LA",
+    "expire_date": "2026-05-16T18:10:10.338Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "zb7we3grzjsrl39semoalu0zkzqx3x21",
+  "fields": {
+    "session_data": ".eJxVjL0OgjAURt-lszEFWloc_YkwyULi1pR7bwUJECm4GN_dmrCwnu-c78MM-MnNY0cDO7D88hZFXr6a0rsOZsdHnQ3Vs7iV1zt_nCXbMWOXuTGLp8m0GJJoy2oL4eo_ODv1Flq7X5HfnxY_j30VtONqbdLG-iZ0NQeZJagROQFFiKRSIetacO0i4VAJHic6UakG0ooAUFJmMxknMUmlOfv-AE82RbI:1wIDYF:ZxsaD7J4IaXq9bt8XNl3vdMmF6eowiDBx2OlByz6yIM",
+    "expire_date": "2026-05-13T22:38:39.682Z"
+  }
+},
+{
+  "model": "farmacia.medicamento",
+  "pk": 1,
+  "fields": {
+    "sku": "MED001",
+    "nombre": "Paracetamol 500mg",
+    "laboratorio": "Laboratorio Alpharma",
+    "principio_activo": "Paracetamol",
+    "accion_terapeutica": "Analgésico, Antipirético",
+    "presentacion": "Cápsula",
+    "dosis": "500mg",
+    "bioequivalente": "True",
+    "stock": 89,
+    "precio": "2500.00",
+    "tipo_venta": "libre",
+    "proveedor": 1,
+    "nivel_stock": "Bajo",
+    "fecha_ingreso": "2026-04-27",
+    "fecha_vencimiento": "2027-04-27"
+  }
+},
+{
+  "model": "farmacia.medicamento",
+  "pk": 2,
+  "fields": {
+    "sku": "MED002",
+    "nombre": "Ibuprofeno 400mg",
+    "laboratorio": "Laboratorio LABS",
+    "principio_activo": "Ibuprofeno",
+    "accion_terapeutica": "Antiinflamatorio, Analgésico",
+    "presentacion": "Tableta",
+    "dosis": "400mg",
+    "bioequivalente": "True",
+    "stock": 80,
+    "precio": "3500.00",
+    "tipo_venta": "libre",
+    "proveedor": 1,
+    "nivel_stock": "",
+    "fecha_ingreso": "2026-04-27",
+    "fecha_vencimiento": "2026-04-30"
+  }
+},
+{
+  "model": "farmacia.medicamento",
+  "pk": 3,
+  "fields": {
+    "sku": "MED003",
+    "nombre": "Amoxicilina 500mg",
+    "laboratorio": "Farmalab",
+    "principio_activo": "Amoxicilina",
+    "accion_terapeutica": "Antibiótico",
+    "presentacion": "Cápsula",
+    "dosis": "500mg",
+    "bioequivalente": "False",
+    "stock": 43,
+    "precio": "8900.00",
+    "tipo_venta": "receta_simple",
+    "proveedor": 1,
+    "nivel_stock": "Bajo",
+    "fecha_ingreso": "2026-04-27",
+    "fecha_vencimiento": "2027-04-27"
+  }
+},
+{
+  "model": "farmacia.medicamento",
+  "pk": 4,
+  "fields": {
+    "sku": "MED004",
+    "nombre": "Metformina 850mg",
+    "laboratorio": "Laboratorio Estándar",
+    "principio_activo": "Metformina",
+    "accion_terapeutica": "Antidiabético",
+    "presentacion": "Tableta",
+    "dosis": "850mg",
+    "bioequivalente": "True",
+    "stock": 120,
+    "precio": "4200.00",
+    "tipo_venta": "receta_simple",
+    "proveedor": 1,
+    "nivel_stock": null,
+    "fecha_ingreso": "2026-04-27",
+    "fecha_vencimiento": "2027-04-27"
+  }
+},
+{
+  "model": "farmacia.medicamento",
+  "pk": 5,
+  "fields": {
+    "sku": "MED005",
+    "nombre": "Atorvastatina 10mg",
+    "laboratorio": "Cardiofarma",
+    "principio_activo": "Atorvastatina",
+    "accion_terapeutica": "Reductor de lípidos",
+    "presentacion": "Tableta",
+    "dosis": "10mg",
+    "bioequivalente": "True",
+    "stock": 60,
+    "precio": "7800.00",
+    "tipo_venta": "receta_simple",
+    "proveedor": 1,
+    "nivel_stock": null,
+    "fecha_ingreso": "2026-04-27",
+    "fecha_vencimiento": "2027-04-27"
+  }
+},
+{
+  "model": "farmacia.medicamento",
+  "pk": 6,
+  "fields": {
+    "sku": "MED006",
+    "nombre": "Omeprazol 20mg",
+    "laboratorio": "Gastrolab",
+    "principio_activo": "Omeprazol",
+    "accion_terapeutica": "Inhibidor de bomba de protones",
+    "presentacion": "Cápsula",
+    "dosis": "20mg",
+    "bioequivalente": "True",
+    "stock": 90,
+    "precio": "5400.00",
+    "tipo_venta": "libre",
+    "proveedor": 1,
+    "nivel_stock": null,
+    "fecha_ingreso": "2026-04-27",
+    "fecha_vencimiento": "2027-04-27"
+  }
+},
+{
+  "model": "farmacia.medicamento",
+  "pk": 7,
+  "fields": {
+    "sku": "MED007",
+    "nombre": "Cetirizina 10mg",
+    "laboratorio": "Alergialab",
+    "principio_activo": "Cetirizina",
+    "accion_terapeutica": "Antihistamínico",
+    "presentacion": "Tableta",
+    "dosis": "10mg",
+    "bioequivalente": "True",
+    "stock": 110,
+    "precio": "3200.00",
+    "tipo_venta": "libre",
+    "proveedor": 1,
+    "nivel_stock": null,
+    "fecha_ingreso": "2026-04-27",
+    "fecha_vencimiento": "2027-04-27"
+  }
+},
+{
+  "model": "farmacia.medicamento",
+  "pk": 8,
+  "fields": {
+    "sku": "MED008",
+    "nombre": "Vitamina C 500mg",
+    "laboratorio": "Vitaminalab",
+    "principio_activo": "Ácido ascórbico",
+    "accion_terapeutica": "Suplemento vitamínico",
+    "presentacion": "Tableta Efervescente",
+    "dosis": "500mg",
+    "bioequivalente": "True",
+    "stock": 199,
+    "precio": "1800.00",
+    "tipo_venta": "libre",
+    "proveedor": 1,
+    "nivel_stock": "Medio",
+    "fecha_ingreso": "2026-04-27",
+    "fecha_vencimiento": "2027-04-27"
+  }
+},
+{
+  "model": "farmacia.medicamento",
+  "pk": 9,
+  "fields": {
+    "sku": "MED009",
+    "nombre": "Dipirona 500mg",
+    "laboratorio": "Laboratorio Estándar",
+    "principio_activo": "Dipirona",
+    "accion_terapeutica": "Analgésico, Antipirético",
+    "presentacion": "Tableta",
+    "dosis": "500mg",
+    "bioequivalente": "True",
+    "stock": 75,
+    "precio": "2100.00",
+    "tipo_venta": "libre",
+    "proveedor": 1,
+    "nivel_stock": null,
+    "fecha_ingreso": "2026-04-27",
+    "fecha_vencimiento": "2027-04-27"
+  }
+},
+{
+  "model": "farmacia.medicamento",
+  "pk": 10,
+  "fields": {
+    "sku": "MED010",
+    "nombre": "Losartán 50mg",
+    "laboratorio": "Cardiofarm",
+    "principio_activo": "Losartán potásico",
+    "accion_terapeutica": "Antihipertensivo",
+    "presentacion": "Tableta",
+    "dosis": "50mg",
+    "bioequivalente": "True",
+    "stock": 85,
+    "precio": "6500.00",
+    "tipo_venta": "receta_simple",
+    "proveedor": 1,
+    "nivel_stock": null,
+    "fecha_ingreso": "2026-04-27",
+    "fecha_vencimiento": "2027-04-27"
+  }
+},
+{
+  "model": "farmacia.medicamento",
+  "pk": 11,
+  "fields": {
+    "sku": "MED011",
+    "nombre": "Sertraline 50mg",
+    "laboratorio": "Neurolab",
+    "principio_activo": "Sertralina",
+    "accion_terapeutica": "Antidepresivo ISRS",
+    "presentacion": "Tableta",
+    "dosis": "50mg",
+    "bioequivalente": "False",
+    "stock": 40,
+    "precio": "9500.00",
+    "tipo_venta": "receta_retenida",
+    "proveedor": 1,
+    "nivel_stock": null,
+    "fecha_ingreso": "2026-04-27",
+    "fecha_vencimiento": "2027-04-27"
+  }
+},
+{
+  "model": "farmacia.medicamento",
+  "pk": 12,
+  "fields": {
+    "sku": "ENAL-10",
+    "nombre": "Enalapril 10mg",
+    "laboratorio": "Laboratorio Farmacias de Chile",
+    "principio_activo": "Enalapril Maleato",
+    "accion_terapeutica": "Antihipertensivo",
+    "presentacion": "Tableta",
+    "dosis": "10mg",
+    "bioequivalente": "Si",
+    "stock": 148,
+    "precio": "3500.00",
+    "tipo_venta": "receta_simple",
+    "proveedor": 2,
+    "nivel_stock": "Medio",
+    "fecha_ingreso": "2026-05-02",
+    "fecha_vencimiento": "2026-09-17"
+  }
+},
+{
+  "model": "farmacia.medicamento",
+  "pk": 13,
+  "fields": {
+    "sku": "METF-500",
+    "nombre": "Metformina 500mg",
+    "laboratorio": "Laboratorio Farmacias de Chile",
+    "principio_activo": "Clorhidrato de Metformina",
+    "accion_terapeutica": "Antidiabético",
+    "presentacion": "Tableta",
+    "dosis": "500mg",
+    "bioequivalente": "Si",
+    "stock": 200,
+    "precio": "2800.00",
+    "tipo_venta": "receta_simple",
+    "proveedor": 2,
+    "nivel_stock": null,
+    "fecha_ingreso": "2026-05-02",
+    "fecha_vencimiento": "2026-12-28"
+  }
+},
+{
+  "model": "farmacia.medicamento",
+  "pk": 14,
+  "fields": {
+    "sku": "ATOR-20",
+    "nombre": "Atorvastatina 20mg",
+    "laboratorio": "Laboratorio Farmacias de Chile",
+    "principio_activo": "Atorvastatina Cálcica",
+    "accion_terapeutica": "Hipolipemiante",
+    "presentacion": "Tableta",
+    "dosis": "20mg",
+    "bioequivalente": "Si",
+    "stock": 180,
+    "precio": "4200.00",
+    "tipo_venta": "receta_simple",
+    "proveedor": 2,
+    "nivel_stock": null,
+    "fecha_ingreso": "2026-05-02",
+    "fecha_vencimiento": "2027-02-28"
+  }
+},
+{
+  "model": "farmacia.medicamento",
+  "pk": 15,
+  "fields": {
+    "sku": "ALPR-1",
+    "nombre": "Alprazolam 1mg",
+    "laboratorio": "Laboratorio Farmacias de Chile",
+    "principio_activo": "Alprazolam",
+    "accion_terapeutica": "Ansiolítico",
+    "presentacion": "Tableta",
+    "dosis": "1mg",
+    "bioequivalente": "Si",
+    "stock": 77,
+    "precio": "5200.00",
+    "tipo_venta": "receta_retenida",
+    "proveedor": 2,
+    "nivel_stock": "Bajo",
+    "fecha_ingreso": "2026-05-02",
+    "fecha_vencimiento": "2027-03-18"
+  }
+},
+{
+  "model": "farmacia.medicamento",
+  "pk": 16,
+  "fields": {
+    "sku": "DICL-75",
+    "nombre": "Diclofenaco 75mg",
+    "laboratorio": "Laboratorio Farmacias de Chile",
+    "principio_activo": "Diclofenaco Sódico",
+    "accion_terapeutica": "AINE",
+    "presentacion": "Inyectable",
+    "dosis": "75mg",
+    "bioequivalente": "Si",
+    "stock": 120,
+    "precio": "4500.00",
+    "tipo_venta": "receta_simple",
+    "proveedor": 2,
+    "nivel_stock": null,
+    "fecha_ingreso": "2026-05-02",
+    "fecha_vencimiento": "2027-03-25"
+  }
+},
+{
+  "model": "farmacia.medicamento",
+  "pk": 17,
+  "fields": {
+    "sku": "LORA-10",
+    "nombre": "Loratadina 10mg",
+    "laboratorio": "Laboratorio Farmacias de Chile",
+    "principio_activo": "Loratadina",
+    "accion_terapeutica": "Antihistamínico",
+    "presentacion": "Tableta",
+    "dosis": "10mg",
+    "bioequivalente": "Si",
+    "stock": 300,
+    "precio": "2200.00",
+    "tipo_venta": "libre",
+    "proveedor": 2,
+    "nivel_stock": null,
+    "fecha_ingreso": "2026-05-02",
+    "fecha_vencimiento": "2026-08-23"
+  }
+},
+{
+  "model": "farmacia.medicamento",
+  "pk": 18,
+  "fields": {
+    "sku": "SALB-100",
+    "nombre": "Salbutamol 100mcg",
+    "laboratorio": "Laboratorio Farmacias de Chile",
+    "principio_activo": "Sulfato de Salbutamol",
+    "accion_terapeutica": "Broncodilatador",
+    "presentacion": "Aerosol",
+    "dosis": "100mcg",
+    "bioequivalente": "Si",
+    "stock": 110,
+    "precio": "6500.00",
+    "tipo_venta": "receta_simple",
+    "proveedor": 2,
+    "nivel_stock": null,
+    "fecha_ingreso": "2026-05-02",
+    "fecha_vencimiento": "2026-09-11"
+  }
+},
+{
+  "model": "farmacia.medicamento",
+  "pk": 19,
+  "fields": {
+    "sku": "LEVO-50",
+    "nombre": "Levotiroxina 50mcg",
+    "laboratorio": "Laboratorio Farmacias de Chile",
+    "principio_activo": "Levotiroxina Sódica",
+    "accion_terapeutica": "Hormona tiroidea",
+    "presentacion": "Tableta",
+    "dosis": "50mcg",
+    "bioequivalente": "Si",
+    "stock": 250,
+    "precio": "2900.00",
+    "tipo_venta": "receta_simple",
+    "proveedor": 2,
+    "nivel_stock": null,
+    "fecha_ingreso": "2026-05-02",
+    "fecha_vencimiento": "2026-08-14"
+  }
+},
+{
+  "model": "farmacia.medicamento",
+  "pk": 20,
+  "fields": {
+    "sku": "ACET-500",
+    "nombre": "Acetaminofén 500mg",
+    "laboratorio": "Laboratorio Farmacias de Chile",
+    "principio_activo": "Paracetamol",
+    "accion_terapeutica": "Analgésico",
+    "presentacion": "Tableta",
+    "dosis": "500mg",
+    "bioequivalente": "Si",
+    "stock": 400,
+    "precio": "1500.00",
+    "tipo_venta": "libre",
+    "proveedor": 2,
+    "nivel_stock": null,
+    "fecha_ingreso": "2026-05-02",
+    "fecha_vencimiento": "2027-02-18"
+  }
+},
+{
+  "model": "farmacia.medicamento",
+  "pk": 21,
+  "fields": {
+    "sku": "RANI-150",
+    "nombre": "Ranitidina 150mg",
+    "laboratorio": "Laboratorio Farmacias de Chile",
+    "principio_activo": "Clorhidrato de Ranitidina",
+    "accion_terapeutica": "Antiacido",
+    "presentacion": "Tableta",
+    "dosis": "150mg",
+    "bioequivalente": "Si",
+    "stock": 190,
+    "precio": "2600.00",
+    "tipo_venta": "libre",
+    "proveedor": 2,
+    "nivel_stock": null,
+    "fecha_ingreso": "2026-05-02",
+    "fecha_vencimiento": "2027-03-23"
+  }
+},
+{
+  "model": "farmacia.medicamento",
+  "pk": 22,
+  "fields": {
+    "sku": "INSU-NPH",
+    "nombre": "Insulina NPH 100UI/ml",
+    "laboratorio": "Laboratorio Farmacias de Chile",
+    "principio_activo": "Insulina Humana",
+    "accion_terapeutica": "Hormona",
+    "presentacion": "Inyectable",
+    "dosis": "100UI/ml",
+    "bioequivalente": "Si",
+    "stock": 45,
+    "precio": "15000.00",
+    "tipo_venta": "receta_simple",
+    "proveedor": 2,
+    "nivel_stock": null,
+    "fecha_ingreso": "2026-05-02",
+    "fecha_vencimiento": "2026-09-04"
+  }
+},
+{
+  "model": "farmacia.medicamento",
+  "pk": 23,
+  "fields": {
+    "sku": "CIPR-500",
+    "nombre": "Ciprofloxacino 500mg",
+    "laboratorio": "Laboratorio Farmacias de Chile",
+    "principio_activo": "Ciprofloxacino",
+    "accion_terapeutica": "Antibiótico",
+    "presentacion": "Tableta",
+    "dosis": "500mg",
+    "bioequivalente": "Si",
+    "stock": 130,
+    "precio": "3900.00",
+    "tipo_venta": "receta_simple",
+    "proveedor": 2,
+    "nivel_stock": null,
+    "fecha_ingreso": "2026-05-02",
+    "fecha_vencimiento": "2027-03-09"
+  }
+},
+{
+  "model": "farmacia.medicamento",
+  "pk": 24,
+  "fields": {
+    "sku": "CAPT-25",
+    "nombre": "Captopril 25mg",
+    "laboratorio": "Laboratorio Farmacias de Chile",
+    "principio_activo": "Captopril",
+    "accion_terapeutica": "Antihipertensivo",
+    "presentacion": "Tableta",
+    "dosis": "25mg",
+    "bioequivalente": "Si",
+    "stock": 170,
+    "precio": "3400.00",
+    "tipo_venta": "receta_simple",
+    "proveedor": 2,
+    "nivel_stock": null,
+    "fecha_ingreso": "2026-05-02",
+    "fecha_vencimiento": "2027-01-31"
+  }
+},
+{
+  "model": "farmacia.medicamento",
+  "pk": 25,
+  "fields": {
+    "sku": "PRED-5",
+    "nombre": "Prednisona 5mg",
+    "laboratorio": "Laboratorio Farmacias de Chile",
+    "principio_activo": "Prednisona",
+    "accion_terapeutica": "Corticoesteroide",
+    "presentacion": "Tableta",
+    "dosis": "5mg",
+    "bioequivalente": "Si",
+    "stock": 140,
+    "precio": "2700.00",
+    "tipo_venta": "receta_simple",
+    "proveedor": 2,
+    "nivel_stock": null,
+    "fecha_ingreso": "2026-05-02",
+    "fecha_vencimiento": "2027-01-10"
+  }
+},
+{
+  "model": "farmacia.venta",
+  "pk": 1,
+  "fields": {
+    "medicamento": 1,
+    "cantidad": 1,
+    "precio": "2975.00",
+    "fecha": "2026-04-27T20:49:20.945Z",
+    "vendedor": 1,
+    "cliente": null,
+    "lote": null,
+    "numero_venta": "VT-2026-00001",
+    "estado": "COMPLETADA",
+    "boleta": 1,
+    "receta_venta": null
+  }
+},
+{
+  "model": "farmacia.venta",
+  "pk": 2,
+  "fields": {
+    "medicamento": 1,
+    "cantidad": 1,
+    "precio": "2500.00",
+    "fecha": "2026-04-27T21:32:42.593Z",
+    "vendedor": 1,
+    "cliente": null,
+    "lote": null,
+    "numero_venta": null,
+    "estado": "COMPLETADA",
+    "boleta": null,
+    "receta_venta": null
+  }
+},
+{
+  "model": "farmacia.venta",
+  "pk": 3,
+  "fields": {
+    "medicamento": 3,
+    "cantidad": 3,
+    "precio": "26700.00",
+    "fecha": "2026-04-27T21:49:58.074Z",
+    "vendedor": 1,
+    "cliente": 1,
+    "lote": null,
+    "numero_venta": "VT-2026-00002",
+    "estado": "COMPLETADA",
+    "boleta": 2,
+    "receta_venta": null
+  }
+},
+{
+  "model": "farmacia.venta",
+  "pk": 4,
+  "fields": {
+    "medicamento": 2,
+    "cantidad": 2,
+    "precio": "7000.00",
+    "fecha": "2026-04-28T01:42:13.136Z",
+    "vendedor": 1,
+    "cliente": null,
+    "lote": null,
+    "numero_venta": "VT-2026-00003",
+    "estado": "COMPLETADA",
+    "boleta": 3,
+    "receta_venta": null
+  }
+},
+{
+  "model": "farmacia.venta",
+  "pk": 5,
+  "fields": {
+    "medicamento": 3,
+    "cantidad": 2,
+    "precio": "17800.00",
+    "fecha": "2026-04-28T04:04:44.843Z",
+    "vendedor": 1,
+    "cliente": null,
+    "lote": 11,
+    "numero_venta": null,
+    "estado": "COMPLETADA",
+    "boleta": null,
+    "receta_venta": null
+  }
+},
+{
+  "model": "farmacia.venta",
+  "pk": 6,
+  "fields": {
+    "medicamento": 1,
+    "cantidad": 1,
+    "precio": "2975.00",
+    "fecha": "2026-04-28T16:38:39.660Z",
+    "vendedor": 1,
+    "cliente": null,
+    "lote": null,
+    "numero_venta": "VT-2026-00004",
+    "estado": "COMPLETADA",
+    "boleta": 4,
+    "receta_venta": null
+  }
+},
+{
+  "model": "farmacia.venta",
+  "pk": 7,
+  "fields": {
+    "medicamento": 1,
+    "cantidad": 5,
+    "precio": "12500.00",
+    "fecha": "2026-05-02T17:44:27.928Z",
+    "vendedor": 1,
+    "cliente": null,
+    "lote": 2,
+    "numero_venta": null,
+    "estado": "COMPLETADA",
+    "boleta": null,
+    "receta_venta": null
+  }
+},
+{
+  "model": "farmacia.venta",
+  "pk": 8,
+  "fields": {
+    "medicamento": 15,
+    "cantidad": 2,
+    "precio": "10400.00",
+    "fecha": "2026-05-02T18:04:34.856Z",
+    "vendedor": 1,
+    "cliente": null,
+    "lote": null,
+    "numero_venta": null,
+    "estado": "COMPLETADA",
+    "boleta": null,
+    "receta_venta": 2
+  }
+},
+{
+  "model": "farmacia.venta",
+  "pk": 9,
+  "fields": {
+    "medicamento": 17,
+    "cantidad": 1,
+    "precio": "2618.00",
+    "fecha": "2026-05-02T18:49:23.589Z",
+    "vendedor": 2,
+    "cliente": null,
+    "lote": null,
+    "numero_venta": "BV-2026-00005",
+    "estado": "COMPLETADA",
+    "boleta": null,
+    "receta_venta": null
+  }
+},
+{
+  "model": "farmacia.venta",
+  "pk": 10,
+  "fields": {
+    "medicamento": 12,
+    "cantidad": 2,
+    "precio": "8330.00",
+    "fecha": "2026-05-02T18:57:39.631Z",
+    "vendedor": 2,
+    "cliente": null,
+    "lote": null,
+    "numero_venta": "VT-2026-00005",
+    "estado": "COMPLETADA",
+    "boleta": 6,
+    "receta_venta": 4
+  }
+},
+{
+  "model": "farmacia.venta",
+  "pk": 11,
+  "fields": {
+    "medicamento": 15,
+    "cantidad": 1,
+    "precio": "6188.00",
+    "fecha": "2026-05-02T18:57:51.283Z",
+    "vendedor": 2,
+    "cliente": null,
+    "lote": null,
+    "numero_venta": "VT-2026-00006",
+    "estado": "COMPLETADA",
+    "boleta": 7,
+    "receta_venta": 5
+  }
+},
+{
+  "model": "farmacia.proveedor",
+  "pk": 1,
+  "fields": {
+    "nombre": "Laboratorio Estándar",
+    "razon_social": "Laboratorio Estándar S.A.",
+    "rut": "",
+    "direccion": "Av. Principal 1000, Ciudad",
+    "email": "contacto@laboratorio.local",
+    "fono": "+56942000000",
+    "productos": ""
+  }
+},
+{
+  "model": "farmacia.proveedor",
+  "pk": 2,
+  "fields": {
+    "nombre": "Laboratorio Farmacias de Chile S.A.",
+    "razon_social": "Laboratorio Farmacias de Chile S.A.",
+    "rut": "12.345.678-9",
+    "direccion": "Av. Providencia 1000, Santiago",
+    "email": "contacto@labfarmaciaschile.cl",
+    "fono": "+56 2 2500 0000",
+    "productos": "Medicamentos generales"
+  }
+},
+{
+  "model": "farmacia.historialstock",
+  "pk": 1,
+  "fields": {
+    "medicamento": 1,
+    "tipo": "VENTA",
+    "cantidad": 1,
+    "stock_anterior": 100,
+    "stock_posterior": 99,
+    "usuario": 1,
+    "venta": 1,
+    "motivo": "Venta POS v2 - EFECTIVO",
+    "fecha_creacion": "2026-04-27T20:49:20.955Z"
+  }
+},
+{
+  "model": "farmacia.historialstock",
+  "pk": 2,
+  "fields": {
+    "medicamento": 1,
+    "tipo": "VENTA",
+    "cantidad": 1,
+    "stock_anterior": 99,
+    "stock_posterior": 98,
+    "usuario": 1,
+    "venta": null,
+    "motivo": "Venta POS - efectivo",
+    "fecha_creacion": "2026-04-27T21:32:42.602Z"
+  }
+},
+{
+  "model": "farmacia.historialstock",
+  "pk": 3,
+  "fields": {
+    "medicamento": 1,
+    "tipo": "VENTA",
+    "cantidad": 2,
+    "stock_anterior": 98,
+    "stock_posterior": 96,
+    "usuario": 1,
+    "venta": 3,
+    "motivo": "Venta POS v2 - EFECTIVO",
+    "fecha_creacion": "2026-04-27T21:49:58.085Z"
+  }
+},
+{
+  "model": "farmacia.historialstock",
+  "pk": 4,
+  "fields": {
+    "medicamento": 8,
+    "tipo": "VENTA",
+    "cantidad": 1,
+    "stock_anterior": 200,
+    "stock_posterior": 199,
+    "usuario": 1,
+    "venta": 3,
+    "motivo": "Venta POS v2 - EFECTIVO",
+    "fecha_creacion": "2026-04-27T21:49:58.091Z"
+  }
+},
+{
+  "model": "farmacia.historialstock",
+  "pk": 5,
+  "fields": {
+    "medicamento": 1,
+    "tipo": "VENTA",
+    "cantidad": 1,
+    "stock_anterior": 96,
+    "stock_posterior": 95,
+    "usuario": 1,
+    "venta": 4,
+    "motivo": "Venta POS v2 - EFECTIVO",
+    "fecha_creacion": "2026-04-28T01:42:13.141Z"
+  }
+},
+{
+  "model": "farmacia.historialstock",
+  "pk": 6,
+  "fields": {
+    "medicamento": 3,
+    "tipo": "VENTA",
+    "cantidad": 2,
+    "stock_anterior": 45,
+    "stock_posterior": 43,
+    "usuario": 1,
+    "venta": null,
+    "motivo": "Venta FIFO - Lote LOT-MED003-202604-7892 - ADVERTENCIA: Medicamento próximo a vencer en 1 días",
+    "fecha_creacion": "2026-04-28T04:04:44.854Z"
+  }
+},
+{
+  "model": "farmacia.historialstock",
+  "pk": 7,
+  "fields": {
+    "medicamento": 1,
+    "tipo": "VENTA",
+    "cantidad": 1,
+    "stock_anterior": 95,
+    "stock_posterior": 94,
+    "usuario": 1,
+    "venta": 6,
+    "motivo": "Venta POS v2 - EFECTIVO",
+    "fecha_creacion": "2026-04-28T16:38:39.677Z"
+  }
+},
+{
+  "model": "farmacia.historialstock",
+  "pk": 8,
+  "fields": {
+    "medicamento": 1,
+    "tipo": "VENTA",
+    "cantidad": 5,
+    "stock_anterior": 94,
+    "stock_posterior": 89,
+    "usuario": 1,
+    "venta": null,
+    "motivo": "Venta FIFO - Lote LOT-MED001-202604-8005",
+    "fecha_creacion": "2026-05-02T17:44:27.989Z"
+  }
+},
+{
+  "model": "farmacia.cliente",
+  "pk": 1,
+  "fields": {
+    "rut_dni": "18.456.789-0",
+    "nombre": "Juan",
+    "apellido": "González",
+    "email": "juan.gonzalez@email.com",
+    "telefono": "+56912345678",
+    "fecha_nacimiento": null,
+    "alergias": "",
+    "medicamentos_contraindicados": "",
+    "cliente_vip": false,
+    "descuento_vip": "0.00",
+    "fecha_registro": "2026-04-27T21:45:26.516Z",
+    "activo": true
+  }
+},
+{
+  "model": "farmacia.lotemedicamento",
+  "pk": 1,
+  "fields": {
+    "medicamento": 1,
+    "numero_lote": "LOT-MED001-202604-5213",
+    "fecha_vencimiento": "2026-04-03",
+    "cantidad_ingresada": 238,
+    "cantidad_disponible": 230,
+    "proveedor": 1,
+    "precio_costo": "1663.57",
+    "fecha_ingreso": "2026-04-28T03:52:04.407Z"
+  }
+},
+{
+  "model": "farmacia.lotemedicamento",
+  "pk": 2,
+  "fields": {
+    "medicamento": 1,
+    "numero_lote": "LOT-MED001-202604-8005",
+    "fecha_vencimiento": "2026-05-02",
+    "cantidad_ingresada": 246,
+    "cantidad_disponible": 198,
+    "proveedor": 1,
+    "precio_costo": "1322.16",
+    "fecha_ingreso": "2026-04-28T03:52:04.419Z"
+  }
+},
+{
+  "model": "farmacia.lotemedicamento",
+  "pk": 3,
+  "fields": {
+    "medicamento": 1,
+    "numero_lote": "LOT-MED001-202604-4976",
+    "fecha_vencimiento": "2026-12-07",
+    "cantidad_ingresada": 247,
+    "cantidad_disponible": 202,
+    "proveedor": 1,
+    "precio_costo": "1643.27",
+    "fecha_ingreso": "2026-04-28T03:52:04.427Z"
+  }
+},
+{
+  "model": "farmacia.lotemedicamento",
+  "pk": 4,
+  "fields": {
+    "medicamento": 1,
+    "numero_lote": "LOT-MED001-202604-3825",
+    "fecha_vencimiento": "2026-12-17",
+    "cantidad_ingresada": 299,
+    "cantidad_disponible": 282,
+    "proveedor": 1,
+    "precio_costo": "1161.57",
+    "fecha_ingreso": "2026-04-28T03:52:04.433Z"
+  }
+},
+{
+  "model": "farmacia.lotemedicamento",
+  "pk": 5,
+  "fields": {
+    "medicamento": 2,
+    "numero_lote": "LOT-MED002-202604-9291",
+    "fecha_vencimiento": "2026-03-05",
+    "cantidad_ingresada": 165,
+    "cantidad_disponible": 158,
+    "proveedor": 1,
+    "precio_costo": "1508.01",
+    "fecha_ingreso": "2026-04-28T03:52:04.440Z"
+  }
+},
+{
+  "model": "farmacia.lotemedicamento",
+  "pk": 6,
+  "fields": {
+    "medicamento": 2,
+    "numero_lote": "LOT-MED002-202604-8172",
+    "fecha_vencimiento": "2026-12-25",
+    "cantidad_ingresada": 245,
+    "cantidad_disponible": 209,
+    "proveedor": 1,
+    "precio_costo": "2155.76",
+    "fecha_ingreso": "2026-04-28T03:52:04.447Z"
+  }
+},
+{
+  "model": "farmacia.lotemedicamento",
+  "pk": 7,
+  "fields": {
+    "medicamento": 2,
+    "numero_lote": "LOT-MED002-202604-3618",
+    "fecha_vencimiento": "2026-03-05",
+    "cantidad_ingresada": 101,
+    "cantidad_disponible": 81,
+    "proveedor": 1,
+    "precio_costo": "2231.96",
+    "fecha_ingreso": "2026-04-28T03:52:04.453Z"
+  }
+},
+{
+  "model": "farmacia.lotemedicamento",
+  "pk": 8,
+  "fields": {
+    "medicamento": 2,
+    "numero_lote": "LOT-MED002-202604-9818",
+    "fecha_vencimiento": "2026-11-18",
+    "cantidad_ingresada": 285,
+    "cantidad_disponible": 238,
+    "proveedor": 1,
+    "precio_costo": "2339.68",
+    "fecha_ingreso": "2026-04-28T03:52:04.461Z"
+  }
+},
+{
+  "model": "farmacia.lotemedicamento",
+  "pk": 9,
+  "fields": {
+    "medicamento": 2,
+    "numero_lote": "LOT-MED002-202604-3947",
+    "fecha_vencimiento": "2027-02-23",
+    "cantidad_ingresada": 50,
+    "cantidad_disponible": 22,
+    "proveedor": 1,
+    "precio_costo": "1507.26",
+    "fecha_ingreso": "2026-04-28T03:52:04.467Z"
+  }
+},
+{
+  "model": "farmacia.lotemedicamento",
+  "pk": 10,
+  "fields": {
+    "medicamento": 3,
+    "numero_lote": "LOT-MED003-202604-3933",
+    "fecha_vencimiento": "2026-03-06",
+    "cantidad_ingresada": 213,
+    "cantidad_disponible": 191,
+    "proveedor": 1,
+    "precio_costo": "5635.15",
+    "fecha_ingreso": "2026-04-28T03:52:04.474Z"
+  }
+},
+{
+  "model": "farmacia.lotemedicamento",
+  "pk": 11,
+  "fields": {
+    "medicamento": 3,
+    "numero_lote": "LOT-MED003-202604-7892",
+    "fecha_vencimiento": "2026-04-29",
+    "cantidad_ingresada": 84,
+    "cantidad_disponible": 67,
+    "proveedor": 1,
+    "precio_costo": "3895.90",
+    "fecha_ingreso": "2026-04-28T03:52:04.480Z"
+  }
+},
+{
+  "model": "farmacia.lotemedicamento",
+  "pk": 12,
+  "fields": {
+    "medicamento": 3,
+    "numero_lote": "LOT-MED003-202604-1486",
+    "fecha_vencimiento": "2026-04-10",
+    "cantidad_ingresada": 97,
+    "cantidad_disponible": 63,
+    "proveedor": 1,
+    "precio_costo": "3643.10",
+    "fecha_ingreso": "2026-04-28T03:52:04.486Z"
+  }
+},
+{
+  "model": "farmacia.lotemedicamento",
+  "pk": 13,
+  "fields": {
+    "medicamento": 3,
+    "numero_lote": "LOT-MED003-202604-6776",
+    "fecha_vencimiento": "2026-03-05",
+    "cantidad_ingresada": 159,
+    "cantidad_disponible": 155,
+    "proveedor": 1,
+    "precio_costo": "4053.50",
+    "fecha_ingreso": "2026-04-28T03:52:04.493Z"
+  }
+},
+{
+  "model": "farmacia.lotemedicamento",
+  "pk": 14,
+  "fields": {
+    "medicamento": 4,
+    "numero_lote": "LOT-MED004-202604-7970",
+    "fecha_vencimiento": "2026-10-01",
+    "cantidad_ingresada": 88,
+    "cantidad_disponible": 79,
+    "proveedor": 1,
+    "precio_costo": "2225.13",
+    "fecha_ingreso": "2026-04-28T03:52:04.499Z"
+  }
+},
+{
+  "model": "farmacia.lotemedicamento",
+  "pk": 15,
+  "fields": {
+    "medicamento": 4,
+    "numero_lote": "LOT-MED004-202604-7414",
+    "fecha_vencimiento": "2026-04-19",
+    "cantidad_ingresada": 257,
+    "cantidad_disponible": 212,
+    "proveedor": 1,
+    "precio_costo": "2039.54",
+    "fecha_ingreso": "2026-04-28T03:52:04.505Z"
+  }
+},
+{
+  "model": "farmacia.lotemedicamento",
+  "pk": 16,
+  "fields": {
+    "medicamento": 4,
+    "numero_lote": "LOT-MED004-202604-1172",
+    "fecha_vencimiento": "2026-04-21",
+    "cantidad_ingresada": 184,
+    "cantidad_disponible": 164,
+    "proveedor": 1,
+    "precio_costo": "2718.59",
+    "fecha_ingreso": "2026-04-28T03:52:04.513Z"
+  }
+},
+{
+  "model": "farmacia.lotemedicamento",
+  "pk": 17,
+  "fields": {
+    "medicamento": 4,
+    "numero_lote": "LOT-MED004-202604-6624",
+    "fecha_vencimiento": "2026-05-03",
+    "cantidad_ingresada": 115,
+    "cantidad_disponible": 95,
+    "proveedor": 1,
+    "precio_costo": "2291.09",
+    "fecha_ingreso": "2026-04-28T03:52:04.519Z"
+  }
+},
+{
+  "model": "farmacia.lotemedicamento",
+  "pk": 18,
+  "fields": {
+    "medicamento": 5,
+    "numero_lote": "LOT-MED005-202604-1687",
+    "fecha_vencimiento": "2026-04-22",
+    "cantidad_ingresada": 156,
+    "cantidad_disponible": 128,
+    "proveedor": 1,
+    "precio_costo": "4024.17",
+    "fecha_ingreso": "2026-04-28T03:52:04.526Z"
+  }
+},
+{
+  "model": "farmacia.lotemedicamento",
+  "pk": 19,
+  "fields": {
+    "medicamento": 5,
+    "numero_lote": "LOT-MED005-202604-2188",
+    "fecha_vencimiento": "2027-02-18",
+    "cantidad_ingresada": 295,
+    "cantidad_disponible": 251,
+    "proveedor": 1,
+    "precio_costo": "4675.11",
+    "fecha_ingreso": "2026-04-28T03:52:04.532Z"
+  }
+},
+{
+  "model": "farmacia.lotemedicamento",
+  "pk": 20,
+  "fields": {
+    "medicamento": 5,
+    "numero_lote": "LOT-MED005-202604-4300",
+    "fecha_vencimiento": "2026-08-10",
+    "cantidad_ingresada": 150,
+    "cantidad_disponible": 123,
+    "proveedor": 1,
+    "precio_costo": "3647.95",
+    "fecha_ingreso": "2026-04-28T03:52:04.539Z"
+  }
+},
+{
+  "model": "farmacia.lotemedicamento",
+  "pk": 21,
+  "fields": {
+    "medicamento": 6,
+    "numero_lote": "LOT-MED006-202604-8788",
+    "fecha_vencimiento": "2026-03-26",
+    "cantidad_ingresada": 90,
+    "cantidad_disponible": 79,
+    "proveedor": 1,
+    "precio_costo": "3778.02",
+    "fecha_ingreso": "2026-04-28T03:52:04.546Z"
+  }
+},
+{
+  "model": "farmacia.lotemedicamento",
+  "pk": 22,
+  "fields": {
+    "medicamento": 6,
+    "numero_lote": "LOT-MED006-202604-6215",
+    "fecha_vencimiento": "2026-10-15",
+    "cantidad_ingresada": 64,
+    "cantidad_disponible": 22,
+    "proveedor": 1,
+    "precio_costo": "2808.25",
+    "fecha_ingreso": "2026-04-28T03:52:04.552Z"
+  }
+},
+{
+  "model": "farmacia.lotemedicamento",
+  "pk": 23,
+  "fields": {
+    "medicamento": 6,
+    "numero_lote": "LOT-MED006-202604-5487",
+    "fecha_vencimiento": "2026-03-04",
+    "cantidad_ingresada": 203,
+    "cantidad_disponible": 193,
+    "proveedor": 1,
+    "precio_costo": "3776.96",
+    "fecha_ingreso": "2026-04-28T03:52:04.558Z"
+  }
+},
+{
+  "model": "farmacia.lotemedicamento",
+  "pk": 24,
+  "fields": {
+    "medicamento": 6,
+    "numero_lote": "LOT-MED006-202604-3827",
+    "fecha_vencimiento": "2026-03-13",
+    "cantidad_ingresada": 110,
+    "cantidad_disponible": 88,
+    "proveedor": 1,
+    "precio_costo": "3082.30",
+    "fecha_ingreso": "2026-04-28T03:52:04.564Z"
+  }
+},
+{
+  "model": "farmacia.lotemedicamento",
+  "pk": 25,
+  "fields": {
+    "medicamento": 6,
+    "numero_lote": "LOT-MED006-202604-8584",
+    "fecha_vencimiento": "2026-04-30",
+    "cantidad_ingresada": 109,
+    "cantidad_disponible": 77,
+    "proveedor": 1,
+    "precio_costo": "2701.14",
+    "fecha_ingreso": "2026-04-28T03:52:04.570Z"
+  }
+},
+{
+  "model": "farmacia.lotemedicamento",
+  "pk": 26,
+  "fields": {
+    "medicamento": 7,
+    "numero_lote": "LOT-MED007-202604-4234",
+    "fecha_vencimiento": "2026-05-01",
+    "cantidad_ingresada": 243,
+    "cantidad_disponible": 223,
+    "proveedor": 1,
+    "precio_costo": "1469.71",
+    "fecha_ingreso": "2026-04-28T03:52:04.577Z"
+  }
+},
+{
+  "model": "farmacia.lotemedicamento",
+  "pk": 27,
+  "fields": {
+    "medicamento": 7,
+    "numero_lote": "LOT-MED007-202604-3634",
+    "fecha_vencimiento": "2026-04-08",
+    "cantidad_ingresada": 278,
+    "cantidad_disponible": 269,
+    "proveedor": 1,
+    "precio_costo": "1374.09",
+    "fecha_ingreso": "2026-04-28T03:52:04.583Z"
+  }
+},
+{
+  "model": "farmacia.lotemedicamento",
+  "pk": 28,
+  "fields": {
+    "medicamento": 7,
+    "numero_lote": "LOT-MED007-202604-8505",
+    "fecha_vencimiento": "2027-01-18",
+    "cantidad_ingresada": 145,
+    "cantidad_disponible": 112,
+    "proveedor": 1,
+    "precio_costo": "1562.18",
+    "fecha_ingreso": "2026-04-28T03:52:04.589Z"
+  }
+},
+{
+  "model": "farmacia.lotemedicamento",
+  "pk": 29,
+  "fields": {
+    "medicamento": 7,
+    "numero_lote": "LOT-MED007-202604-2961",
+    "fecha_vencimiento": "2026-05-04",
+    "cantidad_ingresada": 269,
+    "cantidad_disponible": 228,
+    "proveedor": 1,
+    "precio_costo": "2120.67",
+    "fecha_ingreso": "2026-04-28T03:52:04.596Z"
+  }
+},
+{
+  "model": "farmacia.lotemedicamento",
+  "pk": 30,
+  "fields": {
+    "medicamento": 8,
+    "numero_lote": "LOT-MED008-202604-2296",
+    "fecha_vencimiento": "2026-04-29",
+    "cantidad_ingresada": 230,
+    "cantidad_disponible": 216,
+    "proveedor": 1,
+    "precio_costo": "893.55",
+    "fecha_ingreso": "2026-04-28T03:52:04.602Z"
+  }
+},
+{
+  "model": "farmacia.lotemedicamento",
+  "pk": 31,
+  "fields": {
+    "medicamento": 8,
+    "numero_lote": "LOT-MED008-202604-6265",
+    "fecha_vencimiento": "2026-04-29",
+    "cantidad_ingresada": 85,
+    "cantidad_disponible": 58,
+    "proveedor": 1,
+    "precio_costo": "1163.79",
+    "fecha_ingreso": "2026-04-28T03:52:04.609Z"
+  }
+},
+{
+  "model": "farmacia.lotemedicamento",
+  "pk": 32,
+  "fields": {
+    "medicamento": 8,
+    "numero_lote": "LOT-MED008-202604-8614",
+    "fecha_vencimiento": "2027-04-25",
+    "cantidad_ingresada": 113,
+    "cantidad_disponible": 98,
+    "proveedor": 1,
+    "precio_costo": "966.89",
+    "fecha_ingreso": "2026-04-28T03:52:04.615Z"
+  }
+},
+{
+  "model": "farmacia.lotemedicamento",
+  "pk": 33,
+  "fields": {
+    "medicamento": 8,
+    "numero_lote": "LOT-MED008-202604-3802",
+    "fecha_vencimiento": "2027-01-06",
+    "cantidad_ingresada": 288,
+    "cantidad_disponible": 248,
+    "proveedor": 1,
+    "precio_costo": "1188.25",
+    "fecha_ingreso": "2026-04-28T03:52:04.622Z"
+  }
+},
+{
+  "model": "farmacia.lotemedicamento",
+  "pk": 34,
+  "fields": {
+    "medicamento": 8,
+    "numero_lote": "LOT-MED008-202604-4902",
+    "fecha_vencimiento": "2026-05-02",
+    "cantidad_ingresada": 136,
+    "cantidad_disponible": 128,
+    "proveedor": 1,
+    "precio_costo": "1191.26",
+    "fecha_ingreso": "2026-04-28T03:52:04.629Z"
+  }
+},
+{
+  "model": "farmacia.lotemedicamento",
+  "pk": 35,
+  "fields": {
+    "medicamento": 9,
+    "numero_lote": "LOT-MED009-202604-3243",
+    "fecha_vencimiento": "2027-04-24",
+    "cantidad_ingresada": 62,
+    "cantidad_disponible": 26,
+    "proveedor": 1,
+    "precio_costo": "1267.49",
+    "fecha_ingreso": "2026-04-28T03:52:04.636Z"
+  }
+},
+{
+  "model": "farmacia.lotemedicamento",
+  "pk": 36,
+  "fields": {
+    "medicamento": 9,
+    "numero_lote": "LOT-MED009-202604-2126",
+    "fecha_vencimiento": "2027-02-18",
+    "cantidad_ingresada": 204,
+    "cantidad_disponible": 189,
+    "proveedor": 1,
+    "precio_costo": "1053.17",
+    "fecha_ingreso": "2026-04-28T03:52:04.646Z"
+  }
+},
+{
+  "model": "farmacia.lotemedicamento",
+  "pk": 37,
+  "fields": {
+    "medicamento": 9,
+    "numero_lote": "LOT-MED009-202604-9984",
+    "fecha_vencimiento": "2026-05-03",
+    "cantidad_ingresada": 213,
+    "cantidad_disponible": 167,
+    "proveedor": 1,
+    "precio_costo": "955.97",
+    "fecha_ingreso": "2026-04-28T03:52:04.675Z"
+  }
+},
+{
+  "model": "farmacia.lotemedicamento",
+  "pk": 38,
+  "fields": {
+    "medicamento": 10,
+    "numero_lote": "LOT-MED010-202604-1439",
+    "fecha_vencimiento": "2027-01-18",
+    "cantidad_ingresada": 79,
+    "cantidad_disponible": 51,
+    "proveedor": 1,
+    "precio_costo": "2940.40",
+    "fecha_ingreso": "2026-04-28T03:52:04.695Z"
+  }
+},
+{
+  "model": "farmacia.lotemedicamento",
+  "pk": 39,
+  "fields": {
+    "medicamento": 10,
+    "numero_lote": "LOT-MED010-202604-4053",
+    "fecha_vencimiento": "2026-04-28",
+    "cantidad_ingresada": 223,
+    "cantidad_disponible": 212,
+    "proveedor": 1,
+    "precio_costo": "3086.98",
+    "fecha_ingreso": "2026-04-28T03:52:04.719Z"
+  }
+},
+{
+  "model": "farmacia.lotemedicamento",
+  "pk": 40,
+  "fields": {
+    "medicamento": 10,
+    "numero_lote": "LOT-MED010-202604-1526",
+    "fecha_vencimiento": "2026-04-29",
+    "cantidad_ingresada": 148,
+    "cantidad_disponible": 141,
+    "proveedor": 1,
+    "precio_costo": "3390.40",
+    "fecha_ingreso": "2026-04-28T03:52:04.737Z"
+  }
+},
+{
+  "model": "farmacia.lotemedicamento",
+  "pk": 41,
+  "fields": {
+    "medicamento": 10,
+    "numero_lote": "LOT-MED010-202604-5307",
+    "fecha_vencimiento": "2026-11-14",
+    "cantidad_ingresada": 133,
+    "cantidad_disponible": 104,
+    "proveedor": 1,
+    "precio_costo": "2813.41",
+    "fecha_ingreso": "2026-04-28T03:52:04.751Z"
+  }
+},
+{
+  "model": "farmacia.lotemedicamento",
+  "pk": 42,
+  "fields": {
+    "medicamento": 11,
+    "numero_lote": "LOT-MED011-202604-1755",
+    "fecha_vencimiento": "2026-11-08",
+    "cantidad_ingresada": 71,
+    "cantidad_disponible": 57,
+    "proveedor": 1,
+    "precio_costo": "6392.55",
+    "fecha_ingreso": "2026-04-28T03:52:04.766Z"
+  }
+},
+{
+  "model": "farmacia.lotemedicamento",
+  "pk": 43,
+  "fields": {
+    "medicamento": 11,
+    "numero_lote": "LOT-MED011-202604-5709",
+    "fecha_vencimiento": "2026-10-29",
+    "cantidad_ingresada": 259,
+    "cantidad_disponible": 255,
+    "proveedor": 1,
+    "precio_costo": "6300.01",
+    "fecha_ingreso": "2026-04-28T03:52:04.782Z"
+  }
+},
+{
+  "model": "farmacia.lotemedicamento",
+  "pk": 44,
+  "fields": {
+    "medicamento": 11,
+    "numero_lote": "LOT-MED011-202604-1485",
+    "fecha_vencimiento": "2026-07-04",
+    "cantidad_ingresada": 249,
+    "cantidad_disponible": 232,
+    "proveedor": 1,
+    "precio_costo": "5080.17",
+    "fecha_ingreso": "2026-04-28T03:52:04.797Z"
+  }
+},
+{
+  "model": "farmacia.lotemedicamento",
+  "pk": 45,
+  "fields": {
+    "medicamento": 11,
+    "numero_lote": "LOT-MED011-202604-6985",
+    "fecha_vencimiento": "2026-04-29",
+    "cantidad_ingresada": 99,
+    "cantidad_disponible": 58,
+    "proveedor": 1,
+    "precio_costo": "5116.75",
+    "fecha_ingreso": "2026-04-28T03:52:04.814Z"
+  }
+},
+{
+  "model": "farmacia.lotemedicamento",
+  "pk": 46,
+  "fields": {
+    "medicamento": 11,
+    "numero_lote": "LOT-MED011-202604-7731",
+    "fecha_vencimiento": "2026-02-28",
+    "cantidad_ingresada": 79,
+    "cantidad_disponible": 37,
+    "proveedor": 1,
+    "precio_costo": "4631.79",
+    "fecha_ingreso": "2026-04-28T03:52:04.836Z"
+  }
+},
+{
+  "model": "farmacia.lotemedicamento",
+  "pk": 47,
+  "fields": {
+    "medicamento": 12,
+    "numero_lote": "LOT-ENAL-10-202605-001",
+    "fecha_vencimiento": "2026-09-19",
+    "cantidad_ingresada": 119,
+    "cantidad_disponible": 74,
+    "proveedor": null,
+    "precio_costo": "1575.00",
+    "fecha_ingreso": "2026-05-02T17:59:39.204Z"
+  }
+},
+{
+  "model": "farmacia.lotemedicamento",
+  "pk": 48,
+  "fields": {
+    "medicamento": 12,
+    "numero_lote": "LOT-ENAL-10-202605-002",
+    "fecha_vencimiento": "2026-08-28",
+    "cantidad_ingresada": 84,
+    "cantidad_disponible": 90,
+    "proveedor": null,
+    "precio_costo": "1575.00",
+    "fecha_ingreso": "2026-05-02T17:59:39.224Z"
+  }
+},
+{
+  "model": "farmacia.lotemedicamento",
+  "pk": 49,
+  "fields": {
+    "medicamento": 12,
+    "numero_lote": "LOT-ENAL-10-202605-003",
+    "fecha_vencimiento": "2026-09-21",
+    "cantidad_ingresada": 179,
+    "cantidad_disponible": 136,
+    "proveedor": null,
+    "precio_costo": "1575.00",
+    "fecha_ingreso": "2026-05-02T17:59:39.243Z"
+  }
+},
+{
+  "model": "farmacia.lotemedicamento",
+  "pk": 50,
+  "fields": {
+    "medicamento": 13,
+    "numero_lote": "LOT-METF-500-202605-001",
+    "fecha_vencimiento": "2027-03-21",
+    "cantidad_ingresada": 196,
+    "cantidad_disponible": 51,
+    "proveedor": null,
+    "precio_costo": "1260.00",
+    "fecha_ingreso": "2026-05-02T17:59:39.291Z"
+  }
+},
+{
+  "model": "farmacia.lotemedicamento",
+  "pk": 51,
+  "fields": {
+    "medicamento": 13,
+    "numero_lote": "LOT-METF-500-202605-002",
+    "fecha_vencimiento": "2026-09-27",
+    "cantidad_ingresada": 136,
+    "cantidad_disponible": 47,
+    "proveedor": null,
+    "precio_costo": "1260.00",
+    "fecha_ingreso": "2026-05-02T17:59:39.311Z"
+  }
+},
+{
+  "model": "farmacia.lotemedicamento",
+  "pk": 52,
+  "fields": {
+    "medicamento": 13,
+    "numero_lote": "LOT-METF-500-202605-003",
+    "fecha_vencimiento": "2027-02-23",
+    "cantidad_ingresada": 80,
+    "cantidad_disponible": 121,
+    "proveedor": null,
+    "precio_costo": "1260.00",
+    "fecha_ingreso": "2026-05-02T17:59:39.337Z"
+  }
+},
+{
+  "model": "farmacia.lotemedicamento",
+  "pk": 53,
+  "fields": {
+    "medicamento": 14,
+    "numero_lote": "LOT-ATOR-20-202605-001",
+    "fecha_vencimiento": "2027-01-28",
+    "cantidad_ingresada": 166,
+    "cantidad_disponible": 33,
+    "proveedor": null,
+    "precio_costo": "1890.00",
+    "fecha_ingreso": "2026-05-02T17:59:39.370Z"
+  }
+},
+{
+  "model": "farmacia.lotemedicamento",
+  "pk": 54,
+  "fields": {
+    "medicamento": 14,
+    "numero_lote": "LOT-ATOR-20-202605-002",
+    "fecha_vencimiento": "2026-07-07",
+    "cantidad_ingresada": 54,
+    "cantidad_disponible": 138,
+    "proveedor": null,
+    "precio_costo": "1890.00",
+    "fecha_ingreso": "2026-05-02T17:59:39.387Z"
+  }
+},
+{
+  "model": "farmacia.lotemedicamento",
+  "pk": 55,
+  "fields": {
+    "medicamento": 14,
+    "numero_lote": "LOT-ATOR-20-202605-003",
+    "fecha_vencimiento": "2026-12-28",
+    "cantidad_ingresada": 147,
+    "cantidad_disponible": 93,
+    "proveedor": null,
+    "precio_costo": "1890.00",
+    "fecha_ingreso": "2026-05-02T17:59:39.406Z"
+  }
+},
+{
+  "model": "farmacia.lotemedicamento",
+  "pk": 56,
+  "fields": {
+    "medicamento": 6,
+    "numero_lote": "LOT-OMEP-20-202605-001",
+    "fecha_vencimiento": "2026-12-04",
+    "cantidad_ingresada": 172,
+    "cantidad_disponible": 124,
+    "proveedor": null,
+    "precio_costo": "1440.00",
+    "fecha_ingreso": "2026-05-02T17:59:39.425Z"
+  }
+},
+{
+  "model": "farmacia.lotemedicamento",
+  "pk": 57,
+  "fields": {
+    "medicamento": 6,
+    "numero_lote": "LOT-OMEP-20-202605-002",
+    "fecha_vencimiento": "2026-10-25",
+    "cantidad_ingresada": 94,
+    "cantidad_disponible": 132,
+    "proveedor": null,
+    "precio_costo": "1440.00",
+    "fecha_ingreso": "2026-05-02T17:59:39.441Z"
+  }
+},
+{
+  "model": "farmacia.lotemedicamento",
+  "pk": 58,
+  "fields": {
+    "medicamento": 6,
+    "numero_lote": "LOT-OMEP-20-202605-003",
+    "fecha_vencimiento": "2026-07-10",
+    "cantidad_ingresada": 158,
+    "cantidad_disponible": 130,
+    "proveedor": null,
+    "precio_costo": "1440.00",
+    "fecha_ingreso": "2026-05-02T17:59:39.458Z"
+  }
+},
+{
+  "model": "farmacia.lotemedicamento",
+  "pk": 59,
+  "fields": {
+    "medicamento": 11,
+    "numero_lote": "LOT-SERT-50-202605-001",
+    "fecha_vencimiento": "2026-12-23",
+    "cantidad_ingresada": 53,
+    "cantidad_disponible": 57,
+    "proveedor": null,
+    "precio_costo": "1710.00",
+    "fecha_ingreso": "2026-05-02T17:59:39.474Z"
+  }
+},
+{
+  "model": "farmacia.lotemedicamento",
+  "pk": 60,
+  "fields": {
+    "medicamento": 11,
+    "numero_lote": "LOT-SERT-50-202605-002",
+    "fecha_vencimiento": "2027-02-21",
+    "cantidad_ingresada": 193,
+    "cantidad_disponible": 123,
+    "proveedor": null,
+    "precio_costo": "1710.00",
+    "fecha_ingreso": "2026-05-02T17:59:39.491Z"
+  }
+},
+{
+  "model": "farmacia.lotemedicamento",
+  "pk": 61,
+  "fields": {
+    "medicamento": 11,
+    "numero_lote": "LOT-SERT-50-202605-003",
+    "fecha_vencimiento": "2027-03-15",
+    "cantidad_ingresada": 119,
+    "cantidad_disponible": 146,
+    "proveedor": null,
+    "precio_costo": "1710.00",
+    "fecha_ingreso": "2026-05-02T17:59:39.508Z"
+  }
+},
+{
+  "model": "farmacia.lotemedicamento",
+  "pk": 62,
+  "fields": {
+    "medicamento": 15,
+    "numero_lote": "LOT-ALPR-1-202605-001",
+    "fecha_vencimiento": "2026-09-24",
+    "cantidad_ingresada": 169,
+    "cantidad_disponible": 105,
+    "proveedor": null,
+    "precio_costo": "2340.00",
+    "fecha_ingreso": "2026-05-02T17:59:39.564Z"
+  }
+},
+{
+  "model": "farmacia.lotemedicamento",
+  "pk": 63,
+  "fields": {
+    "medicamento": 15,
+    "numero_lote": "LOT-ALPR-1-202605-002",
+    "fecha_vencimiento": "2026-12-20",
+    "cantidad_ingresada": 190,
+    "cantidad_disponible": 89,
+    "proveedor": null,
+    "precio_costo": "2340.00",
+    "fecha_ingreso": "2026-05-02T17:59:39.585Z"
+  }
+},
+{
+  "model": "farmacia.lotemedicamento",
+  "pk": 64,
+  "fields": {
+    "medicamento": 15,
+    "numero_lote": "LOT-ALPR-1-202605-003",
+    "fecha_vencimiento": "2026-08-16",
+    "cantidad_ingresada": 136,
+    "cantidad_disponible": 32,
+    "proveedor": null,
+    "precio_costo": "2340.00",
+    "fecha_ingreso": "2026-05-02T17:59:39.606Z"
+  }
+},
+{
+  "model": "farmacia.lotemedicamento",
+  "pk": 65,
+  "fields": {
+    "medicamento": 16,
+    "numero_lote": "LOT-DICL-75-202605-001",
+    "fecha_vencimiento": "2026-08-30",
+    "cantidad_ingresada": 83,
+    "cantidad_disponible": 75,
+    "proveedor": null,
+    "precio_costo": "2025.00",
+    "fecha_ingreso": "2026-05-02T17:59:39.647Z"
+  }
+},
+{
+  "model": "farmacia.lotemedicamento",
+  "pk": 66,
+  "fields": {
+    "medicamento": 16,
+    "numero_lote": "LOT-DICL-75-202605-002",
+    "fecha_vencimiento": "2027-01-03",
+    "cantidad_ingresada": 162,
+    "cantidad_disponible": 51,
+    "proveedor": null,
+    "precio_costo": "2025.00",
+    "fecha_ingreso": "2026-05-02T17:59:39.671Z"
+  }
+},
+{
+  "model": "farmacia.lotemedicamento",
+  "pk": 67,
+  "fields": {
+    "medicamento": 16,
+    "numero_lote": "LOT-DICL-75-202605-003",
+    "fecha_vencimiento": "2027-03-22",
+    "cantidad_ingresada": 51,
+    "cantidad_disponible": 79,
+    "proveedor": null,
+    "precio_costo": "2025.00",
+    "fecha_ingreso": "2026-05-02T17:59:39.692Z"
+  }
+},
+{
+  "model": "farmacia.lotemedicamento",
+  "pk": 68,
+  "fields": {
+    "medicamento": 18,
+    "numero_lote": "LOT-SALB-100-202605-001",
+    "fecha_vencimiento": "2027-02-25",
+    "cantidad_ingresada": 51,
+    "cantidad_disponible": 58,
+    "proveedor": null,
+    "precio_costo": "2925.00",
+    "fecha_ingreso": "2026-05-02T17:59:39.779Z"
+  }
+},
+{
+  "model": "farmacia.lotemedicamento",
+  "pk": 69,
+  "fields": {
+    "medicamento": 18,
+    "numero_lote": "LOT-SALB-100-202605-002",
+    "fecha_vencimiento": "2027-04-08",
+    "cantidad_ingresada": 143,
+    "cantidad_disponible": 46,
+    "proveedor": null,
+    "precio_costo": "2925.00",
+    "fecha_ingreso": "2026-05-02T17:59:39.803Z"
+  }
+},
+{
+  "model": "farmacia.lotemedicamento",
+  "pk": 70,
+  "fields": {
+    "medicamento": 18,
+    "numero_lote": "LOT-SALB-100-202605-003",
+    "fecha_vencimiento": "2027-01-19",
+    "cantidad_ingresada": 89,
+    "cantidad_disponible": 110,
+    "proveedor": null,
+    "precio_costo": "2925.00",
+    "fecha_ingreso": "2026-05-02T17:59:39.826Z"
+  }
+},
+{
+  "model": "farmacia.lotemedicamento",
+  "pk": 71,
+  "fields": {
+    "medicamento": 19,
+    "numero_lote": "LOT-LEVO-50-202605-001",
+    "fecha_vencimiento": "2026-11-27",
+    "cantidad_ingresada": 153,
+    "cantidad_disponible": 40,
+    "proveedor": null,
+    "precio_costo": "1305.00",
+    "fecha_ingreso": "2026-05-02T17:59:39.872Z"
+  }
+},
+{
+  "model": "farmacia.lotemedicamento",
+  "pk": 72,
+  "fields": {
+    "medicamento": 19,
+    "numero_lote": "LOT-LEVO-50-202605-002",
+    "fecha_vencimiento": "2026-11-22",
+    "cantidad_ingresada": 103,
+    "cantidad_disponible": 95,
+    "proveedor": null,
+    "precio_costo": "1305.00",
+    "fecha_ingreso": "2026-05-02T17:59:39.892Z"
+  }
+},
+{
+  "model": "farmacia.lotemedicamento",
+  "pk": 73,
+  "fields": {
+    "medicamento": 19,
+    "numero_lote": "LOT-LEVO-50-202605-003",
+    "fecha_vencimiento": "2027-04-07",
+    "cantidad_ingresada": 74,
+    "cantidad_disponible": 102,
+    "proveedor": null,
+    "precio_costo": "1305.00",
+    "fecha_ingreso": "2026-05-02T17:59:39.912Z"
+  }
+},
+{
+  "model": "farmacia.lotemedicamento",
+  "pk": 74,
+  "fields": {
+    "medicamento": 3,
+    "numero_lote": "LOT-AMOX-500-202605-001",
+    "fecha_vencimiento": "2026-12-23",
+    "cantidad_ingresada": 93,
+    "cantidad_disponible": 133,
+    "proveedor": null,
+    "precio_costo": "1395.00",
+    "fecha_ingreso": "2026-05-02T17:59:40.000Z"
+  }
+},
+{
+  "model": "farmacia.lotemedicamento",
+  "pk": 75,
+  "fields": {
+    "medicamento": 3,
+    "numero_lote": "LOT-AMOX-500-202605-002",
+    "fecha_vencimiento": "2027-04-17",
+    "cantidad_ingresada": 120,
+    "cantidad_disponible": 99,
+    "proveedor": null,
+    "precio_costo": "1395.00",
+    "fecha_ingreso": "2026-05-02T17:59:40.020Z"
+  }
+},
+{
+  "model": "farmacia.lotemedicamento",
+  "pk": 76,
+  "fields": {
+    "medicamento": 3,
+    "numero_lote": "LOT-AMOX-500-202605-003",
+    "fecha_vencimiento": "2027-03-07",
+    "cantidad_ingresada": 147,
+    "cantidad_disponible": 144,
+    "proveedor": null,
+    "precio_costo": "1395.00",
+    "fecha_ingreso": "2026-05-02T17:59:40.041Z"
+  }
+},
+{
+  "model": "farmacia.lotemedicamento",
+  "pk": 77,
+  "fields": {
+    "medicamento": 22,
+    "numero_lote": "LOT-INSU-NPH-202605-001",
+    "fecha_vencimiento": "2026-07-01",
+    "cantidad_ingresada": 113,
+    "cantidad_disponible": 70,
+    "proveedor": null,
+    "precio_costo": "6750.00",
+    "fecha_ingreso": "2026-05-02T17:59:40.095Z"
+  }
+},
+{
+  "model": "farmacia.lotemedicamento",
+  "pk": 78,
+  "fields": {
+    "medicamento": 22,
+    "numero_lote": "LOT-INSU-NPH-202605-002",
+    "fecha_vencimiento": "2026-10-22",
+    "cantidad_ingresada": 92,
+    "cantidad_disponible": 140,
+    "proveedor": null,
+    "precio_costo": "6750.00",
+    "fecha_ingreso": "2026-05-02T17:59:40.120Z"
+  }
+},
+{
+  "model": "farmacia.lotemedicamento",
+  "pk": 79,
+  "fields": {
+    "medicamento": 22,
+    "numero_lote": "LOT-INSU-NPH-202605-003",
+    "fecha_vencimiento": "2026-10-05",
+    "cantidad_ingresada": 195,
+    "cantidad_disponible": 35,
+    "proveedor": null,
+    "precio_costo": "6750.00",
+    "fecha_ingreso": "2026-05-02T17:59:40.144Z"
+  }
+},
+{
+  "model": "farmacia.lotemedicamento",
+  "pk": 80,
+  "fields": {
+    "medicamento": 23,
+    "numero_lote": "LOT-CIPR-500-202605-001",
+    "fecha_vencimiento": "2026-12-21",
+    "cantidad_ingresada": 153,
+    "cantidad_disponible": 132,
+    "proveedor": null,
+    "precio_costo": "1755.00",
+    "fecha_ingreso": "2026-05-02T17:59:40.191Z"
+  }
+},
+{
+  "model": "farmacia.lotemedicamento",
+  "pk": 81,
+  "fields": {
+    "medicamento": 23,
+    "numero_lote": "LOT-CIPR-500-202605-002",
+    "fecha_vencimiento": "2026-08-15",
+    "cantidad_ingresada": 159,
+    "cantidad_disponible": 43,
+    "proveedor": null,
+    "precio_costo": "1755.00",
+    "fecha_ingreso": "2026-05-02T17:59:40.208Z"
+  }
+},
+{
+  "model": "farmacia.lotemedicamento",
+  "pk": 82,
+  "fields": {
+    "medicamento": 23,
+    "numero_lote": "LOT-CIPR-500-202605-003",
+    "fecha_vencimiento": "2027-03-29",
+    "cantidad_ingresada": 132,
+    "cantidad_disponible": 50,
+    "proveedor": null,
+    "precio_costo": "1755.00",
+    "fecha_ingreso": "2026-05-02T17:59:40.227Z"
+  }
+},
+{
+  "model": "farmacia.lotemedicamento",
+  "pk": 83,
+  "fields": {
+    "medicamento": 24,
+    "numero_lote": "LOT-CAPT-25-202605-001",
+    "fecha_vencimiento": "2026-07-06",
+    "cantidad_ingresada": 171,
+    "cantidad_disponible": 141,
+    "proveedor": null,
+    "precio_costo": "1530.00",
+    "fecha_ingreso": "2026-05-02T17:59:40.264Z"
+  }
+},
+{
+  "model": "farmacia.lotemedicamento",
+  "pk": 84,
+  "fields": {
+    "medicamento": 24,
+    "numero_lote": "LOT-CAPT-25-202605-002",
+    "fecha_vencimiento": "2026-12-15",
+    "cantidad_ingresada": 113,
+    "cantidad_disponible": 76,
+    "proveedor": null,
+    "precio_costo": "1530.00",
+    "fecha_ingreso": "2026-05-02T17:59:40.286Z"
+  }
+},
+{
+  "model": "farmacia.lotemedicamento",
+  "pk": 85,
+  "fields": {
+    "medicamento": 24,
+    "numero_lote": "LOT-CAPT-25-202605-003",
+    "fecha_vencimiento": "2027-03-09",
+    "cantidad_ingresada": 123,
+    "cantidad_disponible": 68,
+    "proveedor": null,
+    "precio_costo": "1530.00",
+    "fecha_ingreso": "2026-05-02T17:59:40.308Z"
+  }
+},
+{
+  "model": "farmacia.lotemedicamento",
+  "pk": 86,
+  "fields": {
+    "medicamento": 25,
+    "numero_lote": "LOT-PRED-5-202605-001",
+    "fecha_vencimiento": "2026-12-30",
+    "cantidad_ingresada": 152,
+    "cantidad_disponible": 89,
+    "proveedor": null,
+    "precio_costo": "1215.00",
+    "fecha_ingreso": "2026-05-02T17:59:40.357Z"
+  }
+},
+{
+  "model": "farmacia.lotemedicamento",
+  "pk": 87,
+  "fields": {
+    "medicamento": 25,
+    "numero_lote": "LOT-PRED-5-202605-002",
+    "fecha_vencimiento": "2027-01-20",
+    "cantidad_ingresada": 104,
+    "cantidad_disponible": 102,
+    "proveedor": null,
+    "precio_costo": "1215.00",
+    "fecha_ingreso": "2026-05-02T17:59:40.380Z"
+  }
+},
+{
+  "model": "farmacia.lotemedicamento",
+  "pk": 88,
+  "fields": {
+    "medicamento": 25,
+    "numero_lote": "LOT-PRED-5-202605-003",
+    "fecha_vencimiento": "2027-04-20",
+    "cantidad_ingresada": 199,
+    "cantidad_disponible": 101,
+    "proveedor": null,
+    "precio_costo": "1215.00",
+    "fecha_ingreso": "2026-05-02T17:59:40.404Z"
+  }
+},
+{
+  "model": "farmacia.carritoventa",
+  "pk": 1,
+  "fields": {
+    "vendedor": 1,
+    "cliente": null,
+    "estado": "COMPLETADO",
+    "subtotal": "2500.00",
+    "descuento_monto": "0.00",
+    "descuento_porcentaje": "0.00",
+    "base_imponible": "2500.00",
+    "iva": "475.00",
+    "total": "2975.00",
+    "fecha_creacion": "2026-04-27T20:44:34.533Z",
+    "fecha_modificacion": "2026-04-27T20:49:20.958Z",
+    "fecha_completacion": "2026-04-27T20:49:20.958Z"
+  }
+},
+{
+  "model": "farmacia.carritoventa",
+  "pk": 2,
+  "fields": {
+    "vendedor": 1,
+    "cliente": 1,
+    "estado": "COMPLETADO",
+    "subtotal": "6800.00",
+    "descuento_monto": "0.00",
+    "descuento_porcentaje": "0.00",
+    "base_imponible": "6800.00",
+    "iva": "1292.00",
+    "total": "8092.00",
+    "fecha_creacion": "2026-04-27T20:56:52.866Z",
+    "fecha_modificacion": "2026-04-27T21:49:58.092Z",
+    "fecha_completacion": "2026-04-27T21:49:58.092Z"
+  }
+},
+{
+  "model": "farmacia.carritoventa",
+  "pk": 3,
+  "fields": {
+    "vendedor": 1,
+    "cliente": null,
+    "estado": "COMPLETADO",
+    "subtotal": "2500.00",
+    "descuento_monto": "0.00",
+    "descuento_porcentaje": "0.00",
+    "base_imponible": "2500.00",
+    "iva": "475.00",
+    "total": "2975.00",
+    "fecha_creacion": "2026-04-27T21:50:29.251Z",
+    "fecha_modificacion": "2026-04-28T01:42:13.143Z",
+    "fecha_completacion": "2026-04-28T01:42:13.143Z"
+  }
+},
+{
+  "model": "farmacia.carritoventa",
+  "pk": 4,
+  "fields": {
+    "vendedor": 1,
+    "cliente": null,
+    "estado": "COMPLETADO",
+    "subtotal": "2500.00",
+    "descuento_monto": "0.00",
+    "descuento_porcentaje": "0.00",
+    "base_imponible": "2500.00",
+    "iva": "475.00",
+    "total": "2975.00",
+    "fecha_creacion": "2026-04-28T01:47:49.931Z",
+    "fecha_modificacion": "2026-04-28T16:38:39.681Z",
+    "fecha_completacion": "2026-04-28T16:38:39.681Z"
+  }
+},
+{
+  "model": "farmacia.carritoventa",
+  "pk": 5,
+  "fields": {
+    "vendedor": 1,
+    "cliente": null,
+    "estado": "EN_CONSTRUCCION",
+    "subtotal": "2500.00",
+    "descuento_monto": "0.00",
+    "descuento_porcentaje": "0.00",
+    "base_imponible": "2500.00",
+    "iva": "475.00",
+    "total": "2975.00",
+    "fecha_creacion": "2026-04-29T18:13:22.535Z",
+    "fecha_modificacion": "2026-04-29T18:13:22.535Z",
+    "fecha_completacion": null
+  }
+},
+{
+  "model": "farmacia.carritoventa",
+  "pk": 7,
+  "fields": {
+    "vendedor": 2,
+    "cliente": null,
+    "estado": "COMPLETADO",
+    "subtotal": "7000.00",
+    "descuento_monto": "0.00",
+    "descuento_porcentaje": "0.00",
+    "base_imponible": "7000.00",
+    "iva": "1330.00",
+    "total": "8330.00",
+    "fecha_creacion": "2026-05-02T18:57:23.980Z",
+    "fecha_modificacion": "2026-05-02T18:57:39.640Z",
+    "fecha_completacion": "2026-05-02T18:57:39.640Z"
+  }
+},
+{
+  "model": "farmacia.carritoventa",
+  "pk": 8,
+  "fields": {
+    "vendedor": 2,
+    "cliente": null,
+    "estado": "COMPLETADO",
+    "subtotal": "5200.00",
+    "descuento_monto": "0.00",
+    "descuento_porcentaje": "0.00",
+    "base_imponible": "5200.00",
+    "iva": "988.00",
+    "total": "6188.00",
+    "fecha_creacion": "2026-05-02T18:57:51.208Z",
+    "fecha_modificacion": "2026-05-02T18:57:51.289Z",
+    "fecha_completacion": "2026-05-02T18:57:51.288Z"
+  }
+},
+{
+  "model": "farmacia.carritoventa",
+  "pk": 9,
+  "fields": {
+    "vendedor": 2,
+    "cliente": null,
+    "estado": "EN_CONSTRUCCION",
+    "subtotal": "0.00",
+    "descuento_monto": "0.00",
+    "descuento_porcentaje": "0.00",
+    "base_imponible": "0.00",
+    "iva": "0.00",
+    "total": "0.00",
+    "fecha_creacion": "2026-05-02T18:57:57.014Z",
+    "fecha_modificacion": "2026-05-02T18:57:57.014Z",
+    "fecha_completacion": null
+  }
+},
+{
+  "model": "farmacia.carritoitem",
+  "pk": 20,
+  "fields": {
+    "carrito": 7,
+    "medicamento": 12,
+    "cantidad": 2,
+    "precio_unitario": "3500.00",
+    "receta": 4
+  }
+},
+{
+  "model": "farmacia.carritoitem",
+  "pk": 21,
+  "fields": {
+    "carrito": 8,
+    "medicamento": 15,
+    "cantidad": 1,
+    "precio_unitario": "5200.00",
+    "receta": 5
+  }
+},
+{
+  "model": "farmacia.carritoitem",
+  "pk": 22,
+  "fields": {
+    "carrito": 5,
+    "medicamento": 1,
+    "cantidad": 1,
+    "precio_unitario": "2500.00",
+    "receta": null
+  }
+},
+{
+  "model": "farmacia.boleta",
+  "pk": 1,
+  "fields": {
+    "numero_boleta": "BV-2026-00001",
+    "folio": 1,
+    "carrito": 1,
+    "rut_farmacia": "12.345.678-9",
+    "nombre_farmacia": "FARMACIA COLLICO",
+    "direccion_farmacia": "Collico, Región del Biobío",
+    "telefono_farmacia": "",
+    "cliente_rut": null,
+    "cliente_nombre": null,
+    "subtotal": "2500.00",
+    "descuento": "0.00",
+    "base_imponible": "2500.00",
+    "iva": "475.00",
+    "total": "2975.00",
+    "metodo_pago": "EFECTIVO",
+    "referencia_pago": "",
+    "vendedor": 1,
+    "archivo_pdf": "",
+    "estado": "EMITIDA",
+    "fecha_emision": "2026-04-27T20:49:20.936Z",
+    "fecha_anulacion": null
+  }
+},
+{
+  "model": "farmacia.boleta",
+  "pk": 2,
+  "fields": {
+    "numero_boleta": "BV-2026-00002",
+    "folio": 2,
+    "carrito": 2,
+    "rut_farmacia": "12.345.678-9",
+    "nombre_farmacia": "FARMACIA COLLICO",
+    "direccion_farmacia": "Collico, Región del Biobío",
+    "telefono_farmacia": "",
+    "cliente_rut": "18.456.789-0",
+    "cliente_nombre": "Juan González",
+    "subtotal": "6800.00",
+    "descuento": "0.00",
+    "base_imponible": "6800.00",
+    "iva": "1292.00",
+    "total": "8092.00",
+    "metodo_pago": "EFECTIVO",
+    "referencia_pago": "",
+    "vendedor": 1,
+    "archivo_pdf": "",
+    "estado": "EMITIDA",
+    "fecha_emision": "2026-04-27T21:49:58.066Z",
+    "fecha_anulacion": null
+  }
+},
+{
+  "model": "farmacia.boleta",
+  "pk": 3,
+  "fields": {
+    "numero_boleta": "BV-2026-00003",
+    "folio": 3,
+    "carrito": 3,
+    "rut_farmacia": "12.345.678-9",
+    "nombre_farmacia": "FARMACIA COLLICO",
+    "direccion_farmacia": "Collico, Región del Biobío",
+    "telefono_farmacia": "",
+    "cliente_rut": null,
+    "cliente_nombre": null,
+    "subtotal": "2500.00",
+    "descuento": "0.00",
+    "base_imponible": "2500.00",
+    "iva": "475.00",
+    "total": "2975.00",
+    "metodo_pago": "EFECTIVO",
+    "referencia_pago": "",
+    "vendedor": 1,
+    "archivo_pdf": "",
+    "estado": "EMITIDA",
+    "fecha_emision": "2026-04-28T01:42:13.124Z",
+    "fecha_anulacion": null
+  }
+},
+{
+  "model": "farmacia.boleta",
+  "pk": 4,
+  "fields": {
+    "numero_boleta": "BV-2026-00004",
+    "folio": 4,
+    "carrito": 4,
+    "rut_farmacia": "12.345.678-9",
+    "nombre_farmacia": "FARMACIA COLLICO",
+    "direccion_farmacia": "Collico, Región del Biobío",
+    "telefono_farmacia": "",
+    "cliente_rut": null,
+    "cliente_nombre": null,
+    "subtotal": "2500.00",
+    "descuento": "0.00",
+    "base_imponible": "2500.00",
+    "iva": "475.00",
+    "total": "2975.00",
+    "metodo_pago": "EFECTIVO",
+    "referencia_pago": "",
+    "vendedor": 1,
+    "archivo_pdf": "",
+    "estado": "EMITIDA",
+    "fecha_emision": "2026-04-28T16:38:39.637Z",
+    "fecha_anulacion": null
+  }
+},
+{
+  "model": "farmacia.boleta",
+  "pk": 6,
+  "fields": {
+    "numero_boleta": "BV-2026-00005",
+    "folio": 5,
+    "carrito": 7,
+    "rut_farmacia": "12.345.678-9",
+    "nombre_farmacia": "FARMACIA COLLICO",
+    "direccion_farmacia": "Collico",
+    "telefono_farmacia": "",
+    "cliente_rut": null,
+    "cliente_nombre": null,
+    "subtotal": "7000.00",
+    "descuento": "0.00",
+    "base_imponible": "7000.00",
+    "iva": "1330.00",
+    "total": "8330.00",
+    "metodo_pago": "EFECTIVO",
+    "referencia_pago": null,
+    "vendedor": 2,
+    "archivo_pdf": "",
+    "estado": "EMITIDA",
+    "fecha_emision": "2026-05-02T18:57:39.607Z",
+    "fecha_anulacion": null
+  }
+},
+{
+  "model": "farmacia.boleta",
+  "pk": 7,
+  "fields": {
+    "numero_boleta": "BV-2026-00006",
+    "folio": 6,
+    "carrito": 8,
+    "rut_farmacia": "12.345.678-9",
+    "nombre_farmacia": "FARMACIA COLLICO",
+    "direccion_farmacia": "Collico",
+    "telefono_farmacia": "",
+    "cliente_rut": null,
+    "cliente_nombre": null,
+    "subtotal": "5200.00",
+    "descuento": "0.00",
+    "base_imponible": "5200.00",
+    "iva": "988.00",
+    "total": "6188.00",
+    "metodo_pago": "EFECTIVO",
+    "referencia_pago": null,
+    "vendedor": 2,
+    "archivo_pdf": "",
+    "estado": "EMITIDA",
+    "fecha_emision": "2026-05-02T18:57:51.277Z",
+    "fecha_anulacion": null
+  }
+},
+{
+  "model": "farmacia.pago",
+  "pk": 1,
+  "fields": {
+    "carrito": 1,
+    "boleta": 1,
+    "metodo_pago": "EFECTIVO",
+    "monto": "2975.00",
+    "cambio": "0.00",
+    "referencia": "",
+    "fecha": "2026-04-27T20:49:20.941Z"
+  }
+},
+{
+  "model": "farmacia.pago",
+  "pk": 2,
+  "fields": {
+    "carrito": 2,
+    "boleta": 2,
+    "metodo_pago": "EFECTIVO",
+    "monto": "8092.00",
+    "cambio": "0.00",
+    "referencia": "",
+    "fecha": "2026-04-27T21:49:58.071Z"
+  }
+},
+{
+  "model": "farmacia.pago",
+  "pk": 3,
+  "fields": {
+    "carrito": 3,
+    "boleta": 3,
+    "metodo_pago": "EFECTIVO",
+    "monto": "2975.00",
+    "cambio": "0.00",
+    "referencia": "",
+    "fecha": "2026-04-28T01:42:13.130Z"
+  }
+},
+{
+  "model": "farmacia.pago",
+  "pk": 4,
+  "fields": {
+    "carrito": 4,
+    "boleta": 4,
+    "metodo_pago": "EFECTIVO",
+    "monto": "2975.00",
+    "cambio": "0.00",
+    "referencia": "",
+    "fecha": "2026-04-28T16:38:39.648Z"
+  }
+},
+{
+  "model": "farmacia.pago",
+  "pk": 6,
+  "fields": {
+    "carrito": 7,
+    "boleta": 6,
+    "metodo_pago": "EFECTIVO",
+    "monto": "8330.00",
+    "cambio": "0.00",
+    "referencia": null,
+    "fecha": "2026-05-02T18:57:39.615Z"
+  }
+},
+{
+  "model": "farmacia.pago",
+  "pk": 7,
+  "fields": {
+    "carrito": 8,
+    "boleta": 7,
+    "metodo_pago": "EFECTIVO",
+    "monto": "6188.00",
+    "cambio": "0.00",
+    "referencia": null,
+    "fecha": "2026-05-02T18:57:51.281Z"
+  }
+},
+{
+  "model": "farmacia.rolpermiso",
+  "pk": 1,
+  "fields": {
+    "user": 1,
+    "rol": "ADMIN",
+    "fecha_asignacion": "2026-04-28T02:35:22.803Z",
+    "fecha_actualizacion": "2026-04-28T02:35:22.803Z",
+    "estado_activo": true,
+    "descripcion": ""
+  }
+},
+{
+  "model": "farmacia.rolpermiso",
+  "pk": 2,
+  "fields": {
+    "user": 2,
+    "rol": "VENDEDOR",
+    "fecha_asignacion": "2026-04-28T02:35:23.751Z",
+    "fecha_actualizacion": "2026-04-28T02:35:23.751Z",
+    "estado_activo": true,
+    "descripcion": ""
+  }
+},
+{
+  "model": "farmacia.rolpermiso",
+  "pk": 3,
+  "fields": {
+    "user": 3,
+    "rol": "VENDEDOR",
+    "fecha_asignacion": "2026-04-28T02:35:24.556Z",
+    "fecha_actualizacion": "2026-04-28T02:35:24.556Z",
+    "estado_activo": true,
+    "descripcion": ""
+  }
+},
+{
+  "model": "farmacia.rolpermiso",
+  "pk": 4,
+  "fields": {
+    "user": 4,
+    "rol": "GERENTE",
+    "fecha_asignacion": "2026-04-28T02:35:25.509Z",
+    "fecha_actualizacion": "2026-04-28T02:35:25.509Z",
+    "estado_activo": true,
+    "descripcion": ""
+  }
+},
+{
+  "model": "farmacia.rolpermiso",
+  "pk": 5,
+  "fields": {
+    "user": 5,
+    "rol": "CONTADOR",
+    "fecha_asignacion": "2026-04-28T02:35:26.397Z",
+    "fecha_actualizacion": "2026-04-28T02:35:26.397Z",
+    "estado_activo": true,
+    "descripcion": ""
+  }
+},
+{
+  "model": "farmacia.auditorialog",
+  "pk": 1,
+  "fields": {
+    "usuario": 1,
+    "accion": "VER",
+    "objeto": "ListaVentas",
+    "objeto_id": 0,
+    "detalles": "Accedió a listado de ventas (rol: ADMIN)",
+    "resultado": true,
+    "ip_address": "127.0.0.1",
+    "timestamp": "2026-04-28T02:37:35.128Z"
+  }
+},
+{
+  "model": "farmacia.auditorialog",
+  "pk": 2,
+  "fields": {
+    "usuario": 1,
+    "accion": "VER",
+    "objeto": "ListaVentas",
+    "objeto_id": 0,
+    "detalles": "Accedió a listado de ventas (rol: ADMIN)",
+    "resultado": true,
+    "ip_address": "127.0.0.1",
+    "timestamp": "2026-04-28T02:37:57.571Z"
+  }
+},
+{
+  "model": "farmacia.auditorialog",
+  "pk": 3,
+  "fields": {
+    "usuario": 2,
+    "accion": "VER",
+    "objeto": "ListaVentas",
+    "objeto_id": 0,
+    "detalles": "Accedió a listado de ventas (rol: VENDEDOR)",
+    "resultado": true,
+    "ip_address": "127.0.0.1",
+    "timestamp": "2026-04-28T02:48:12.684Z"
+  }
+},
+{
+  "model": "farmacia.auditorialog",
+  "pk": 4,
+  "fields": {
+    "usuario": 2,
+    "accion": "ACCESODENEGADO",
+    "objeto": "/farmacia/admin/auditoria/",
+    "objeto_id": 0,
+    "detalles": "Intento de acceder a ruta protegida: /farmacia/admin/auditoria/",
+    "resultado": false,
+    "ip_address": "127.0.0.1",
+    "timestamp": "2026-04-28T02:48:16.635Z"
+  }
+},
+{
+  "model": "farmacia.auditorialog",
+  "pk": 5,
+  "fields": {
+    "usuario": 2,
+    "accion": "ACCESODENEGADO",
+    "objeto": "/farmacia/reportes/global/",
+    "objeto_id": 0,
+    "detalles": "Intento de acceder a ruta protegida: /farmacia/reportes/global/",
+    "resultado": false,
+    "ip_address": "127.0.0.1",
+    "timestamp": "2026-04-28T02:48:35.718Z"
+  }
+},
+{
+  "model": "farmacia.auditorialog",
+  "pk": 6,
+  "fields": {
+    "usuario": 2,
+    "accion": "VER",
+    "objeto": "ReportePersonal",
+    "objeto_id": 0,
+    "detalles": "Accedió a reporte personal",
+    "resultado": true,
+    "ip_address": "127.0.0.1",
+    "timestamp": "2026-04-28T02:49:03.357Z"
+  }
+},
+{
+  "model": "farmacia.auditorialog",
+  "pk": 7,
+  "fields": {
+    "usuario": 2,
+    "accion": "VER",
+    "objeto": "ListaVentas",
+    "objeto_id": 0,
+    "detalles": "Accedió a listado de ventas (rol: VENDEDOR)",
+    "resultado": true,
+    "ip_address": "127.0.0.1",
+    "timestamp": "2026-04-28T02:49:24.928Z"
+  }
+},
+{
+  "model": "farmacia.auditorialog",
+  "pk": 8,
+  "fields": {
+    "usuario": 2,
+    "accion": "VER",
+    "objeto": "ListaVentas",
+    "objeto_id": 0,
+    "detalles": "Accedió a listado de ventas (rol: VENDEDOR)",
+    "resultado": true,
+    "ip_address": "127.0.0.1",
+    "timestamp": "2026-04-28T02:57:07.910Z"
+  }
+},
+{
+  "model": "farmacia.auditorialog",
+  "pk": 9,
+  "fields": {
+    "usuario": 2,
+    "accion": "VER",
+    "objeto": "ListaVentas",
+    "objeto_id": 0,
+    "detalles": "Accedió a listado de ventas (rol: VENDEDOR)",
+    "resultado": true,
+    "ip_address": "127.0.0.1",
+    "timestamp": "2026-04-28T02:57:27.869Z"
+  }
+},
+{
+  "model": "farmacia.auditorialog",
+  "pk": 10,
+  "fields": {
+    "usuario": 2,
+    "accion": "ACCESODENEGADO",
+    "objeto": "Venta",
+    "objeto_id": 4,
+    "detalles": "Intento de editar venta de otro vendedor",
+    "resultado": false,
+    "ip_address": "127.0.0.1",
+    "timestamp": "2026-04-28T03:05:59.810Z"
+  }
+},
+{
+  "model": "farmacia.auditorialog",
+  "pk": 11,
+  "fields": {
+    "usuario": 2,
+    "accion": "INTENTOFALLIDO",
+    "objeto": "Venta",
+    "objeto_id": 4,
+    "detalles": "No puedes editar venta de otro vendedor",
+    "resultado": false,
+    "ip_address": "127.0.0.1",
+    "timestamp": "2026-04-28T03:05:59.818Z"
+  }
+},
+{
+  "model": "farmacia.auditorialog",
+  "pk": 12,
+  "fields": {
+    "usuario": 1,
+    "accion": "INTENTOFALLIDO",
+    "objeto": "Venta",
+    "objeto_id": 4,
+    "detalles": "Invalid block tag on line 734: 'endblock'. Did you forget to register or load this tag?",
+    "resultado": false,
+    "ip_address": "127.0.0.1",
+    "timestamp": "2026-04-28T03:15:29.160Z"
+  }
+},
+{
+  "model": "farmacia.auditorialog",
+  "pk": 13,
+  "fields": {
+    "usuario": 1,
+    "accion": "INTENTOFALLIDO",
+    "objeto": "Venta",
+    "objeto_id": 4,
+    "detalles": "Invalid block tag on line 734: 'endblock'. Did you forget to register or load this tag?",
+    "resultado": false,
+    "ip_address": "127.0.0.1",
+    "timestamp": "2026-04-28T03:15:55.073Z"
+  }
+},
+{
+  "model": "farmacia.auditorialog",
+  "pk": 14,
+  "fields": {
+    "usuario": 1,
+    "accion": "INTENTOFALLIDO",
+    "objeto": "Venta",
+    "objeto_id": 4,
+    "detalles": "Invalid block tag on line 732: 'endblock'. Did you forget to register or load this tag?",
+    "resultado": false,
+    "ip_address": "127.0.0.1",
+    "timestamp": "2026-04-28T03:16:57.435Z"
+  }
+},
+{
+  "model": "farmacia.auditorialog",
+  "pk": 15,
+  "fields": {
+    "usuario": 1,
+    "accion": "INTENTOFALLIDO",
+    "objeto": "Venta",
+    "objeto_id": 4,
+    "detalles": "Invalid block tag on line 731: 'endblock'. Did you forget to register or load this tag?",
+    "resultado": false,
+    "ip_address": "127.0.0.1",
+    "timestamp": "2026-04-28T03:17:24.353Z"
+  }
+},
+{
+  "model": "farmacia.auditorialog",
+  "pk": 16,
+  "fields": {
+    "usuario": 1,
+    "accion": "INTENTOFALLIDO",
+    "objeto": "Venta",
+    "objeto_id": 4,
+    "detalles": "Invalid block tag on line 726: 'endblock'. Did you forget to register or load this tag?",
+    "resultado": false,
+    "ip_address": "127.0.0.1",
+    "timestamp": "2026-04-28T03:19:18.581Z"
+  }
+},
+{
+  "model": "farmacia.auditorialog",
+  "pk": 17,
+  "fields": {
+    "usuario": 1,
+    "accion": "INTENTOFALLIDO",
+    "objeto": "Venta",
+    "objeto_id": 4,
+    "detalles": "Invalid block tag on line 725: 'endblock'. Did you forget to register or load this tag?",
+    "resultado": false,
+    "ip_address": "127.0.0.1",
+    "timestamp": "2026-04-28T03:20:01.942Z"
+  }
+},
+{
+  "model": "farmacia.auditorialog",
+  "pk": 18,
+  "fields": {
+    "usuario": 1,
+    "accion": "INTENTOFALLIDO",
+    "objeto": "Venta",
+    "objeto_id": 4,
+    "detalles": "Invalid block tag on line 724: 'endblock'. Did you forget to register or load this tag?",
+    "resultado": false,
+    "ip_address": "127.0.0.1",
+    "timestamp": "2026-04-28T03:20:29.395Z"
+  }
+},
+{
+  "model": "farmacia.auditorialog",
+  "pk": 19,
+  "fields": {
+    "usuario": 1,
+    "accion": "INTENTOFALLIDO",
+    "objeto": "Venta",
+    "objeto_id": 4,
+    "detalles": "Invalid block tag on line 723: 'endblock'. Did you forget to register or load this tag?",
+    "resultado": false,
+    "ip_address": "127.0.0.1",
+    "timestamp": "2026-04-28T03:20:54.006Z"
+  }
+},
+{
+  "model": "farmacia.auditorialog",
+  "pk": 20,
+  "fields": {
+    "usuario": 1,
+    "accion": "INTENTOFALLIDO",
+    "objeto": "Venta",
+    "objeto_id": 4,
+    "detalles": "Invalid block tag on line 723: 'endblock'. Did you forget to register or load this tag?",
+    "resultado": false,
+    "ip_address": "127.0.0.1",
+    "timestamp": "2026-04-28T03:21:11.750Z"
+  }
+},
+{
+  "model": "farmacia.auditorialog",
+  "pk": 21,
+  "fields": {
+    "usuario": 1,
+    "accion": "INTENTOFALLIDO",
+    "objeto": "Venta",
+    "objeto_id": 4,
+    "detalles": "Invalid block tag on line 722: 'endblock'. Did you forget to register or load this tag?",
+    "resultado": false,
+    "ip_address": "127.0.0.1",
+    "timestamp": "2026-04-28T03:21:58.981Z"
+  }
+},
+{
+  "model": "farmacia.auditorialog",
+  "pk": 22,
+  "fields": {
+    "usuario": 1,
+    "accion": "INTENTOFALLIDO",
+    "objeto": "Venta",
+    "objeto_id": 4,
+    "detalles": "Invalid block tag on line 722: 'endblock'. Did you forget to register or load this tag?",
+    "resultado": false,
+    "ip_address": "127.0.0.1",
+    "timestamp": "2026-04-28T03:22:35.280Z"
+  }
+},
+{
+  "model": "farmacia.auditorialog",
+  "pk": 23,
+  "fields": {
+    "usuario": 1,
+    "accion": "INTENTOFALLIDO",
+    "objeto": "Venta",
+    "objeto_id": 4,
+    "detalles": "Invalid block tag on line 722: 'endblock'. Did you forget to register or load this tag?",
+    "resultado": false,
+    "ip_address": "127.0.0.1",
+    "timestamp": "2026-04-28T03:22:52.798Z"
+  }
+},
+{
+  "model": "farmacia.auditorialog",
+  "pk": 24,
+  "fields": {
+    "usuario": 1,
+    "accion": "INTENTOFALLIDO",
+    "objeto": "Venta",
+    "objeto_id": 4,
+    "detalles": "Invalid block tag on line 718: 'endblock'. Did you forget to register or load this tag?",
+    "resultado": false,
+    "ip_address": "127.0.0.1",
+    "timestamp": "2026-04-28T03:23:13.995Z"
+  }
+},
+{
+  "model": "farmacia.auditorialog",
+  "pk": 25,
+  "fields": {
+    "usuario": 1,
+    "accion": "INTENTOFALLIDO",
+    "objeto": "Venta",
+    "objeto_id": 4,
+    "detalles": "Invalid block tag on line 717: 'endblock'. Did you forget to register or load this tag?",
+    "resultado": false,
+    "ip_address": "127.0.0.1",
+    "timestamp": "2026-04-28T03:23:58.408Z"
+  }
+},
+{
+  "model": "farmacia.auditorialog",
+  "pk": 26,
+  "fields": {
+    "usuario": 1,
+    "accion": "EDITAR",
+    "objeto": "Venta",
+    "objeto_id": 4,
+    "detalles": "{'medicamento_anterior': 'Paracetamol 500mg', 'medicamento_nuevo': 'Ibuprofeno 400mg', 'cantidad_anterior': 1, 'cantidad_nueva': 2, 'precio_anterior': 2975.0, 'precio_nuevo': 2975.0}",
+    "resultado": true,
+    "ip_address": "127.0.0.1",
+    "timestamp": "2026-04-28T03:30:01.527Z"
+  }
+},
+{
+  "model": "farmacia.auditorialog",
+  "pk": 27,
+  "fields": {
+    "usuario": 1,
+    "accion": "EDITAR",
+    "objeto": "Venta",
+    "objeto_id": 3,
+    "detalles": "{'medicamento_anterior': 'Paracetamol 500mg', 'medicamento_nuevo': 'Amoxicilina 500mg', 'cantidad_anterior': 2, 'cantidad_nueva': 3, 'precio_anterior': 8092.0, 'precio_nuevo': 26700.0}",
+    "resultado": true,
+    "ip_address": "127.0.0.1",
+    "timestamp": "2026-04-28T03:32:26.925Z"
+  }
+},
+{
+  "model": "farmacia.auditorialog",
+  "pk": 28,
+  "fields": {
+    "usuario": 1,
+    "accion": "EDITAR",
+    "objeto": "Venta",
+    "objeto_id": 4,
+    "detalles": "{'medicamento_anterior': 'Ibuprofeno 400mg', 'medicamento_nuevo': 'Ibuprofeno 400mg', 'cantidad_anterior': 2, 'cantidad_nueva': 2, 'precio_anterior': 2975.0, 'precio_nuevo': 7000.0}",
+    "resultado": true,
+    "ip_address": "127.0.0.1",
+    "timestamp": "2026-04-28T03:33:09.720Z"
+  }
+},
+{
+  "model": "farmacia.auditorialog",
+  "pk": 29,
+  "fields": {
+    "usuario": 1,
+    "accion": "VER",
+    "objeto": "ListaVentas",
+    "objeto_id": 0,
+    "detalles": "Accedió a listado de ventas (rol: ADMIN)",
+    "resultado": true,
+    "ip_address": "127.0.0.1",
+    "timestamp": "2026-04-28T03:37:48.747Z"
+  }
+},
+{
+  "model": "farmacia.auditorialog",
+  "pk": 30,
+  "fields": {
+    "usuario": 1,
+    "accion": "VER",
+    "objeto": "Venta",
+    "objeto_id": 4,
+    "detalles": "Ver detalle de venta",
+    "resultado": true,
+    "ip_address": "127.0.0.1",
+    "timestamp": "2026-04-28T03:37:53.880Z"
+  }
+},
+{
+  "model": "farmacia.auditorialog",
+  "pk": 31,
+  "fields": {
+    "usuario": 1,
+    "accion": "VER",
+    "objeto": "ListaVentas",
+    "objeto_id": 0,
+    "detalles": "Accedió a listado de ventas (rol: ADMIN)",
+    "resultado": true,
+    "ip_address": "127.0.0.1",
+    "timestamp": "2026-04-29T18:13:24.869Z"
+  }
+},
+{
+  "model": "farmacia.auditorialog",
+  "pk": 32,
+  "fields": {
+    "usuario": 1,
+    "accion": "VER",
+    "objeto": "ListaClientes",
+    "objeto_id": 0,
+    "detalles": "Accedió a listado de clientes",
+    "resultado": true,
+    "ip_address": "127.0.0.1",
+    "timestamp": "2026-04-29T18:13:35.638Z"
+  }
+},
+{
+  "model": "farmacia.auditorialog",
+  "pk": 33,
+  "fields": {
+    "usuario": 1,
+    "accion": "VER",
+    "objeto": "ListaVentas",
+    "objeto_id": 0,
+    "detalles": "Accedió a listado de ventas (rol: ADMIN)",
+    "resultado": true,
+    "ip_address": "127.0.0.1",
+    "timestamp": "2026-04-29T18:32:21.335Z"
+  }
+},
+{
+  "model": "farmacia.auditorialog",
+  "pk": 34,
+  "fields": {
+    "usuario": 1,
+    "accion": "VER",
+    "objeto": "ListaClientes",
+    "objeto_id": 0,
+    "detalles": "Accedió a listado de clientes",
+    "resultado": true,
+    "ip_address": "127.0.0.1",
+    "timestamp": "2026-04-29T18:32:34.203Z"
+  }
+},
+{
+  "model": "farmacia.auditorialog",
+  "pk": 35,
+  "fields": {
+    "usuario": 1,
+    "accion": "VER",
+    "objeto": "ListaClientes",
+    "objeto_id": 0,
+    "detalles": "Accedió a listado de clientes",
+    "resultado": true,
+    "ip_address": "127.0.0.1",
+    "timestamp": "2026-04-29T18:54:11.076Z"
+  }
+},
+{
+  "model": "farmacia.auditorialog",
+  "pk": 36,
+  "fields": {
+    "usuario": 1,
+    "accion": "VER",
+    "objeto": "ListaClientes",
+    "objeto_id": 0,
+    "detalles": "Accedió a listado de clientes",
+    "resultado": true,
+    "ip_address": "127.0.0.1",
+    "timestamp": "2026-04-29T18:54:29.553Z"
+  }
+},
+{
+  "model": "farmacia.auditorialog",
+  "pk": 37,
+  "fields": {
+    "usuario": 1,
+    "accion": "VER",
+    "objeto": "ListaVentas",
+    "objeto_id": 0,
+    "detalles": "Accedió a listado de ventas (rol: ADMIN)",
+    "resultado": true,
+    "ip_address": "127.0.0.1",
+    "timestamp": "2026-04-29T19:11:17.034Z"
+  }
+},
+{
+  "model": "farmacia.auditorialog",
+  "pk": 38,
+  "fields": {
+    "usuario": 1,
+    "accion": "VER",
+    "objeto": "ListaClientes",
+    "objeto_id": 0,
+    "detalles": "Accedió a listado de clientes",
+    "resultado": true,
+    "ip_address": "127.0.0.1",
+    "timestamp": "2026-04-29T19:11:33.088Z"
+  }
+},
+{
+  "model": "farmacia.auditorialog",
+  "pk": 39,
+  "fields": {
+    "usuario": 1,
+    "accion": "VER",
+    "objeto": "ListaVentas",
+    "objeto_id": 0,
+    "detalles": "Accedió a listado de ventas (rol: ADMIN)",
+    "resultado": true,
+    "ip_address": "127.0.0.1",
+    "timestamp": "2026-04-29T19:22:50.259Z"
+  }
+},
+{
+  "model": "farmacia.auditorialog",
+  "pk": 40,
+  "fields": {
+    "usuario": 1,
+    "accion": "VER",
+    "objeto": "ListaClientes",
+    "objeto_id": 0,
+    "detalles": "Accedió a listado de clientes",
+    "resultado": true,
+    "ip_address": "127.0.0.1",
+    "timestamp": "2026-04-29T19:22:56.998Z"
+  }
+},
+{
+  "model": "farmacia.auditorialog",
+  "pk": 41,
+  "fields": {
+    "usuario": 1,
+    "accion": "VER",
+    "objeto": "ListaVentas",
+    "objeto_id": 0,
+    "detalles": "Accedió a listado de ventas (rol: ADMIN)",
+    "resultado": true,
+    "ip_address": "127.0.0.1",
+    "timestamp": "2026-04-29T19:34:36.363Z"
+  }
+},
+{
+  "model": "farmacia.auditorialog",
+  "pk": 42,
+  "fields": {
+    "usuario": 1,
+    "accion": "VER",
+    "objeto": "ListaVentas",
+    "objeto_id": 0,
+    "detalles": "Accedió a listado de ventas (rol: ADMIN)",
+    "resultado": true,
+    "ip_address": "127.0.0.1",
+    "timestamp": "2026-04-29T19:34:37.986Z"
+  }
+},
+{
+  "model": "farmacia.auditorialog",
+  "pk": 43,
+  "fields": {
+    "usuario": 1,
+    "accion": "VER",
+    "objeto": "ListaClientes",
+    "objeto_id": 0,
+    "detalles": "Accedió a listado de clientes",
+    "resultado": true,
+    "ip_address": "127.0.0.1",
+    "timestamp": "2026-04-29T19:34:39.671Z"
+  }
+},
+{
+  "model": "farmacia.auditorialog",
+  "pk": 44,
+  "fields": {
+    "usuario": 1,
+    "accion": "VER",
+    "objeto": "ListaClientes",
+    "objeto_id": 0,
+    "detalles": "Accedió a listado de clientes",
+    "resultado": true,
+    "ip_address": "127.0.0.1",
+    "timestamp": "2026-04-29T19:34:41.229Z"
+  }
+},
+{
+  "model": "farmacia.auditorialog",
+  "pk": 45,
+  "fields": {
+    "usuario": 1,
+    "accion": "VER",
+    "objeto": "Cliente",
+    "objeto_id": 1,
+    "detalles": "Ver detalle de cliente",
+    "resultado": true,
+    "ip_address": "127.0.0.1",
+    "timestamp": "2026-04-29T19:34:42.969Z"
+  }
+},
+{
+  "model": "farmacia.auditorialog",
+  "pk": 46,
+  "fields": {
+    "usuario": 1,
+    "accion": "VER",
+    "objeto": "ListaVentas",
+    "objeto_id": 0,
+    "detalles": "Accedió a listado de ventas (rol: ADMIN)",
+    "resultado": true,
+    "ip_address": "127.0.0.1",
+    "timestamp": "2026-04-29T19:34:59.359Z"
+  }
+},
+{
+  "model": "farmacia.auditorialog",
+  "pk": 47,
+  "fields": {
+    "usuario": 1,
+    "accion": "VER",
+    "objeto": "Venta",
+    "objeto_id": 6,
+    "detalles": "Ver detalle de venta",
+    "resultado": true,
+    "ip_address": "127.0.0.1",
+    "timestamp": "2026-04-29T19:35:13.444Z"
+  }
+},
+{
+  "model": "farmacia.auditorialog",
+  "pk": 48,
+  "fields": {
+    "usuario": 1,
+    "accion": "VER",
+    "objeto": "ListaVentas",
+    "objeto_id": 0,
+    "detalles": "Accedió a listado de ventas (rol: ADMIN)",
+    "resultado": true,
+    "ip_address": "127.0.0.1",
+    "timestamp": "2026-04-29T22:24:04.792Z"
+  }
+},
+{
+  "model": "farmacia.auditorialog",
+  "pk": 49,
+  "fields": {
+    "usuario": 1,
+    "accion": "VER",
+    "objeto": "Venta",
+    "objeto_id": 5,
+    "detalles": "Ver detalle de venta",
+    "resultado": true,
+    "ip_address": "127.0.0.1",
+    "timestamp": "2026-04-29T22:24:05.457Z"
+  }
+},
+{
+  "model": "farmacia.auditorialog",
+  "pk": 50,
+  "fields": {
+    "usuario": 1,
+    "accion": "VER",
+    "objeto": "ListaClientes",
+    "objeto_id": 0,
+    "detalles": "Accedió a listado de clientes",
+    "resultado": true,
+    "ip_address": "127.0.0.1",
+    "timestamp": "2026-04-29T22:24:06.052Z"
+  }
+},
+{
+  "model": "farmacia.auditorialog",
+  "pk": 51,
+  "fields": {
+    "usuario": 1,
+    "accion": "VER",
+    "objeto": "Cliente",
+    "objeto_id": 1,
+    "detalles": "Ver detalle de cliente",
+    "resultado": true,
+    "ip_address": "127.0.0.1",
+    "timestamp": "2026-04-29T22:24:06.718Z"
+  }
+},
+{
+  "model": "farmacia.auditorialog",
+  "pk": 52,
+  "fields": {
+    "usuario": 1,
+    "accion": "VER",
+    "objeto": "ReportePersonal",
+    "objeto_id": 0,
+    "detalles": "Accedió a reporte personal",
+    "resultado": true,
+    "ip_address": "127.0.0.1",
+    "timestamp": "2026-04-29T22:24:09.851Z"
+  }
+},
+{
+  "model": "farmacia.auditorialog",
+  "pk": 53,
+  "fields": {
+    "usuario": 1,
+    "accion": "VER",
+    "objeto": "ReporteGlobal",
+    "objeto_id": 0,
+    "detalles": "Accedió a reporte global",
+    "resultado": true,
+    "ip_address": "127.0.0.1",
+    "timestamp": "2026-04-29T22:24:10.413Z"
+  }
+},
+{
+  "model": "farmacia.auditorialog",
+  "pk": 54,
+  "fields": {
+    "usuario": 1,
+    "accion": "VER",
+    "objeto": "ReporteFinanzas",
+    "objeto_id": 0,
+    "detalles": "Accedió a reporte financiero",
+    "resultado": true,
+    "ip_address": "127.0.0.1",
+    "timestamp": "2026-04-29T22:24:10.994Z"
+  }
+},
+{
+  "model": "farmacia.auditorialog",
+  "pk": 55,
+  "fields": {
+    "usuario": 1,
+    "accion": "VER",
+    "objeto": "ListaClientes",
+    "objeto_id": 0,
+    "detalles": "Accedió a listado de clientes",
+    "resultado": true,
+    "ip_address": "127.0.0.1",
+    "timestamp": "2026-04-29T22:24:18.421Z"
+  }
+},
+{
+  "model": "farmacia.auditorialog",
+  "pk": 56,
+  "fields": {
+    "usuario": 1,
+    "accion": "VER",
+    "objeto": "Cliente",
+    "objeto_id": 1,
+    "detalles": "Ver detalle de cliente",
+    "resultado": true,
+    "ip_address": "127.0.0.1",
+    "timestamp": "2026-04-29T22:24:19.186Z"
+  }
+},
+{
+  "model": "farmacia.auditorialog",
+  "pk": 57,
+  "fields": {
+    "usuario": 1,
+    "accion": "VER",
+    "objeto": "ListaVentas",
+    "objeto_id": 0,
+    "detalles": "Accedió a listado de ventas (rol: ADMIN)",
+    "resultado": true,
+    "ip_address": "127.0.0.1",
+    "timestamp": "2026-04-29T22:24:19.863Z"
+  }
+},
+{
+  "model": "farmacia.auditorialog",
+  "pk": 58,
+  "fields": {
+    "usuario": 1,
+    "accion": "VER",
+    "objeto": "ListaVentas",
+    "objeto_id": 0,
+    "detalles": "Accedió a listado de ventas (rol: ADMIN)",
+    "resultado": true,
+    "ip_address": "127.0.0.1",
+    "timestamp": "2026-04-29T22:34:48.866Z"
+  }
+},
+{
+  "model": "farmacia.auditorialog",
+  "pk": 59,
+  "fields": {
+    "usuario": 1,
+    "accion": "VER",
+    "objeto": "Venta",
+    "objeto_id": 5,
+    "detalles": "Ver detalle de venta",
+    "resultado": true,
+    "ip_address": "127.0.0.1",
+    "timestamp": "2026-04-29T22:34:49.440Z"
+  }
+},
+{
+  "model": "farmacia.auditorialog",
+  "pk": 60,
+  "fields": {
+    "usuario": 1,
+    "accion": "VER",
+    "objeto": "ListaClientes",
+    "objeto_id": 0,
+    "detalles": "Accedió a listado de clientes",
+    "resultado": true,
+    "ip_address": "127.0.0.1",
+    "timestamp": "2026-04-29T22:34:50.605Z"
+  }
+},
+{
+  "model": "farmacia.auditorialog",
+  "pk": 61,
+  "fields": {
+    "usuario": 1,
+    "accion": "VER",
+    "objeto": "Cliente",
+    "objeto_id": 1,
+    "detalles": "Ver detalle de cliente",
+    "resultado": true,
+    "ip_address": "127.0.0.1",
+    "timestamp": "2026-04-29T22:34:51.163Z"
+  }
+},
+{
+  "model": "farmacia.auditorialog",
+  "pk": 62,
+  "fields": {
+    "usuario": 1,
+    "accion": "VER",
+    "objeto": "ReportePersonal",
+    "objeto_id": 0,
+    "detalles": "Accedió a reporte personal",
+    "resultado": true,
+    "ip_address": "127.0.0.1",
+    "timestamp": "2026-04-29T22:34:53.537Z"
+  }
+},
+{
+  "model": "farmacia.auditorialog",
+  "pk": 63,
+  "fields": {
+    "usuario": 1,
+    "accion": "VER",
+    "objeto": "ReporteGlobal",
+    "objeto_id": 0,
+    "detalles": "Accedió a reporte global",
+    "resultado": true,
+    "ip_address": "127.0.0.1",
+    "timestamp": "2026-04-29T22:34:54.106Z"
+  }
+},
+{
+  "model": "farmacia.auditorialog",
+  "pk": 64,
+  "fields": {
+    "usuario": 1,
+    "accion": "VER",
+    "objeto": "ReporteFinanzas",
+    "objeto_id": 0,
+    "detalles": "Accedió a reporte financiero",
+    "resultado": true,
+    "ip_address": "127.0.0.1",
+    "timestamp": "2026-04-29T22:34:54.668Z"
+  }
+},
+{
+  "model": "farmacia.auditorialog",
+  "pk": 65,
+  "fields": {
+    "usuario": 1,
+    "accion": "VER",
+    "objeto": "Venta",
+    "objeto_id": 5,
+    "detalles": "Ver detalle de venta",
+    "resultado": true,
+    "ip_address": "127.0.0.1",
+    "timestamp": "2026-04-29T22:38:06.936Z"
+  }
+},
+{
+  "model": "farmacia.auditorialog",
+  "pk": 66,
+  "fields": {
+    "usuario": 1,
+    "accion": "VER",
+    "objeto": "Venta",
+    "objeto_id": 5,
+    "detalles": "Ver detalle de venta",
+    "resultado": true,
+    "ip_address": "127.0.0.1",
+    "timestamp": "2026-04-29T22:38:07.578Z"
+  }
+},
+{
+  "model": "farmacia.auditorialog",
+  "pk": 67,
+  "fields": {
+    "usuario": 1,
+    "accion": "VER",
+    "objeto": "ReportePersonal",
+    "objeto_id": 0,
+    "detalles": "Accedió a reporte personal",
+    "resultado": true,
+    "ip_address": "127.0.0.1",
+    "timestamp": "2026-04-29T22:38:08.150Z"
+  }
+},
+{
+  "model": "farmacia.auditorialog",
+  "pk": 68,
+  "fields": {
+    "usuario": 1,
+    "accion": "VER",
+    "objeto": "ReporteGlobal",
+    "objeto_id": 0,
+    "detalles": "Accedió a reporte global",
+    "resultado": true,
+    "ip_address": "127.0.0.1",
+    "timestamp": "2026-04-29T22:38:08.742Z"
+  }
+},
+{
+  "model": "farmacia.auditorialog",
+  "pk": 69,
+  "fields": {
+    "usuario": 1,
+    "accion": "VER",
+    "objeto": "ReporteFinanzas",
+    "objeto_id": 0,
+    "detalles": "Accedió a reporte financiero",
+    "resultado": true,
+    "ip_address": "127.0.0.1",
+    "timestamp": "2026-04-29T22:38:09.289Z"
+  }
+},
+{
+  "model": "farmacia.auditorialog",
+  "pk": 70,
+  "fields": {
+    "usuario": 1,
+    "accion": "VER",
+    "objeto": "ListaVentas",
+    "objeto_id": 0,
+    "detalles": "Accedió a listado de ventas (rol: ADMIN)",
+    "resultado": true,
+    "ip_address": "127.0.0.1",
+    "timestamp": "2026-04-29T22:38:50.637Z"
+  }
+},
+{
+  "model": "farmacia.auditorialog",
+  "pk": 71,
+  "fields": {
+    "usuario": 1,
+    "accion": "VER",
+    "objeto": "Venta",
+    "objeto_id": 5,
+    "detalles": "Ver detalle de venta",
+    "resultado": true,
+    "ip_address": "127.0.0.1",
+    "timestamp": "2026-04-29T22:38:51.208Z"
+  }
+},
+{
+  "model": "farmacia.auditorialog",
+  "pk": 72,
+  "fields": {
+    "usuario": 1,
+    "accion": "VER",
+    "objeto": "Venta",
+    "objeto_id": 5,
+    "detalles": "Ver detalle de venta",
+    "resultado": true,
+    "ip_address": "127.0.0.1",
+    "timestamp": "2026-04-29T22:38:51.777Z"
+  }
+},
+{
+  "model": "farmacia.auditorialog",
+  "pk": 73,
+  "fields": {
+    "usuario": 1,
+    "accion": "VER",
+    "objeto": "ListaClientes",
+    "objeto_id": 0,
+    "detalles": "Accedió a listado de clientes",
+    "resultado": true,
+    "ip_address": "127.0.0.1",
+    "timestamp": "2026-04-29T22:38:52.325Z"
+  }
+},
+{
+  "model": "farmacia.auditorialog",
+  "pk": 74,
+  "fields": {
+    "usuario": 1,
+    "accion": "VER",
+    "objeto": "Cliente",
+    "objeto_id": 1,
+    "detalles": "Ver detalle de cliente",
+    "resultado": true,
+    "ip_address": "127.0.0.1",
+    "timestamp": "2026-04-29T22:38:52.883Z"
+  }
+},
+{
+  "model": "farmacia.auditorialog",
+  "pk": 75,
+  "fields": {
+    "usuario": 1,
+    "accion": "VER",
+    "objeto": "ReportePersonal",
+    "objeto_id": 0,
+    "detalles": "Accedió a reporte personal",
+    "resultado": true,
+    "ip_address": "127.0.0.1",
+    "timestamp": "2026-04-29T22:38:55.198Z"
+  }
+},
+{
+  "model": "farmacia.auditorialog",
+  "pk": 76,
+  "fields": {
+    "usuario": 1,
+    "accion": "VER",
+    "objeto": "ReporteGlobal",
+    "objeto_id": 0,
+    "detalles": "Accedió a reporte global",
+    "resultado": true,
+    "ip_address": "127.0.0.1",
+    "timestamp": "2026-04-29T22:38:55.754Z"
+  }
+},
+{
+  "model": "farmacia.auditorialog",
+  "pk": 77,
+  "fields": {
+    "usuario": 1,
+    "accion": "VER",
+    "objeto": "ReporteFinanzas",
+    "objeto_id": 0,
+    "detalles": "Accedió a reporte financiero",
+    "resultado": true,
+    "ip_address": "127.0.0.1",
+    "timestamp": "2026-04-29T22:38:56.301Z"
+  }
+},
+{
+  "model": "farmacia.auditorialog",
+  "pk": 78,
+  "fields": {
+    "usuario": 1,
+    "accion": "VER",
+    "objeto": "ListaVentas",
+    "objeto_id": 0,
+    "detalles": "Accedió a listado de ventas (rol: ADMIN)",
+    "resultado": true,
+    "ip_address": "127.0.0.1",
+    "timestamp": "2026-05-01T01:21:48.082Z"
+  }
+},
+{
+  "model": "farmacia.auditorialog",
+  "pk": 79,
+  "fields": {
+    "usuario": 1,
+    "accion": "VER",
+    "objeto": "Venta",
+    "objeto_id": 6,
+    "detalles": "Ver detalle de venta",
+    "resultado": true,
+    "ip_address": "127.0.0.1",
+    "timestamp": "2026-05-01T01:21:55.327Z"
+  }
+},
+{
+  "model": "farmacia.auditorialog",
+  "pk": 80,
+  "fields": {
+    "usuario": 1,
+    "accion": "VER",
+    "objeto": "ListaVentas",
+    "objeto_id": 0,
+    "detalles": "Accedió a listado de ventas (rol: ADMIN)",
+    "resultado": true,
+    "ip_address": "127.0.0.1",
+    "timestamp": "2026-05-02T16:20:41.345Z"
+  }
+},
+{
+  "model": "farmacia.receta",
+  "pk": 1,
+  "fields": {
+    "tipo": "simple",
+    "estado": "verificada",
+    "nombre_medico": "Dr. Juan Pérez",
+    "rut_medico": "12.345.678-9",
+    "especialidad": "",
+    "codigo_prestador": "",
+    "nombre_paciente": "María González",
+    "rut_paciente": "15.678.901-2",
+    "numero_receta": "REC-2026-001",
+    "fecha_emision": "2026-05-02",
+    "fecha_vencimiento_receta": "2026-06-01",
+    "archivo_receta": "",
+    "registrada_por": 1,
+    "verificada_por": null,
+    "fecha_verificacion": null,
+    "motivo_rechazo": "",
+    "venta": null,
+    "carrito": null,
+    "fecha_registro": "2026-05-02T18:04:08.586Z"
+  }
+},
+{
+  "model": "farmacia.receta",
+  "pk": 2,
+  "fields": {
+    "tipo": "retenida",
+    "estado": "verificada",
+    "nombre_medico": "Dra. Ana López",
+    "rut_medico": "14.567.890-1",
+    "especialidad": "",
+    "codigo_prestador": "",
+    "nombre_paciente": "Carlos Rodríguez",
+    "rut_paciente": "16.789.012-3",
+    "numero_receta": "REC-2026-002",
+    "fecha_emision": "2026-05-02",
+    "fecha_vencimiento_receta": "2026-06-01",
+    "archivo_receta": "",
+    "registrada_por": 1,
+    "verificada_por": null,
+    "fecha_verificacion": null,
+    "motivo_rechazo": "",
+    "venta": null,
+    "carrito": null,
+    "fecha_registro": "2026-05-02T18:04:08.618Z"
+  }
+},
+{
+  "model": "farmacia.receta",
+  "pk": 3,
+  "fields": {
+    "tipo": "simple",
+    "estado": "verificada",
+    "nombre_medico": "Dr. Roberto Silva",
+    "rut_medico": "13.456.789-0",
+    "especialidad": "",
+    "codigo_prestador": "",
+    "nombre_paciente": "Patricia Morales",
+    "rut_paciente": "17.890.123-4",
+    "numero_receta": "REC-2026-003",
+    "fecha_emision": "2026-05-02",
+    "fecha_vencimiento_receta": "2026-06-01",
+    "archivo_receta": "",
+    "registrada_por": 1,
+    "verificada_por": null,
+    "fecha_verificacion": null,
+    "motivo_rechazo": "",
+    "venta": null,
+    "carrito": null,
+    "fecha_registro": "2026-05-02T18:04:08.637Z"
+  }
+},
+{
+  "model": "farmacia.receta",
+  "pk": 4,
+  "fields": {
+    "tipo": "simple",
+    "estado": "verificada",
+    "nombre_medico": "Dr. Juan García",
+    "rut_medico": "12.345.678-9",
+    "especialidad": "Cardiología",
+    "codigo_prestador": "1234567",
+    "nombre_paciente": "Juan Pérez",
+    "rut_paciente": "11.222.333-4",
+    "numero_receta": "REC-001",
+    "fecha_emision": "2026-05-02",
+    "fecha_vencimiento_receta": "2026-05-12",
+    "archivo_receta": "",
+    "registrada_por": 1,
+    "verificada_por": 1,
+    "fecha_verificacion": "2026-05-02T18:55:24.763Z",
+    "motivo_rechazo": "",
+    "venta": null,
+    "carrito": null,
+    "fecha_registro": "2026-05-02T18:55:24.765Z"
+  }
+},
+{
+  "model": "farmacia.receta",
+  "pk": 5,
+  "fields": {
+    "tipo": "retenida",
+    "estado": "verificada",
+    "nombre_medico": "Dra. María López",
+    "rut_medico": "98.765.432-1",
+    "especialidad": "Psiquiatría",
+    "codigo_prestador": "7654321",
+    "nombre_paciente": "Juan Pérez",
+    "rut_paciente": "11.222.333-4",
+    "numero_receta": "REC-002",
+    "fecha_emision": "2026-05-02",
+    "fecha_vencimiento_receta": "2026-05-07",
+    "archivo_receta": "",
+    "registrada_por": 1,
+    "verificada_por": 1,
+    "fecha_verificacion": "2026-05-02T18:55:24.786Z",
+    "motivo_rechazo": "",
+    "venta": null,
+    "carrito": null,
+    "fecha_registro": "2026-05-02T18:55:24.787Z"
+  }
+}
+]
