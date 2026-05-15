@@ -14,4 +14,4 @@ COPY . .
 
 RUN mkdir -p /app/staticfiles
 
-CMD ["/bin/bash", "-c", "python manage.py collectstatic --noinput && python manage.py migrate --noinput && exec gunicorn collico_sw.wsgi:application --bind 0.0.0.0:${PORT:-8080} --workers 1 --timeout 120 --log-level debug --access-logfile - --error-logfile -"]
+CMD ["/bin/bash", "-c", "echo '=== PASO 1: variables ===' && echo PORT=$PORT && echo '=== PASO 2: collectstatic ===' && python manage.py collectstatic --noinput && echo '=== PASO 3: migrate ===' && python manage.py migrate --noinput && echo '=== PASO 4: gunicorn ===' && exec gunicorn collico_sw.wsgi:application --bind 0.0.0.0:${PORT:-8080} --workers 1 --timeout 120 --access-logfile - --error-logfile -"]
