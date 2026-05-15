@@ -15,7 +15,6 @@ SECURE_SSL_REDIRECT = False
 CSRF_COOKIE_SECURE = False
 SESSION_COOKIE_SECURE = False
 
-CSRF_USE_SESSIONS = True
 
 AUTHENTICATION_BACKENDS = ['farmacia.backends.CustomUserBackend']
 
