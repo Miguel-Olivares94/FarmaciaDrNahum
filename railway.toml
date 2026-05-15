@@ -2,6 +2,6 @@
 builder = "dockerfile"
 
 [deploy]
-startCommand = "python manage.py migrate --noinput && gunicorn collico_sw.wsgi:application --bind 0.0.0.0:$PORT --workers 2 --timeout 120"
+startCommand = "python manage.py migrate --noinput && (python manage.py loaddata datos_farmacia.json --ignorenonexistent || echo 'loaddata omitido') && gunicorn collico_sw.wsgi:application --bind 0.0.0.0:$PORT --workers 1 --log-level info --timeout 120"
 healthcheckPath = "/"
 restartPolicyType = "on_failure"
