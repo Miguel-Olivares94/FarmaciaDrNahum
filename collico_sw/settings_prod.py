@@ -45,7 +45,8 @@ STATIC_URL  = '/static/'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # ── HTTPS ──────────────────────────────────────────────────────────
-SECURE_SSL_REDIRECT         = True
+# Railway maneja HTTPS en el edge — no redirigir aquí (rompe el healthcheck)
+SECURE_SSL_REDIRECT         = False
 CSRF_COOKIE_SECURE          = True
 SESSION_COOKIE_SECURE       = True
 SECURE_HSTS_SECONDS         = 31536000
