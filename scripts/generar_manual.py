@@ -28,8 +28,8 @@ from docx.oxml import OxmlElement
 # ─────────────────────────────────────────────────────────────────────
 # CONFIGURACIÓN
 # ─────────────────────────────────────────────────────────────────────
-BASE_DIR   = Path(__file__).parent
-OUTPUT     = BASE_DIR / "MANUAL_COMPLETO_FARMACIA.docx"
+BASE_DIR   = Path(__file__).parent.parent  # raíz del proyecto
+OUTPUT     = BASE_DIR / "docs" / "MANUAL_COMPLETO_FARMACIA.docx"
 SHOTS_DIR  = BASE_DIR / "screenshots"
 URL_SISTEMA = "http://localhost:5000"
 
