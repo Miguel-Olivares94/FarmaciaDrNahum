@@ -14,5 +14,12 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
+# Crear directorio de archivos estáticos para que WhiteNoise no falle
+RUN mkdir -p /app/staticfiles
+
 CMD python manage.py migrate --noinput && \
-    gunicorn collico_sw.wsgi:application --bind 0.0.0.0:$PORT --workers 2 --timeout 120
+    gunicorn collico_sw.wsgi:application \
+    --bind 0.0.0.0:$PORT \
+    --workers 1 \
+    --log-level debug \
+    --timeout 120
