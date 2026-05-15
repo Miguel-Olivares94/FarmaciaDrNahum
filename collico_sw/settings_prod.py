@@ -13,7 +13,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', SECRET_KEY)
 
 ALLOWED_HOSTS = os.environ.get(
     'ALLOWED_HOSTS',
-    '.railway.app,.up.railway.app,.onrender.com,localhost,127.0.0.1'
+    '.railway.app,.up.railway.app,healthcheck.railway.app,.onrender.com,localhost,127.0.0.1'
 ).split(',')
 
 CSRF_TRUSTED_ORIGINS = [
