@@ -1,0 +1,303 @@
+{% extends 'farmacia/base_generic.html' %}
+
+{% block content %}
+<div class="container-fluid py-5">
+    <!-- Header -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center">
+                <h1 class="mb-0">
+                    <i class="bi bi-person-check"></i>
+                    {% if object %}
+                        Editar Proveedor: <strong>{{ object.nombre }}</strong>
+                    {% else %}
+                        Nuevo Proveedor
+                    {% endif %}
+                </h1>
+                <a href="{% url 'proveedor_list' %}" class="btn btn-secondary">
+                    <i class="bi bi-arrow-left"></i> Volver
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Left Column - Information Card (Solo si es edición) -->
+        {% if object %}
+        <div class="col-lg-4 mb-4">
+            <div class="card border-0 shadow-sm" style="border-left: 4px solid #6c757d;">
+                <div class="card-header bg-secondary text-white">
+                    <h5 class="mb-0"><i class="bi bi-info-circle"></i> Información Actual</h5>
+                </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <label class="text-muted small d-block">Nombre Comercial</label>
+                        <p class="h6">{{ object.nombre }}</p>
+                    </div>
+                    <div class="mb-3">
+                        <label class="text-muted small d-block">Razón Social</label>
+                        <p class="h6">{{ object.razon_social|default:"No especificada" }}</p>
+                    </div>
+                    <div class="mb-3">
+                        <label class="text-muted small d-block">RUT</label>
+                        <p class="h6">{{ object.rut|default:"No especificado" }}</p>
+                    </div>
+                    <div class="mb-3">
+                        <label class="text-muted small d-block">Teléfono</label>
+                        <p class="h6">
+                            {% if object.fono %}
+                                <i class="bi bi-telephone"></i> {{ object.fono }}
+                            {% else %}
+                                <span class="text-muted">No disponible</span>
+                            {% endif %}
+                        </p>
+                    </div>
+                    <div class="mb-3">
+                        <label class="text-muted small d-block">Email</label>
+                        <p class="h6">
+                            {% if object.email %}
+                                <i class="bi bi-envelope"></i> {{ object.email }}
+                            {% else %}
+                                <span class="text-muted">No disponible</span>
+                            {% endif %}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- Right Column - Form Card -->
+        <div class="col-lg-{% if object %}8{% else %}12{% endif %} mb-4">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">
+                        <i class="bi bi-pencil-square"></i>
+                        {% if object %}
+                            Actualizar Datos del Proveedor
+                        {% else %}
+                            Registrar Nuevo Proveedor
+                        {% endif %}
+                    </h5>
+                </div>
+                <div class="card-body p-4">
+                    <form method="post" action="" novalidate>
+                        {% csrf_token %}
+
+                        <!-- Nombre Comercial -->
+                        <div class="mb-4">
+                            <label for="{{ form.nombre.id_for_label }}" class="form-label">
+                                <i class="bi bi-shop"></i> Nombre Comercial
+                                <span class="text-danger">*</span>
+                            </label>
+                            <input type="text" 
+                                   class="form-control form-control-lg {% if form.nombre.errors %}is-invalid{% endif %}" 
+                                   id="{{ form.nombre.id_for_label }}" 
+                                   name="{{ form.nombre.name }}" 
+                                   value="{{ form.nombre.value|default:'' }}"
+                                   placeholder="Ej: Farmacéutica ABC"
+                                   required>
+                            {% if form.nombre.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {{ form.nombre.errors.0 }}
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        <!-- Razón Social -->
+                        <div class="mb-4">
+                            <label for="{{ form.razon_social.id_for_label }}" class="form-label">
+                                <i class="bi bi-building"></i> Razón Social
+                            </label>
+                            <input type="text" 
+                                   class="form-control form-control-lg {% if form.razon_social.errors %}is-invalid{% endif %}" 
+                                   id="{{ form.razon_social.id_for_label }}" 
+                                   name="{{ form.razon_social.name }}" 
+                                   value="{{ form.razon_social.value|default:'' }}"
+                                   placeholder="Ej: Farmacéutica ABC Ltda.">
+                            {% if form.razon_social.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {{ form.razon_social.errors.0 }}
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        <!-- RUT -->
+                        <div class="mb-4">
+                            <label for="{{ form.rut.id_for_label }}" class="form-label">
+                                <i class="bi bi-card-text"></i> RUT
+                            </label>
+                            <input type="text" 
+                                   class="form-control form-control-lg {% if form.rut.errors %}is-invalid{% endif %}" 
+                                   id="{{ form.rut.id_for_label }}" 
+                                   name="{{ form.rut.name }}" 
+                                   value="{{ form.rut.value|default:'' }}"
+                                   placeholder="Ej: 12.345.678-9">
+                            {% if form.rut.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {{ form.rut.errors.0 }}
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        <!-- Dirección -->
+                        <div class="mb-4">
+                            <label for="{{ form.direccion.id_for_label }}" class="form-label">
+                                <i class="bi bi-geo-alt"></i> Dirección
+                            </label>
+                            <input type="text" 
+                                   class="form-control form-control-lg {% if form.direccion.errors %}is-invalid{% endif %}" 
+                                   id="{{ form.direccion.id_for_label }}" 
+                                   name="{{ form.direccion.name }}" 
+                                   value="{{ form.direccion.value|default:'' }}"
+                                   placeholder="Ej: Avenida Principal 123, Piso 5">
+                            {% if form.direccion.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {{ form.direccion.errors.0 }}
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        <!-- Email -->
+                        <div class="mb-4">
+                            <label for="{{ form.email.id_for_label }}" class="form-label">
+                                <i class="bi bi-envelope"></i> Email
+                            </label>
+                            <input type="email" 
+                                   class="form-control form-control-lg {% if form.email.errors %}is-invalid{% endif %}" 
+                                   id="{{ form.email.id_for_label }}" 
+                                   name="{{ form.email.name }}" 
+                                   value="{{ form.email.value|default:'' }}"
+                                   placeholder="contacto@proveedor.cl">
+                            {% if form.email.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {{ form.email.errors.0 }}
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        <!-- Teléfono -->
+                        <div class="mb-4">
+                            <label for="{{ form.fono.id_for_label }}" class="form-label">
+                                <i class="bi bi-telephone"></i> Teléfono
+                            </label>
+                            <input type="tel" 
+                                   class="form-control form-control-lg {% if form.fono.errors %}is-invalid{% endif %}" 
+                                   id="{{ form.fono.id_for_label }}" 
+                                   name="{{ form.fono.name }}" 
+                                   value="{{ form.fono.value|default:'' }}"
+                                   placeholder="+56 9 XXXX XXXX">
+                            {% if form.fono.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {{ form.fono.errors.0 }}
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        <!-- Productos -->
+                        <div class="mb-4">
+                            <label for="{{ form.productos.id_for_label }}" class="form-label">
+                                <i class="bi bi-box-seam"></i> Productos / Descripción
+                            </label>
+                            <textarea class="form-control form-control-lg {% if form.productos.errors %}is-invalid{% endif %}" 
+                                      id="{{ form.productos.id_for_label }}" 
+                                      name="{{ form.productos.name }}"
+                                      rows="3"
+                                      placeholder="Descripción de productos disponibles y especialidades">{{ form.productos.value|default:'' }}</textarea>
+                            {% if form.productos.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {{ form.productos.errors.0 }}
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        <!-- Buttons -->
+                        <div class="row">
+                            <div class="col-md-6 mb-2">
+                                <button type="submit" class="btn btn-success btn-lg w-100">
+                                    <i class="bi bi-check-circle"></i>
+                                    {% if object %}
+                                        Actualizar Proveedor
+                                    {% else %}
+                                        Guardar Proveedor
+                                    {% endif %}
+                                </button>
+                            </div>
+                            <div class="col-md-6 mb-2">
+                                <a href="{% url 'proveedor_list' %}" class="btn btn-secondary btn-lg w-100">
+                                    <i class="bi bi-arrow-left"></i> Cancelar
+                                </a>
+                            </div>
+                        </div>
+                    </form>
+
+                    <!-- Info Alert -->
+                    <div class="alert alert-info alert-sm mt-4" role="alert">
+                        <i class="bi bi-info-circle"></i>
+                        <small>
+                            Los datos ingresados se guardarán de forma segura. Asegúrate de revisar toda la información antes de guardar.
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .form-control-lg {
+        border-radius: 0.375rem;
+        border: 1px solid #dee2e6;
+        font-size: 0.95rem;
+        transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    }
+
+    .form-control-lg:focus {
+        border-color: #80bdff;
+        box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    }
+
+    .form-label {
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 0.5rem;
+    }
+
+    .card {
+        border-radius: 0.5rem;
+        transition: box-shadow 0.3s ease, transform 0.3s ease;
+    }
+
+    .card:hover {
+        box-shadow: 0.25rem 0.5rem 1.5rem rgba(0, 0, 0, 0.1) !important;
+    }
+
+    .card-header {
+        border-radius: 0.5rem 0.5rem 0 0;
+        font-weight: 600;
+    }
+
+    .btn-lg {
+        padding: 0.75rem 1.5rem;
+        font-size: 0.95rem;
+        font-weight: 600;
+        transition: all 0.3s ease;
+    }
+
+    .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0.25rem 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    }
+
+    .invalid-feedback {
+        color: #dc3545;
+        font-size: 0.85rem;
+        margin-top: 0.25rem;
+    }
+
+    .alert-sm {
+        padding: 0.75rem 1rem;
+        border-radius: 0.375rem;
+    }
+</style>
+{% endblock %}

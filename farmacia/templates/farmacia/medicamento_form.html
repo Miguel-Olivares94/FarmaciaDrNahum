@@ -1,0 +1,402 @@
+{% extends 'farmacia/base_generic.html' %}
+{% load form_tags %}
+
+{% block title %}{% if form.instance.pk %}Editar{% else %}Nuevo{% endif %} Medicamento - Farmacia Dr Nahúm{% endblock %}
+
+{% block content %}
+<div class="mb-5">
+    <h1 class="page-title">
+        <i class="bi bi-prescription2"></i>
+        {% if form.instance.pk %}Editar Medicamento{% else %}Nuevo Medicamento{% endif %}
+    </h1>
+    <p class="page-subtitle">{% if form.instance.pk %}Modifica los datos del medicamento{% else %}Agrega un nuevo medicamento al inventario{% endif %}</p>
+</div>
+
+<form method="post" action="" novalidate>
+    {% csrf_token %}
+
+    <!-- Errores generales -->
+    {% if form.non_field_errors %}
+    <div class="alert alert-danger alert-dismissible fade show mb-4" role="alert">
+        <i class="bi bi-exclamation-circle"></i> <strong>Error al guardar:</strong>
+        {% for error in form.non_field_errors %}
+            <div>{{ error }}</div>
+        {% endfor %}
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+    {% endif %}
+
+    <div class="row">
+        <!-- COLUMNA PRINCIPAL: FORMULARIO -->
+        <div class="col-lg-8">
+
+            <!-- CARD 1: INFORMACIÓN BÁSICA -->
+            <div class="card shadow-sm mb-4 border-0">
+                <div class="card-header bg-primary bg-opacity-10 border-bottom-primary">
+                    <h5 class="mb-0 text-primary">
+                        <i class="bi bi-info-circle"></i> Información Básica
+                    </h5>
+                </div>
+                <div class="card-body p-4">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label for="{{ form.sku.id_for_label }}" class="form-label fw-600">
+                                <i class="bi bi-barcode"></i> {{ form.sku.label }} <span class="text-danger">*</span>
+                            </label>
+                            <div class="input-group input-group-lg">
+                                <span class="input-group-text bg-light">
+                                    <i class="bi bi-code"></i>
+                                </span>
+                                {% if form.sku.errors %}
+                                    {{ form.sku|add_class:"form-control form-control-lg is-invalid" }}
+                                    <div class="invalid-feedback d-block">
+                                        {% for error in form.sku.errors %}{{ error }}{% endfor %}
+                                    </div>
+                                {% else %}
+                                    {{ form.sku|add_class:"form-control form-control-lg" }}
+                                {% endif %}
+                            </div>
+                            <small class="form-text text-muted d-block mt-2">Ej: MED-001, PROD-123</small>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="{{ form.nombre.id_for_label }}" class="form-label fw-600">
+                                <i class="bi bi-capsule"></i> {{ form.nombre.label }} <span class="text-danger">*</span>
+                            </label>
+                            <div class="input-group input-group-lg">
+                                <span class="input-group-text bg-light">
+                                    <i class="bi bi-capsule"></i>
+                                </span>
+                                {% if form.nombre.errors %}
+                                    {{ form.nombre|add_class:"form-control form-control-lg is-invalid" }}
+                                    <div class="invalid-feedback d-block">
+                                        {% for error in form.nombre.errors %}{{ error }}{% endfor %}
+                                    </div>
+                                {% else %}
+                                    {{ form.nombre|add_class:"form-control form-control-lg" }}
+                                {% endif %}
+                            </div>
+                            <small class="form-text text-muted d-block mt-2">Nombre completo del medicamento</small>
+                        </div>
+                    </div>
+
+                    <div class="row g-3 mt-1">
+                        <div class="col-md-6">
+                            <label for="{{ form.laboratorio.id_for_label }}" class="form-label fw-600">
+                                <i class="bi bi-building"></i> {{ form.laboratorio.label }} <span class="text-danger">*</span>
+                            </label>
+                            <div class="input-group input-group-lg">
+                                <span class="input-group-text bg-light">
+                                    <i class="bi bi-factory"></i>
+                                </span>
+                                {% if form.laboratorio.errors %}
+                                    {{ form.laboratorio|add_class:"form-control form-control-lg is-invalid" }}
+                                    <div class="invalid-feedback d-block">
+                                        {% for error in form.laboratorio.errors %}{{ error }}{% endfor %}
+                                    </div>
+                                {% else %}
+                                    {{ form.laboratorio|add_class:"form-control form-control-lg" }}
+                                {% endif %}
+                            </div>
+                            <small class="form-text text-muted d-block mt-2">Laboratorio fabricante</small>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="{{ form.proveedor.id_for_label }}" class="form-label fw-600">
+                                <i class="bi bi-truck"></i> {{ form.proveedor.label }} <span class="text-danger">*</span>
+                            </label>
+                            <div class="input-group input-group-lg">
+                                <span class="input-group-text bg-light">
+                                    <i class="bi bi-person-check"></i>
+                                </span>
+                                {% if form.proveedor.errors %}
+                                    {{ form.proveedor|add_class:"form-select form-select-lg is-invalid" }}
+                                    <div class="invalid-feedback d-block">
+                                        {% for error in form.proveedor.errors %}{{ error }}{% endfor %}
+                                    </div>
+                                {% else %}
+                                    {{ form.proveedor|add_class:"form-select form-select-lg" }}
+                                {% endif %}
+                            </div>
+                            <small class="form-text text-muted d-block mt-2">Selecciona un proveedor</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CARD 2: DETALLES CLÍNICOS -->
+            <div class="card shadow-sm mb-4 border-0">
+                <div class="card-header bg-success bg-opacity-10 border-bottom-success">
+                    <h5 class="mb-0 text-success">
+                        <i class="bi bi-flask"></i> Detalles Clínicos
+                    </h5>
+                </div>
+                <div class="card-body p-4">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label for="{{ form.principio_activo.id_for_label }}" class="form-label fw-600">
+                                <i class="bi bi-droplet"></i> {{ form.principio_activo.label }}
+                            </label>
+                            <div class="input-group input-group-lg">
+                                <span class="input-group-text bg-light">
+                                    <i class="bi bi-beaker"></i>
+                                </span>
+                                {{ form.principio_activo|add_class:"form-control form-control-lg" }}
+                            </div>
+                            <small class="form-text text-muted d-block mt-2">Componente activo (ej: Paracetamol, Ibuprofeno)</small>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="{{ form.accion_terapeutica.id_for_label }}" class="form-label fw-600">
+                                <i class="bi bi-heart-pulse"></i> {{ form.accion_terapeutica.label }}
+                            </label>
+                            <div class="input-group input-group-lg">
+                                <span class="input-group-text bg-light">
+                                    <i class="bi bi-hospital"></i>
+                                </span>
+                                {{ form.accion_terapeutica|add_class:"form-control form-control-lg" }}
+                            </div>
+                            <small class="form-text text-muted d-block mt-2">Ej: Analgésico, Antibiótico</small>
+                        </div>
+                    </div>
+
+                    <div class="row g-3 mt-1">
+                        <div class="col-md-4">
+                            <label for="{{ form.presentacion.id_for_label }}" class="form-label fw-600">
+                                <i class="bi bi-box"></i> {{ form.presentacion.label }}
+                            </label>
+                            <div class="input-group input-group-lg">
+                                <span class="input-group-text bg-light">
+                                    <i class="bi bi-archive"></i>
+                                </span>
+                                {{ form.presentacion|add_class:"form-control form-control-lg" }}
+                            </div>
+                            <small class="form-text text-muted d-block mt-2">Tableta, Cápsula, etc.</small>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="{{ form.dosis.id_for_label }}" class="form-label fw-600">
+                                <i class="bi bi-speedometer"></i> {{ form.dosis.label }}
+                            </label>
+                            <div class="input-group input-group-lg">
+                                <span class="input-group-text bg-light">
+                                    <i class="bi bi-percent"></i>
+                                </span>
+                                {{ form.dosis|add_class:"form-control form-control-lg" }}
+                            </div>
+                            <small class="form-text text-muted d-block mt-2">Ej: 500mg, 10mg</small>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="{{ form.bioequivalente.id_for_label }}" class="form-label fw-600">
+                                <i class="bi bi-check2-square"></i> {{ form.bioequivalente.label }}
+                            </label>
+                            <div class="form-check form-switch form-check-lg">
+                                {{ form.bioequivalente|add_class:"form-check-input" }}
+                                <label class="form-check-label" for="{{ form.bioequivalente.id_for_label }}">
+                                    Genérico disponible
+                                </label>
+                            </div>
+                            <small class="form-text text-muted d-block mt-2">Marca si existe versión genérica</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CARD 3: INVENTARIO Y PRECIOS -->
+            <div class="card shadow-sm mb-4 border-0">
+                <div class="card-header bg-warning bg-opacity-10 border-bottom-warning">
+                    <h5 class="mb-0 text-warning">
+                        <i class="bi bi-box"></i> Inventario y Precios
+                    </h5>
+                </div>
+                <div class="card-body p-4">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label for="{{ form.stock.id_for_label }}" class="form-label fw-600">
+                                <i class="bi bi-stack"></i> {{ form.stock.label }} <span class="text-danger">*</span>
+                            </label>
+                            <div class="input-group input-group-lg">
+                                <span class="input-group-text bg-light">
+                                    <i class="bi bi-boxes"></i>
+                                </span>
+                                {% if form.stock.errors %}
+                                    {{ form.stock|add_class:"form-control form-control-lg is-invalid" }}
+                                    <span class="input-group-text bg-light">unidades</span>
+                                    <div class="invalid-feedback d-block w-100">
+                                        {% for error in form.stock.errors %}{{ error }}{% endfor %}
+                                    </div>
+                                {% else %}
+                                    {{ form.stock|add_class:"form-control form-control-lg" }}
+                                    <span class="input-group-text bg-light">unidades</span>
+                                {% endif %}
+                            </div>
+                            <small class="form-text text-muted d-block mt-2">Cantidad disponible en stock</small>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="{{ form.precio.id_for_label }}" class="form-label fw-600">
+                                <i class="bi bi-cash-coin"></i> {{ form.precio.label }} <span class="text-danger">*</span>
+                            </label>
+                            <div class="input-group input-group-lg">
+                                <span class="input-group-text bg-light">$</span>
+                                {% if form.precio.errors %}
+                                    {{ form.precio|add_class:"form-control form-control-lg is-invalid" }}
+                                    <div class="invalid-feedback d-block">
+                                        {% for error in form.precio.errors %}{{ error }}{% endfor %}
+                                    </div>
+                                {% else %}
+                                    {{ form.precio|add_class:"form-control form-control-lg" }}
+                                {% endif %}
+                            </div>
+                            <small class="form-text text-muted d-block mt-2">Precio unitario de venta</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CARD 4: FECHAS IMPORTANTES -->
+            <div class="card shadow-sm mb-4 border-0">
+                <div class="card-header bg-info bg-opacity-10 border-bottom-info">
+                    <h5 class="mb-0 text-info">
+                        <i class="bi bi-calendar-event"></i> Fechas Importantes
+                    </h5>
+                </div>
+                <div class="card-body p-4">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label for="{{ form.fecha_ingreso.id_for_label }}" class="form-label fw-600">
+                                <i class="bi bi-calendar-plus"></i> {{ form.fecha_ingreso.label }}
+                            </label>
+                            <div class="input-group input-group-lg">
+                                <span class="input-group-text bg-light">
+                                    <i class="bi bi-calendar"></i>
+                                </span>
+                                {{ form.fecha_ingreso|add_class:"form-control form-control-lg" }}
+                            </div>
+                            <small class="form-text text-muted d-block mt-2">Fecha de entrada al inventario</small>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="{{ form.fecha_vencimiento.id_for_label }}" class="form-label fw-600">
+                                <i class="bi bi-calendar-x"></i> {{ form.fecha_vencimiento.label }}
+                            </label>
+                            <div class="input-group input-group-lg">
+                                <span class="input-group-text bg-light">
+                                    <i class="bi bi-hourglass-end"></i>
+                                </span>
+                                {{ form.fecha_vencimiento|add_class:"form-control form-control-lg" }}
+                            </div>
+                            <small class="form-text text-muted d-block mt-2">Fecha de vencimiento crítica</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BOTONES DE ACCIÓN -->
+            <div class="d-flex gap-3 mt-5 mb-4">
+                <button type="submit" class="btn btn-primary btn-lg flex-grow-1">
+                    <i class="bi bi-check-circle"></i> 
+                    {% if form.instance.pk %}Actualizar Medicamento{% else %}Crear Medicamento{% endif %}
+                </button>
+                <a href="{% url 'medicamento_list' %}" class="btn btn-outline-secondary btn-lg">
+                    <i class="bi bi-x-lg"></i> Cancelar
+                </a>
+            </div>
+        </div>
+    </div>
+
+        <!-- PANEL LATERAL: AYUDA E INFORMACIÓN -->
+        <div class="col-lg-4">
+            <!-- CARD DE AYUDA -->
+            <div class="card shadow-sm mb-4 border-0 sticky-top" style="top: 20px;">
+                <div class="card-header bg-primary bg-opacity-10 border-bottom-primary">
+                    <h5 class="mb-0 text-primary">
+                        <i class="bi bi-lightbulb"></i> Guía de Campos
+                    </h5>
+                </div>
+                <div class="card-body p-3">
+                    <div class="mb-3">
+                        <h6 class="fw-600 text-dark mb-2">
+                            <i class="bi bi-asterisk text-danger"></i> Campos Requeridos
+                        </h6>
+                        <ul class="list-unstyled small text-muted">
+                            <li><i class="bi bi-check2 text-success"></i> SKU</li>
+                            <li><i class="bi bi-check2 text-success"></i> Nombre</li>
+                            <li><i class="bi bi-check2 text-success"></i> Laboratorio</li>
+                            <li><i class="bi bi-check2 text-success"></i> Stock</li>
+                            <li><i class="bi bi-check2 text-success"></i> Precio</li>
+                            <li><i class="bi bi-check2 text-success"></i> Proveedor</li>
+                        </ul>
+                    </div>
+
+                    <hr>
+
+                    <div class="mb-3">
+                        <h6 class="fw-600 text-dark mb-2">
+                            <i class="bi bi-info-circle text-info"></i> Tips Útiles
+                        </h6>
+                        <ul class="list-unstyled small text-muted">
+                            <li class="mb-2">
+                                <strong>SKU Único:</strong> Usa un código que no se repita en el sistema
+                            </li>
+                            <li class="mb-2">
+                                <strong>Fechas:</strong> La fecha de vencimiento es crítica para FIFO
+                            </li>
+                            <li>
+                                <strong>Stock:</strong> Actualiza regularmente para mantener el inventario correcto
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CARD DE ESTADO -->
+            {% if form.instance.pk %}
+            <div class="card border-0 shadow-sm alert-info mb-4">
+                <div class="card-body p-3 text-info">
+                    <h6 class="fw-600 mb-2">
+                        <i class="bi bi-pencil-square"></i> Modo Edición
+                    </h6>
+                    <p class="small mb-0">
+                        Estás editando un medicamento existente. Los cambios se aplicarán inmediatamente al hacer clic en "Actualizar".
+                    </p>
+                </div>
+            </div>
+            {% else %}
+            <div class="card border-0 shadow-sm alert-success mb-4">
+                <div class="card-body p-3 text-success">
+                    <h6 class="fw-600 mb-2">
+                        <i class="bi bi-plus-circle"></i> Nuevo Medicamento
+                    </h6>
+                    <p class="small mb-0">
+                        Completa todos los campos requeridos para agregar un nuevo medicamento al inventario.
+                    </p>
+                </div>
+            </div>
+            {% endif %}
+
+            <!-- CARD DE VALIDACIÓN -->
+            <div class="card border-0 shadow-sm bg-light">
+                <div class="card-body p-3">
+                    <h6 class="fw-600 mb-3">
+                        <i class="bi bi-shield-check"></i> Validación
+                    </h6>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="checkbox" id="check1" checked disabled>
+                        <label class="form-check-label small" for="check1">
+                            Campos requeridos marcados con <span class="text-danger fw-600">*</span>
+                        </label>
+                    </div>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="checkbox" id="check2" checked disabled>
+                        <label class="form-check-label small" for="check2">
+                            Precios con formato monetario
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="check3" checked disabled>
+                        <label class="form-check-label small" for="check3">
+                            SKU debe ser único
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+{% endblock %}
+

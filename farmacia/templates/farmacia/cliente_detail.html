@@ -1,0 +1,69 @@
+{% extends "farmacia/base_generic.html" %}
+
+{% block title %}Detalle Cliente - Farmacia Dr Nahúm{% endblock %}
+
+{% block content %}
+<div class="container-fluid py-4">
+
+  <div class="row mb-4">
+    <div class="col">
+      <div class="card border-0 shadow-sm" style="background: linear-gradient(135deg,#009688,#4db6ac);">
+        <div class="card-body py-3 px-4 d-flex align-items-center gap-3">
+          <span style="font-size:2rem;">👤</span>
+          <div>
+            <h1 class="h3 mb-0 text-white fw-bold">{{ cliente.nombre }}</h1>
+            <p class="mb-0 text-white opacity-75">Detalle del cliente — Rol: <strong>{{ rol }}</strong></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card border-0 shadow-sm mb-4">
+        <div class="card-header bg-white border-0 pt-3"><h5 class="mb-0">📋 Datos Básicos</h5></div>
+        <div class="card-body">
+          <table class="table table-borderless mb-0">
+            <tr><th class="text-muted" style="width:40%">Nombre</th><td>{{ cliente.nombre }}</td></tr>
+            <tr><th class="text-muted">Teléfono</th><td>{{ cliente.telefono|default:"—" }}</td></tr>
+            <tr><th class="text-muted">Estado</th>
+              <td>
+                {% if cliente.estado == 'Activo' %}
+                  <span class="badge bg-success">Activo</span>
+                {% else %}
+                  <span class="badge bg-danger">Inactivo</span>
+                {% endif %}
+              </td>
+            </tr>
+            <tr><th class="text-muted">Compras</th><td><span class="badge bg-info text-dark">{{ cliente.cantidad_compras }}</span></td></tr>
+            <tr><th class="text-muted">Total comprado</th><td><span class="text-success fw-bold">{{ cliente.total_compras }}</span></td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    {% if rol == 'ADMIN' %}
+    <div class="col-md-6">
+      <div class="card border-0 shadow-sm mb-4 border-start border-warning border-3">
+        <div class="card-header bg-white border-0 pt-3"><h5 class="mb-0">🔒 Datos Sensibles (Solo Admin)</h5></div>
+        <div class="card-body">
+          <table class="table table-borderless mb-0">
+            <tr><th class="text-muted" style="width:45%">RUT / DNI</th><td>{{ cliente.rut_dni|default:"—" }}</td></tr>
+            <tr><th class="text-muted">Email</th><td>{{ cliente.email|default:"—" }}</td></tr>
+            <tr><th class="text-muted">Fecha nacimiento</th><td>{{ cliente.fecha_nacimiento|default:"—" }}</td></tr>
+            <tr><th class="text-muted">Alergias</th><td>{{ cliente.alergias|default:"Ninguna registrada" }}</td></tr>
+            <tr><th class="text-muted">Medicamentos contraindicados</th><td>{{ cliente.medicamentos_contraindicados|default:"Ninguno" }}</td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+  </div>
+
+  <a href="{% url 'clientes_seguros' %}" class="btn btn-outline-secondary">
+    <i class="bi bi-arrow-left"></i> Volver al listado
+  </a>
+
+</div>
+{% endblock %}

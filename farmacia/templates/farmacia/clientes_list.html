@@ -1,0 +1,102 @@
+{% extends "farmacia/base_generic.html" %}
+
+{% block title %}Clientes - Farmacia Dr Nahúm{% endblock %}
+
+{% block content %}
+<div class="container-fluid py-4">
+
+  <!-- Encabezado -->
+  <div class="row mb-4">
+    <div class="col">
+      <div class="card border-0 shadow-sm" style="background: linear-gradient(135deg,#009688,#4db6ac);">
+        <div class="card-body py-3 px-4 d-flex align-items-center gap-3">
+          <span style="font-size:2rem;">👥</span>
+          <div>
+            <h1 class="h3 mb-0 text-white fw-bold">Listado de Clientes</h1>
+            <p class="mb-0 text-white opacity-75">Gestión de clientes del sistema — Rol: <strong>{{ rol }}</strong></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- KPI -->
+  <div class="row mb-4">
+    <div class="col-md-3">
+      <div class="card border-0 shadow-sm text-center">
+        <div class="card-body">
+          <div class="display-6 text-primary fw-bold">{{ clientes|length }}</div>
+          <div class="text-muted small">Total Clientes</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tabla -->
+  <div class="card border-0 shadow-sm">
+    <div class="card-header bg-white border-0 pt-3 pb-0">
+      <h5 class="mb-0">📋 Clientes Registrados</h5>
+    </div>
+    <div class="card-body p-0">
+      <div class="table-responsive">
+        <table class="table table-hover align-middle mb-0">
+          <thead class="table-light">
+            <tr>
+              <th>ID</th>
+              <th>Nombre</th>
+              <th>Teléfono</th>
+              {% if rol == 'ADMIN' %}
+              <th>Email</th>
+              {% else %}
+              <th>Email</th>
+              {% endif %}
+              <th>Compras</th>
+              <th>Total Comprado</th>
+              <th>Estado</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for c in clientes %}
+            <tr>
+              <td><span class="badge bg-secondary">#{{ c.id }}</span></td>
+              <td><strong>{{ c.nombre }}</strong></td>
+              <td>{{ c.telefono|default:"—" }}</td>
+              <td>
+                {% if rol == 'ADMIN' %}
+                  {{ c.email|default:"—" }}
+                {% else %}
+                  <span class="text-muted fst-italic">{{ c.email }}</span>
+                {% endif %}
+              </td>
+              <td><span class="badge bg-info text-dark">{{ c.cantidad_compras }}</span></td>
+              <td><span class="text-success fw-semibold">{{ c.total_compras }}</span></td>
+              <td>
+                {% if c.estado == 'Activo' %}
+                  <span class="badge bg-success">Activo</span>
+                {% else %}
+                  <span class="badge bg-danger">Inactivo</span>
+                {% endif %}
+              </td>
+              <td>
+                <a href="{% url 'cliente_detalle_seguro' c.id %}" class="btn btn-sm btn-outline-primary">
+                  <i class="bi bi-eye"></i> Ver
+                </a>
+              </td>
+            </tr>
+            {% empty %}
+            <tr>
+              <td colspan="8" class="text-center text-muted py-4">
+                <i class="bi bi-people fs-3 d-block mb-2"></i>
+                No hay clientes registrados
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+</div>
+{% endblock %}

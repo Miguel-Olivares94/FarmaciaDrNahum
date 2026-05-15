@@ -1,0 +1,904 @@
+/* ============================================
+   FARMACIA COLLICO - ESTILOS PERSONALIZADOS
+   Bootstrap 5 + Diseño Profesional
+   ============================================ */
+
+:root {
+    --primary: #239089;
+    --primary-dark: #42a8a1;
+    --primary-light: #5dc1b9;
+    --primary-lighter: #8ae0db;
+    --primary-lightest: #b5ffff;
+    --success: #10B981;
+    --warning: #F59E0B;
+    --danger: #EF4444;
+    --info: #239089;
+    --light-bg: #f0fffe;
+    --dark-text: #1E293B;
+    --gray-200: #E2E8F0;
+    --gray-300: #CBD5E1;
+    --gray-400: #94A3B8;
+    --gray-600: #475569;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--light-bg);
+    color: var(--dark-text);
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+/* ============================================
+   NAVBAR
+   ============================================ */
+
+.navbar {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    padding: 0.75rem 0;
+    border-bottom: 3px solid var(--primary-dark);
+}
+
+.navbar-brand {
+    font-weight: 700;
+    color: white !important;
+    font-size: 1.5rem;
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.navbar-brand img {
+    max-height: 45px;
+    filter: brightness(0) invert(1);
+    transition: transform 0.3s ease;
+}
+
+.navbar-brand:hover img {
+    transform: scale(1.1);
+}
+
+.navbar-nav .nav-link {
+    color: rgba(255,255,255,0.9) !important;
+    font-weight: 500;
+    margin: 0 0.5rem;
+    padding: 0.5rem 0.75rem !important;
+    transition: all 0.3s ease;
+    border-radius: 0.375rem;
+    position: relative;
+}
+
+.navbar-nav .nav-link:hover {
+    background-color: rgba(255,255,255,0.2);
+    color: white !important;
+}
+
+.navbar-nav .nav-link.active {
+    background-color: rgba(255,255,255,0.3);
+    color: white !important;
+}
+
+.user-info {
+    color: white;
+    padding: 0.5rem 1rem;
+    border-left: 2px solid rgba(255,255,255,0.3);
+    margin-left: 1rem;
+}
+
+/* ============================================
+   SIDEBAR
+   ============================================ */
+
+.sidebar {
+    background: white;
+    border-right: 1px solid var(--gray-200);
+    box-shadow: 2px 0 4px rgba(0,0,0,0.05);
+    min-height: 100vh;
+    padding: 2rem 0;
+    position: sticky;
+    top: 0;
+}
+
+.sidebar-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-menu li {
+    margin: 0;
+}
+
+.sidebar-menu a {
+    display: block;
+    padding: 1rem 1.5rem;
+    color: var(--gray-600);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border-left: 4px solid transparent;
+    font-weight: 500;
+}
+
+.sidebar-menu a:hover {
+    background-color: var(--light-bg);
+    color: var(--primary);
+    border-left-color: var(--primary);
+    padding-left: 2rem;
+}
+
+.sidebar-menu a.active {
+    background-color: var(--light-bg);
+    color: var(--primary);
+    border-left-color: var(--primary);
+    font-weight: 600;
+}
+
+.sidebar-title {
+    padding: 1rem 1.5rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--gray-400);
+    margin-top: 1rem;
+}
+
+/* ============================================
+   CONTENIDO PRINCIPAL
+   ============================================ */
+
+.main-content {
+    flex: 1;
+    padding: 2rem;
+}
+
+.page-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--dark-text);
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.page-subtitle {
+    color: var(--gray-600);
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+}
+
+/* ============================================
+   TARJETAS DE KPI
+   ============================================ */
+
+.kpi-card {
+    background: white;
+    border: none;
+    border-top: 4px solid;
+    border-image: linear-gradient(90deg, var(--primary), var(--info)) 1;
+    border-radius: 0 0 0.75rem 0.75rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    padding: 1.25rem;
+    margin-bottom: 1.5rem;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: visible;
+}
+
+.kpi-card:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+    transform: translateY(-2px);
+}
+
+.kpi-icon {
+    font-size: 2.5rem;
+    margin-bottom: 0.75rem;
+    display: inline-block;
+    width: 60px;
+    height: 60px;
+    background: var(--light-bg);
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.kpi-value {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--dark-text);
+    line-height: 1.2;
+    white-space: nowrap;
+}
+
+.kpi-label {
+    color: var(--gray-600);
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-top: 0.5rem;
+}
+
+.kpi-change {
+    font-size: 0.85rem;
+    margin-top: 0.75rem;
+}
+
+.kpi-change.positive {
+    color: var(--success);
+}
+
+.kpi-change.negative {
+    color: var(--danger);
+}
+
+/* ============================================
+   TABLAS
+   ============================================ */
+
+.table-responsive {
+    background: white;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+
+.table {
+    margin-bottom: 0;
+    font-size: 0.95rem;
+}
+
+.table thead th {
+    background-color: var(--light-bg);
+    border-bottom: 2px solid var(--gray-200);
+    color: var(--dark-text);
+    font-weight: 600;
+    padding: 1rem;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 0.5px;
+}
+
+.table tbody tr {
+    border-bottom: 1px solid var(--gray-200);
+    transition: background-color 0.3s ease;
+}
+
+.table tbody tr:hover {
+    background-color: rgba(35, 144, 137, 0.03);
+}
+
+.table td {
+    padding: 1rem;
+    vertical-align: middle;
+}
+
+/* Estados de Stock */
+.badge-stock-alto {
+    background-color: #D1FAE5;
+    color: #065F46;
+    font-weight: 600;
+}
+
+.badge-stock-medio {
+    background-color: #FEF3C7;
+    color: #92400E;
+    font-weight: 600;
+}
+
+.badge-stock-bajo {
+    background-color: #FEE2E2;
+    color: #991B1B;
+    font-weight: 600;
+}
+
+.badge-stock-agotado {
+    background-color: #FEE2E2;
+    color: #7F1D1D;
+    font-weight: 600;
+}
+
+/* ============================================
+   BOTONES
+   ============================================ */
+
+.btn {
+    border-radius: 0.5rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: none;
+    padding: 0.625rem 1rem;
+    font-size: 0.95rem;
+}
+
+.btn-primary {
+    background-color: var(--primary);
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-dark);
+    color: white;
+    box-shadow: 0 4px 12px rgba(35, 144, 137, 0.3);
+    transform: translateY(-1px);
+}
+
+.btn-success {
+    background-color: var(--success);
+    color: white;
+}
+
+.btn-success:hover {
+    background-color: #059669;
+    color: white;
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+    transform: translateY(-1px);
+}
+
+.btn-danger {
+    background-color: var(--danger);
+    color: white;
+}
+
+.btn-danger:hover {
+    background-color: #DC2626;
+    color: white;
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+    transform: translateY(-1px);
+}
+
+.btn-warning {
+    background-color: var(--warning);
+    color: white;
+}
+
+.btn-warning:hover {
+    background-color: #D97706;
+    color: white;
+}
+
+.btn-sm {
+    padding: 0.375rem 0.75rem;
+    font-size: 0.85rem;
+}
+
+.btn-icon {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* ============================================
+   FORMULARIOS
+   ============================================ */
+
+.form-control, .form-select {
+    border: 1px solid var(--gray-300);
+    border-radius: 0.5rem;
+    padding: 0.75rem 1rem;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    background-color: white;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(35, 144, 137, 0.1);
+    color: var(--dark-text);
+}
+
+.form-label {
+    font-weight: 600;
+    color: var(--dark-text);
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.invalid-feedback {
+    display: block;
+    color: var(--danger);
+    font-size: 0.85rem;
+    margin-top: 0.375rem;
+}
+
+.form-control.is-invalid {
+    border-color: var(--danger);
+}
+
+.form-control.is-invalid:focus {
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+.form-control.is-valid {
+    border-color: var(--success);
+}
+
+.form-control.is-valid:focus {
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+}
+
+/* ============================================
+   TARJETAS
+   ============================================ */
+
+.card {
+    border: none;
+    border-radius: 0.75rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+}
+
+.card-header {
+    background-color: var(--light-bg);
+    border-bottom: 1px solid var(--gray-200);
+    border-radius: 0.75rem 0.75rem 0 0;
+    padding: 1.25rem;
+    font-weight: 600;
+}
+
+.card-body {
+    padding: 1.5rem;
+}
+
+.card-title {
+    color: var(--dark-text);
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+/* ============================================
+   ALERTAS
+   ============================================ */
+
+.alert {
+    border: none;
+    border-left: 4px solid;
+    border-radius: 0.5rem;
+    padding: 1rem 1.25rem;
+    margin-bottom: 1rem;
+}
+
+.alert-info {
+    background-color: #EFF6FF;
+    border-left-color: var(--info);
+    color: #0C4A6E;
+}
+
+.alert-success {
+    background-color: #D1FAE5;
+    border-left-color: var(--success);
+    color: #065F46;
+}
+
+.alert-danger {
+    background-color: #FEE2E2;
+    border-left-color: var(--danger);
+    color: #7F1D1D;
+}
+
+.alert-warning {
+    background-color: #FEF3C7;
+    border-left-color: var(--warning);
+    color: #78350F;
+}
+
+.alert-heading {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+/* ============================================
+   BADGES
+   ============================================ */
+
+.badge {
+    border-radius: 0.375rem;
+    padding: 0.375rem 0.75rem;
+    font-weight: 600;
+    font-size: 0.8rem;
+}
+
+/* ============================================
+   MODALES Y CONFIRMACIONES
+   ============================================ */
+
+.modal-header {
+    background-color: var(--light-bg);
+    border-bottom: 1px solid var(--gray-200);
+}
+
+.modal-title {
+    font-weight: 700;
+    color: var(--dark-text);
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+
+#footer {
+    background-color: var(--dark-text);
+    color: white;
+    padding: 2rem 0;
+    text-align: center;
+    margin-top: auto;
+    border-top: 1px solid var(--gray-200);
+}
+
+#footer a {
+    color: var(--primary);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+#footer a:hover {
+    color: var(--info);
+}
+
+#footer img {
+    max-width: 40px;
+    margin: 0 10px;
+    filter: brightness(0) invert(1);
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+#footer img:hover {
+    opacity: 1;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 768px) {
+    .sidebar {
+        border-right: none;
+        border-bottom: 1px solid var(--gray-200);
+    }
+
+    .sidebar-menu a {
+        padding: 0.75rem 1.5rem;
+    }
+
+    .main-content {
+        padding: 1rem;
+    }
+
+    .page-title {
+        font-size: 1.5rem;
+    }
+
+    .kpi-value {
+        font-size: 1.5rem;
+    }
+
+    .table {
+        font-size: 0.85rem;
+    }
+
+    .table thead th,
+    .table td {
+        padding: 0.75rem;
+    }
+
+    .btn {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.85rem;
+    }
+}
+
+/* ============================================
+   UTILIDADES
+   ============================================ */
+
+.text-muted {
+    color: var(--gray-600) !important;
+}
+
+.text-dark {
+    color: var(--dark-text) !important;
+}
+
+.bg-light-primary {
+    background-color: rgba(35, 144, 137, 0.1);
+}
+
+.border-primary {
+    border-color: var(--primary) !important;
+}
+
+.shadow-sm {
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+.shadow-md {
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.rounded-lg {
+    border-radius: 0.75rem;
+}
+
+/* ============================================
+   ANIMACIONES
+   ============================================ */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.3s ease;
+}
+
+/* Spinner personalizado */
+.spinner-custom {
+    width: 40px;
+    height: 40px;
+    border: 4px solid var(--gray-200);
+    border-top-color: var(--primary);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ============================================
+   FORMULARIOS MEJORADOS
+   ============================================ */
+
+.form-label {
+    font-weight: 600;
+    color: var(--dark-text);
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.form-label i {
+    font-size: 1.1rem;
+}
+
+.fw-600 {
+    font-weight: 600;
+}
+
+/* CAMPOS DE TEXTO GRANDES */
+.form-control-lg, .form-select-lg {
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    border: 2px solid var(--gray-300);
+    border-radius: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.form-control-lg:focus, .form-select-lg:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(35, 144, 137, 0.1);
+}
+
+.form-control-lg::placeholder {
+    color: var(--gray-400);
+}
+
+.form-control-lg.is-invalid,
+.form-select-lg.is-invalid {
+    border-color: var(--danger);
+}
+
+.form-control-lg.is-invalid:focus,
+.form-select-lg.is-invalid:focus {
+    border-color: var(--danger);
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+.form-control-lg.is-valid,
+.form-select-lg.is-valid {
+    border-color: var(--success);
+}
+
+.form-control-lg.is-valid:focus,
+.form-select-lg.is-valid:focus {
+    border-color: var(--success);
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+}
+
+/* INPUT GROUPS CON ICONOS */
+.input-group-lg .input-group-text {
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    border: 2px solid var(--gray-300);
+    color: var(--gray-600);
+}
+
+.input-group-lg {
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
+
+.input-group-lg .form-control,
+.input-group-lg .form-select {
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+}
+
+.input-group-lg > .form-control:first-child,
+.input-group-lg > .form-select:first-child {
+    border-left: 2px solid var(--gray-300);
+}
+
+.input-group-lg > .form-control:last-child,
+.input-group-lg > .form-select:last-child {
+    border-right: 2px solid var(--gray-300);
+}
+
+/* CARD HEADERS COLOREADOS */
+.card-header {
+    border-bottom: 2px solid transparent;
+}
+
+.bg-primary {
+    background-color: var(--primary) !important;
+}
+
+.bg-primary.bg-opacity-10 {
+    background-color: rgba(35, 144, 137, 0.1) !important;
+}
+
+.border-bottom-primary {
+    border-bottom-color: var(--primary) !important;
+}
+
+.bg-success.bg-opacity-10 {
+    background-color: rgba(16, 185, 129, 0.1) !important;
+}
+
+.border-bottom-success {
+    border-bottom-color: var(--success) !important;
+}
+
+.bg-warning.bg-opacity-10 {
+    background-color: rgba(245, 158, 11, 0.1) !important;
+}
+
+.border-bottom-warning {
+    border-bottom-color: var(--warning) !important;
+}
+
+.bg-info.bg-opacity-10 {
+    background-color: rgba(14, 165, 233, 0.1) !important;
+}
+
+.border-bottom-info {
+    border-bottom-color: var(--info) !important;
+}
+
+/* FORM CHECKS MEJORADOS */
+.form-check-label {
+    margin-bottom: 0;
+    color: var(--dark-text);
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.form-check-input {
+    width: 1.25em;
+    height: 1.25em;
+    border: 2px solid var(--gray-300);
+    border-radius: 0.375rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.form-check-input:checked {
+    background-color: var(--primary);
+    border-color: var(--primary);
+}
+
+.form-check-input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(35, 144, 137, 0.1);
+}
+
+.form-check-input:checked:focus {
+    box-shadow: 0 0 0 3px rgba(35, 144, 137, 0.25);
+}
+
+/* FORM SWITCH */
+.form-switch .form-check-input {
+    width: 2.5em;
+    height: 1.5em;
+    border-radius: 1rem;
+}
+
+.form-switch .form-check-input:checked {
+    background-color: var(--success);
+    border-color: var(--success);
+}
+
+/* INVALID FEEDBACK */
+.invalid-feedback {
+    color: var(--danger);
+    font-size: 0.875rem;
+    display: block;
+    margin-top: 0.25rem;
+}
+
+/* TEXTO AYUDA */
+.form-text {
+    font-size: 0.875rem;
+    color: var(--gray-600);
+    margin-top: 0.25rem;
+}
+
+/* CARDS DE FORMULARIO */
+.card {
+    border: none;
+    border-radius: 0.75rem;
+    transition: all 0.3s ease;
+}
+
+.card.shadow-sm {
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08) !important;
+}
+
+.card:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1) !important;
+}
+
+/* STICKY SIDEBAR PARA AYUDA */
+.sticky-top {
+    z-index: 1000;
+}
+
+/* SEPARADOR HORIZONTAL */
+hr {
+    border: none;
+    border-top: 1px solid var(--gray-200);
+    margin: 2rem 0;
+}
+
+/* ESPACIADO MEJORADO */
+.g-3 > * {
+    padding-right: 1rem;
+    padding-bottom: 1rem;
+}
+
+.row.g-3 {
+    margin-right: -1rem;
+    margin-bottom: -1rem;
+}

@@ -1,0 +1,220 @@
+{% extends 'farmacia/base_generic.html' %}
+{% load static form_tags %}
+
+{% block title %}Aplicar Descuento - Terminal POS v2{% endblock %}
+
+{% block extra_css %}
+<style>
+  .descuento-option {
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .descuento-option:hover {
+    border-color: #ffc107;
+    background-color: #fffbf0;
+  }
+  
+  .descuento-option input[type="radio"]:checked ~ * {
+    color: #ffc107;
+  }
+  
+  .descuento-option.active {
+    border-color: #ffc107;
+    background-color: #fffbf0;
+  }
+  
+  .descuento-preview {
+    background-color: #f8f9fa;
+    border-left: 4px solid #ffc107;
+    padding: 15px;
+    border-radius: 4px;
+    margin-top: 20px;
+  }
+  
+  .descuento-preview-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  
+  .descuento-ahorros {
+    font-size: 2rem;
+    color: #28a745;
+    font-weight: bold;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+  <!-- Header -->
+  <div class="row mb-4">
+    <div class="col-md-12">
+      <h1 class="display-5">💰 Aplicar Descuento</h1>
+      <p class="text-muted">Seleccione tipo y monto de descuento</p>
+    </div>
+  </div>
+
+  <!-- Mensajes -->
+  {% if messages %}
+    {% for message in messages %}
+      <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+      </div>
+    {% endfor %}
+  {% endif %}
+
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <form method="post" class="needs-validation" novalidate>
+        {% csrf_token %}
+
+        <!-- Tipo de descuento -->
+        <div class="card shadow-sm mb-4">
+          <div class="card-header bg-warning text-dark">
+            <h5 class="mb-0">Tipo de Descuento</h5>
+          </div>
+          <div class="card-body">
+            {% for radio in form.tipo_descuento %}
+              <label class="descuento-option">
+                {{ radio.tag }}
+                <div>
+                  <strong>{{ radio.choice_label }}</strong>
+                </div>
+              </label>
+            {% endfor %}
+            
+            {% if form.tipo_descuento.errors %}
+              <div class="alert alert-danger">
+                {{ form.tipo_descuento.errors.0 }}
+              </div>
+            {% endif %}
+          </div>
+        </div>
+
+        <!-- Valor del descuento -->
+        <div class="card shadow-sm mb-4">
+          <div class="card-header bg-info text-white">
+            <h5 class="mb-0">Valor del Descuento</h5>
+          </div>
+          <div class="card-body">
+            <div class="mb-3">
+              <label for="{{ form.valor.id_for_label }}" class="form-label">
+                Ingrese valor
+              </label>
+              {{ form.valor|add_class:"form-control form-control-lg" }}
+              <small class="form-text text-muted">
+                Si seleccionó porcentaje: ingrese de 0 a 100<br>
+                Si seleccionó monto fijo: ingrese el monto en $
+              </small>
+              {% if form.valor.errors %}
+                <div class="invalid-feedback d-block">
+                  {{ form.valor.errors.0 }}
+                </div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+
+        <!-- Observaciones -->
+        <div class="card shadow-sm mb-4">
+          <div class="card-header bg-secondary text-white">
+            <h5 class="mb-0">Motivo (Opcional)</h5>
+          </div>
+          <div class="card-body">
+            <div class="mb-3">
+              <label for="{{ form.motivo.id_for_label }}" class="form-label">
+                Razón del descuento
+              </label>
+              {{ form.motivo|add_class:"form-control" }}
+              <small class="form-text text-muted">
+                Ejemplo: Cliente VIP, Promoción, etc.
+              </small>
+            </div>
+          </div>
+        </div>
+
+        <!-- Resumen de carrito -->
+        <div class="card shadow-sm mb-4">
+          <div class="card-header bg-light">
+            <h5 class="mb-0">📦 Resumen Actual</h5>
+          </div>
+          <div class="card-body">
+            <div class="row mb-2">
+              <div class="col-8">Subtotal:</div>
+              <div class="col-4 text-end"><strong>${{ carrito.subtotal }}</strong></div>
+            </div>
+            <div class="row mb-2">
+              <div class="col-8">Base imponible:</div>
+              <div class="col-4 text-end"><strong>${{ carrito.base_imponible }}</strong></div>
+            </div>
+            <div class="row mb-2">
+              <div class="col-8">IVA (19%):</div>
+              <div class="col-4 text-end"><strong class="text-info">${{ carrito.iva }}</strong></div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-8"><h6>TOTAL:</h6></div>
+              <div class="col-4 text-end"><h6 class="text-success">${{ carrito.total }}</h6></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Errores generales -->
+        {% if form.non_field_errors %}
+          <div class="alert alert-danger" role="alert">
+            <strong>Error:</strong>
+            {% for error in form.non_field_errors %}
+              <div>{{ error }}</div>
+            {% endfor %}
+          </div>
+        {% endif %}
+
+        <!-- Botones de acción -->
+        <div class="d-grid gap-2">
+          <button type="submit" class="btn btn-success btn-lg">
+            <i class="bi bi-check-circle"></i> Aplicar Descuento
+          </button>
+          <a href="{% url 'terminal_pos_v2' %}" class="btn btn-secondary btn-lg">
+            <i class="bi bi-arrow-left"></i> Volver al Carrito
+          </a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+// Marcar opción seleccionada
+document.querySelectorAll('.descuento-option input[type="radio"]').forEach(radio => {
+  radio.addEventListener('change', function() {
+    document.querySelectorAll('.descuento-option').forEach(op => op.classList.remove('active'));
+    this.closest('.descuento-option').classList.add('active');
+  });
+  
+  if(radio.checked) {
+    radio.closest('.descuento-option').classList.add('active');
+  }
+});
+
+// Validación de Bootstrap
+(function() {
+  const forms = document.querySelectorAll('.needs-validation');
+  Array.from(forms).forEach(form => {
+    form.addEventListener('submit', event => {
+      if (!form.checkValidity()) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+      form.classList.add('was-validated');
+    }, false);
+  });
+})();
+</script>
+{% endblock %}

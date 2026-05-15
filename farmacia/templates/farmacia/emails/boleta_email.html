@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boleta de Venta - Farmacia Dr Nahúm</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 20px;
+        }
+        
+        .email-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background-color: #28a745;
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            margin: 0;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        
+        .pharmacy-info {
+            background-color: #f8f9fa;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 1px solid #dee2e6;
+        }
+        
+        .pharmacy-info h2 {
+            margin: 0 0 10px 0;
+            font-size: 20px;
+            color: #333;
+        }
+        
+        .pharmacy-info p {
+            margin: 5px 0;
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .content {
+            padding: 30px 20px;
+        }
+        
+        .greeting {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+        
+        .boleta-section {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        
+        .boleta-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #dee2e6;
+            padding-bottom: 10px;
+        }
+        
+        .boleta-info {
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .boleta-value {
+            color: #28a745;
+            font-weight: bold;
+        }
+        
+        .customer-info {
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #f0f8ff;
+            border-left: 4px solid #0066cc;
+            border-radius: 3px;
+        }
+        
+        .customer-info p {
+            margin: 8px 0;
+            color: #333;
+            font-size: 14px;
+        }
+        
+        .items-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        .items-table th {
+            background-color: #e8f5e9;
+            padding: 12px;
+            text-align: left;
+            color: #28a745;
+            font-weight: bold;
+            border-bottom: 2px solid #28a745;
+        }
+        
+        .items-table td {
+            padding: 12px;
+            border-bottom: 1px solid #dee2e6;
+            color: #666;
+        }
+        
+        .items-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        .quantity {
+            text-align: center;
+            color: #333;
+            font-weight: bold;
+        }
+        
+        .price {
+            text-align: right;
+            color: #28a745;
+            font-weight: bold;
+        }
+        
+        .totals {
+            margin: 30px 0;
+            border-top: 2px solid #dee2e6;
+            padding-top: 20px;
+        }
+        
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+        
+        .total-row.subtotal {
+            color: #666;
+        }
+        
+        .total-row.iva {
+            color: #0066cc;
+            font-weight: bold;
+        }
+        
+        .total-row.grand-total {
+            background-color: #e8f5e9;
+            padding: 15px;
+            border-radius: 5px;
+            font-size: 20px;
+            font-weight: bold;
+            color: #28a745;
+        }
+        
+        .footer {
+            background-color: #f8f9fa;
+            padding: 20px;
+            text-align: center;
+            border-top: 1px solid #dee2e6;
+            font-size: 12px;
+            color: #666;
+        }
+        
+        .footer p {
+            margin: 5px 0;
+        }
+        
+        .footer-link {
+            color: #0066cc;
+            text-decoration: none;
+        }
+        
+        .thanks {
+            text-align: center;
+            padding: 20px;
+            background-color: #d4edda;
+            color: #155724;
+            border-radius: 5px;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+        
+        .payment-method {
+            background-color: #fff3cd;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            border-left: 4px solid #ffc107;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <!-- Header -->
+        <div class="header">
+            <h1>📋 BOLETA DE VENTA</h1>
+        </div>
+        
+        <!-- Pharmacy Info -->
+        <div class="pharmacy-info">
+            <h2>FARMACIA DR NAHÚM</h2>
+            <p><strong>RUT:</strong> 12.345.678-9</p>
+            <p>Calle Principal 123, Los Ángeles</p>
+            <p>📞 +56 (43) 2345-678 | 📧 contacto@farmaciadornahum.cl</p>
+        </div>
+        
+        <!-- Content -->
+        <div class="content">
+            <!-- Greeting -->
+            <div class="greeting">
+                <p>Estimado/a <strong>{{ cliente_nombre }}</strong>,</p>
+                <p>Adjunto encontrará el comprobante de su compra realizada en <strong>Farmacia Dr Nahúm</strong>.</p>
+            </div>
+            
+            <!-- Boleta Header -->
+            <div class="boleta-section">
+                <div class="boleta-header">
+                    <div>
+                        <span class="boleta-info">Boleta Nº:</span>
+                        <span class="boleta-value">{{ numero_boleta }}</span>
+                    </div>
+                    <div>
+                        <span class="boleta-info">Folio:</span>
+                        <span class="boleta-value">{{ folio }}</span>
+                    </div>
+                    <div>
+                        <span class="boleta-info">Fecha:</span>
+                        <span class="boleta-value">{{ fecha|date:"d/m/Y H:i" }}</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Customer Info -->
+            <div class="customer-info">
+                <p><strong>👤 Datos del Cliente:</strong></p>
+                <p><strong>Nombre:</strong> {{ cliente_nombre }}</p>
+                <p><strong>RUT:</strong> {{ cliente_rut }}</p>
+            </div>
+            
+            <!-- Items Table -->
+            <table class="items-table">
+                <thead>
+                    <tr>
+                        <th style="width: 50%;">Producto</th>
+                        <th style="width: 15%;" class="quantity">Cantidad</th>
+                        <th style="width: 20%;" class="price">Precio Unitario</th>
+                        <th style="width: 15%;" class="price">Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in items %}
+                    <tr>
+                        <td>
+                            <strong>{{ item.medicamento.nombre }}</strong>
+                            <br>
+                            <small style="color: #999;">SKU: {{ item.medicamento.sku }}</small>
+                        </td>
+                        <td class="quantity">{{ item.cantidad }}</td>
+                        <td class="price">${{ item.precio_unitario|floatformat:0 }}</td>
+                        <td class="price">${{ item.subtotal|floatformat:0 }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            
+            <!-- Totals -->
+            <div class="totals">
+                <div class="total-row subtotal">
+                    <span>Subtotal:</span>
+                    <span>${{ subtotal|floatformat:0 }}</span>
+                </div>
+                
+                {% if descuento > 0 %}
+                <div class="total-row subtotal">
+                    <span>Descuento:</span>
+                    <span style="color: #dc3545;">-${{ descuento|floatformat:0 }}</span>
+                </div>
+                
+                <div class="total-row subtotal">
+                    <span>Base Imponible:</span>
+                    <span>${{ base_imponible|floatformat:0 }}</span>
+                </div>
+                {% endif %}
+                
+                <div class="total-row iva">
+                    <span>IVA (19%):</span>
+                    <span>${{ iva|floatformat:0 }}</span>
+                </div>
+                
+                <div class="total-row grand-total">
+                    <span>💰 TOTAL A PAGAR:</span>
+                    <span>${{ total|floatformat:0 }}</span>
+                </div>
+            </div>
+            
+            <!-- Payment Method -->
+            <div class="payment-method">
+                <strong>💳 Método de Pago:</strong> {{ metodo_pago }}
+            </div>
+            
+            <!-- Thanks -->
+            <div class="thanks">
+                ✨ ¡GRACIAS POR SU COMPRA! ✨
+            </div>
+            
+            <!-- Additional Info -->
+            <div style="padding: 15px; background-color: #f0f0f0; border-radius: 5px; margin: 15px 0; font-size: 13px; color: #666;">
+                <p><strong>📌 Información Importante:</strong></p>
+                <ul style="margin: 10px 0; padding-left: 20px;">
+                    <li>Conserve esta boleta para sus registros.</li>
+                    <li>Los medicamentos están sujetos a fecha de vencimiento. Verificar antes de usar.</li>
+                    <li>En caso de consultas, contáctenos a: contacto@farmaciadornahum.cl</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <div class="footer">
+            <p><strong>Farmacia Dr Nahúm</strong></p>
+            <p>Sistema de Gestión Farmacéutica v1.0</p>
+            <p>Esta es una comunicación automática del sistema. No responda a este correo.</p>
+            <p>Para validar esta boleta, visite: <a href="https://www.sii.cl" class="footer-link">www.sii.cl</a></p>
+        </div>
+    </div>
+</body>
+</html>

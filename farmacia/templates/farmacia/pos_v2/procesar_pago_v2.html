@@ -1,0 +1,319 @@
+{% extends 'farmacia/base_generic.html' %}
+{% load static form_tags %}
+
+{% block title %}Procesar Pago - Terminal POS v2{% endblock %}
+
+{% block extra_css %}
+<style>
+  .payment-method {
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .payment-method:hover {
+    border-color: #28a745;
+    background-color: #f8f9fa;
+  }
+  
+  .payment-method input[type="radio"]:checked ~ * {
+    color: #28a745;
+  }
+  
+  .payment-method.active {
+    border-color: #28a745;
+    background-color: #d4edda;
+  }
+  
+  .monto-display {
+    background-color: #f8f9fa;
+    border: 2px solid #dee2e6;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .monto-display .label {
+    font-size: 0.9rem;
+    color: #6c757d;
+    margin-bottom: 10px;
+  }
+  
+  .monto-display .valor {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #28a745;
+  }
+  
+  .cambio-display {
+    background-color: #e7f3ff;
+    border-left: 4px solid #0066cc;
+    padding: 15px;
+    border-radius: 4px;
+    margin-top: 20px;
+  }
+  
+  .cambio-display.positivo {
+    background-color: #d4edda;
+    border-left-color: #28a745;
+  }
+  
+  .cambio-display.negativo {
+    background-color: #f8d7da;
+    border-left-color: #dc3545;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+  <!-- Header -->
+  <div class="row mb-4">
+    <div class="col-md-12">
+      <h1 class="display-5">💳 Procesar Pago</h1>
+      <p class="text-muted">Complete la información de pago para finalizar la venta</p>
+    </div>
+  </div>
+
+  <!-- Mensajes -->
+  {% if messages %}
+    {% for message in messages %}
+      <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+      </div>
+    {% endfor %}
+  {% endif %}
+
+  <div class="row">
+    <!-- COLUMNA IZQUIERDA: RESUMEN DE CARRITO -->
+    <div class="col-md-6">
+      <div class="card shadow-sm mb-4">
+        <div class="card-header bg-primary text-white">
+          <h5 class="mb-0">📋 Resumen de Compra</h5>
+        </div>
+        <div class="card-body">
+          <!-- Items -->
+          <div class="mb-3" style="max-height: 300px; overflow-y: auto;">
+            {% for item in carrito.items.all %}
+              <div class="border-bottom pb-2 mb-2">
+                <div class="d-flex justify-content-between">
+                  <div>
+                    <strong>{{ item.medicamento.nombre }}</strong>
+                    <br>
+                    <small class="text-muted">x{{ item.cantidad }} @ ${{ item.precio_unitario }}</small>
+                  </div>
+                  <div class="text-end">
+                    <strong>${{ item.subtotal }}</strong>
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+
+          <!-- Totales -->
+          <hr>
+          
+          <div class="row mb-2">
+            <div class="col-8">Subtotal:</div>
+            <div class="col-4 text-end">${{ carrito.subtotal }}</div>
+          </div>
+          
+          {% if carrito.descuento_monto > 0 %}
+            <div class="row mb-2 text-danger">
+              <div class="col-8">Descuento:</div>
+              <div class="col-4 text-end">-${{ carrito.descuento_monto }}</div>
+            </div>
+          {% endif %}
+          
+          <div class="row mb-2">
+            <div class="col-8">Base imponible:</div>
+            <div class="col-4 text-end">${{ carrito.base_imponible }}</div>
+          </div>
+          
+          <div class="row mb-3">
+            <div class="col-8"><strong>IVA (19%):</strong></div>
+            <div class="col-4 text-end"><strong class="text-info">${{ carrito.iva }}</strong></div>
+          </div>
+          
+          <hr class="fw-bold">
+          
+          <div class="row">
+            <div class="col-8"><h5>TOTAL A PAGAR:</h5></div>
+            <div class="col-4 text-end">
+              <h5 class="text-success">${{ carrito.total }}</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- COLUMNA DERECHA: FORMULARIO DE PAGO -->
+    <div class="col-md-6">
+      <form method="post" class="needs-validation" novalidate>
+        {% csrf_token %}
+
+        <!-- Monto a pagar -->
+        <div class="card shadow-sm mb-4">
+          <div class="card-header bg-warning text-dark">
+            <h5 class="mb-0">💵 Monto a Pagar</h5>
+          </div>
+          <div class="card-body">
+            <div class="monto-display">
+              <div class="label">Total a pagar</div>
+              <div class="valor">${{ carrito.total }}</div>
+            </div>
+
+            <div class="mb-3">
+              <label for="{{ form.monto_pagado.id_for_label }}" class="form-label">
+                Monto entregado por cliente
+              </label>
+              {{ form.monto_pagado|add_class:"form-control form-control-lg" }}
+              {% if form.monto_pagado.errors %}
+                <div class="invalid-feedback d-block">
+                  {{ form.monto_pagado.errors.0 }}
+                </div>
+              {% endif %}
+            </div>
+
+            <!-- Cambio -->
+            <div class="cambio-display" id="cambio-display" style="display: none;">
+              <div class="d-flex justify-content-between align-items-center">
+                <span>💰 Cambio:</span>
+                <span class="fw-bold" id="cambio-valor">$0</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Método de pago -->
+        <div class="card shadow-sm mb-4">
+          <div class="card-header bg-success text-white">
+            <h5 class="mb-0">🏦 Método de Pago</h5>
+          </div>
+          <div class="card-body">
+            {% for radio in form.metodo_pago %}
+              <label class="payment-method">
+                {{ radio.tag }}
+                <div>
+                  <strong>{{ radio.choice_label }}</strong>
+                </div>
+              </label>
+            {% endfor %}
+            
+            {% if form.metodo_pago.errors %}
+              <div class="alert alert-danger">
+                {{ form.metodo_pago.errors.0 }}
+              </div>
+            {% endif %}
+          </div>
+        </div>
+
+        <!-- Referencia de pago -->
+        <div class="card shadow-sm mb-4">
+          <div class="card-header bg-info text-white">
+            <h5 class="mb-0">📝 Referencia de Pago (Opcional)</h5>
+          </div>
+          <div class="card-body">
+            <div class="mb-3">
+              <label for="{{ form.referencia_pago.id_for_label }}" class="form-label">
+                Referencia / Comprobante
+              </label>
+              {{ form.referencia_pago|add_class:"form-control" }}
+              <small class="form-text text-muted">
+                Últimos 4 dígitos, número de autorización, etc.
+              </small>
+              {% if form.referencia_pago.errors %}
+                <div class="invalid-feedback d-block">
+                  {{ form.referencia_pago.errors.0 }}
+                </div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+
+        <!-- Botones de acción -->
+        <div class="d-grid gap-2">
+          <button type="submit" class="btn btn-success btn-lg">
+            <i class="bi bi-check-circle"></i> Finalizar Venta
+          </button>
+          <a href="{% url 'terminal_pos_v2' %}" class="btn btn-secondary btn-lg">
+            <i class="bi bi-arrow-left"></i> Volver al Carrito
+          </a>
+        </div>
+
+        <!-- Errores del formulario -->
+        {% if form.non_field_errors %}
+          <div class="alert alert-danger mt-3" role="alert">
+            <strong>Error en el formulario:</strong>
+            <ul class="mb-0">
+              {% for error in form.non_field_errors %}
+                <li>{{ error }}</li>
+              {% endfor %}
+            </ul>
+          </div>
+        {% endif %}
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+// Calcular cambio automáticamente
+const montoInput = document.querySelector('input[name="monto_pagado"]');
+const cambioDisplay = document.getElementById('cambio-display');
+const cambioValor = document.getElementById('cambio-valor');
+const totalPagar = {{ carrito.total }};
+
+function calcularCambio() {
+  const monto = parseFloat(montoInput.value) || 0;
+  const cambio = monto - totalPagar;
+  
+  if(monto >= totalPagar) {
+    cambioDisplay.classList.remove('negativo');
+    cambioDisplay.classList.add('positivo');
+    cambioValor.textContent = '$' + cambio.toFixed(2);
+    cambioDisplay.style.display = 'block';
+  } else if(monto > 0) {
+    cambioDisplay.classList.remove('positivo');
+    cambioDisplay.classList.add('negativo');
+    cambioValor.textContent = '-$' + Math.abs(cambio).toFixed(2) + ' (insuficiente)';
+    cambioDisplay.style.display = 'block';
+  } else {
+    cambioDisplay.style.display = 'none';
+  }
+}
+
+montoInput.addEventListener('input', calcularCambio);
+
+// Marcar método de pago seleccionado
+document.querySelectorAll('.payment-method input[type="radio"]').forEach(radio => {
+  radio.addEventListener('change', function() {
+    document.querySelectorAll('.payment-method').forEach(pm => pm.classList.remove('active'));
+    this.closest('.payment-method').classList.add('active');
+  });
+  
+  if(radio.checked) {
+    radio.closest('.payment-method').classList.add('active');
+  }
+});
+
+// Validación de Bootstrap
+(function() {
+  const forms = document.querySelectorAll('.needs-validation');
+  Array.from(forms).forEach(form => {
+    form.addEventListener('submit', event => {
+      if (!form.checkValidity()) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+      form.classList.add('was-validated');
+    }, false);
+  });
+})();
+</script>
+{% endblock %}

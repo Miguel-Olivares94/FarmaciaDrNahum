@@ -1,0 +1,17 @@
+{% extends 'farmacia/base_generic.html' %}
+
+{% block content %}
+    <div class="container mt-5">
+        <div class="card">
+            <div class="card-body">
+                <h1 class="card-title">Confirmar eliminación</h1>
+                <p class="card-text">¿Estás seguro de que deseas eliminar el proveedor "{{ proveedor.nombre }}"?</p>
+                <form method="post" action="{% url 'proveedor_delete' pk=proveedor.pk %}">
+                    {% csrf_token %}
+                    <button class="btn btn-danger" type="submit">Sí, eliminar</button>
+                </form>
+                <a class="btn btn-primary" href="{% url 'proveedor_list' %}">No, cancelar</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

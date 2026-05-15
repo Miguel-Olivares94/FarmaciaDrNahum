@@ -1,0 +1,18 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+    <div class="container mt-5">
+        <div class="card">
+            <div class="card-body">
+                <h1 class="card-title">Confirmar eliminación</h1>
+                <p class="card-text">¿Estás seguro de que quieres eliminar "{{ medicamento.nombre }}"?</p>
+                <form method="post" action="">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">Sí, eliminar</button>
+                </form>
+                <a href="{% url 'medicamento_list' %}" class="btn btn-secondary">Cancelar</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

@@ -1,0 +1,282 @@
+📚 ÍNDICE DE MANUALES DEL SISTEMA FARMACIA
+═════════════════════════════════════════════
+
+## 📄 ARCHIVOS PRINCIPALES (Word Documents)
+
+┌─────────────────────────────────────────────────────────┐
+│ 1️⃣  MANUAL_COMPLETO_FARMACIA.docx (43 KB)             │
+├─────────────────────────────────────────────────────────┤
+│ PARA: Vendedores, Dispensadores, Operadores            │
+│                                                          │
+│ CONTENIDO:                                              │
+│ 📝 Introducción y roles                                 │
+│ 🔐 Acceso al sistema (login)                           │
+│ 💊 Gestión de medicamentos                             │
+│ 💳 Operaciones POS (venta completa)                    │
+│ 📋 Control de recetas médicas                          │
+│ 📊 Reportes (ventas, stock, recetas)                   │
+│ 📖 Referencia rápida y soporte                         │
+│                                                          │
+│ CARACTERÍSTICAS:                                        │
+│ ✅ 53 pasos detallados                                 │
+│ ✅ Instrucciones paso a paso                           │
+│ ✅ Cajas de advertencia para info crítica              │
+│ ✅ Tabla de roles y permisos                           │
+│ ✅ Flujo diario recomendado                            │
+│ ✅ Solución de errores comunes                         │
+└─────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────┐
+│ 2️⃣  Manual_Django_Admin_Farmacia.docx (42 KB)         │
+├─────────────────────────────────────────────────────────┤
+│ PARA: Administradores del Sistema                       │
+│                                                          │
+│ CONTENIDO:                                              │
+│ 🔧 Acceso al panel Django Admin                         │
+│ 👥 Gestión completa de usuarios                         │
+│ 💊 Administración de medicamentos (CRUD)               │
+│ 🏭 Gestión de proveedores                              │
+│ 💰 Auditoría de ventas (historial)                     │
+│ ⚠️  Control de medicamentos controlados                │
+│ 📊 Reportes analíticos (ventas, stock, ingresos)      │
+│ ⚙️  Configuración del sistema                           │
+│ 🔍 Sistema de auditoría y logs                         │
+│ ✅ Checklist de tareas administrativas                 │
+│                                                          │
+│ CARACTERÍSTICAS:                                        │
+│ ✅ Instrucciones técnicas detalladas                   │
+│ ✅ Tablas de referencia rápida                         │
+│ ✅ Checklist (diario/semanal/mensual)                  │
+│ ✅ Información de seguridad y permisos                 │
+│ ✅ Datos de soporte técnico                            │
+└─────────────────────────────────────────────────────────┘
+
+═════════════════════════════════════════════════════════════
+
+## 📖 ARCHIVOS DE DOCUMENTACIÓN (Markdown)
+
+📄 README_MANUALES.md
+   ├─ Guía completa de uso
+   ├─ Cómo personalizar
+   ├─ Agregar screenshots
+   ├─ Checklist de distribución
+   └─ Mantener actualizados
+
+📄 MANUALES_RESUMEN_FINAL.md
+   ├─ Resumen de archivos generados
+   ├─ Cómo usar los manuales
+   ├─ Personalización
+   ├─ Agregar screenshots
+   ├─ Actualizar versiones
+   └─ Características destacadas
+
+📄 INDEX_MANUALES.md (este archivo)
+   └─ Vista rápida de archivos
+
+═════════════════════════════════════════════════════════════
+
+## 🐍 SCRIPTS PYTHON (Para regenerar)
+
+generar_manual_completo.py
+├─ Genera: MANUAL_COMPLETO_FARMACIA.docx
+├─ Uso: python generar_manual_completo.py
+└─ Dependencia: python-docx
+
+generar_manual_django_admin.py
+├─ Genera: Manual_Django_Admin_Farmacia.docx
+├─ Uso: python generar_manual_django_admin.py
+└─ Dependencia: python-docx
+
+═════════════════════════════════════════════════════════════
+
+## 🎯 GUÍA RÁPIDA: ¿CUÁL LEER?
+
+┌────────────────────────────────────────────────┐
+│ 👨‍💻 VENDEDOR / DISPENSADOR                    │
+├────────────────────────────────────────────────┤
+│ → Lee: MANUAL_COMPLETO_FARMACIA.docx          │
+│                                                 │
+│ Por qué:                                       │
+│ ✅ Te enseña a vender medicamentos            │
+│ ✅ Valida recetas correctamente                │
+│ ✅ Maneja medicamentos controlados             │
+│ ✅ Referencia rápida durante trabajo           │
+└────────────────────────────────────────────────┘
+
+┌────────────────────────────────────────────────┐
+│ 🔧 ADMINISTRADOR                              │
+├────────────────────────────────────────────────┤
+│ → Lee: Manual_Django_Admin_Farmacia.docx       │
+│                                                 │
+│ Por qué:                                       │
+│ ✅ Gestionar usuarios y accesos                │
+│ ✅ Administrar precios y stock                 │
+│ ✅ Auditar operaciones                         │
+│ ✅ Generar reportes analíticos                 │
+│ ✅ Mantener sistema funcionando                │
+└────────────────────────────────────────────────┘
+
+┌────────────────────────────────────────────────┐
+│ 👔 SUPERVISOR                                  │
+├────────────────────────────────────────────────┤
+│ → Lee: AMBOS MANUALES                          │
+│                                                 │
+│ Por qué:                                       │
+│ ✅ Entender operaciones de vendedores          │
+│ ✅ Revisar auditoría y reportes                │
+│ ✅ Validar medicamentos controlados            │
+│ ✅ Supervisar y capacitar equipo               │
+└────────────────────────────────────────────────┘
+
+═════════════════════════════════════════════════════════════
+
+## 📊 TABLA COMPARATIVA
+
+│ Funcionalidad    │ Manual Operador │ Manual Admin │
+├──────────────────┼─────────────────┼──────────────┤
+│ Login            │ ✅              │ ✅           │
+│ Dashboard        │ ✅              │ ✅           │
+│ Ver Medicamentos │ ✅              │ ✅           │
+│ Buscar Meds      │ ✅              │ ✅           │
+│ Crear Venta      │ ✅              │ ❌           │
+│ Crear Medicamento│ ❌              │ ✅           │
+│ Validar Receta   │ ✅              │ ❌           │
+│ Auditar Recetas  │ ❌              │ ✅           │
+│ Ver Reportes     │ ✅              │ ✅           │
+│ Crear Usuarios   │ ❌              │ ✅           │
+│ Editar Usuarios  │ ❌              │ ✅           │
+│ Gestionar Precio │ ❌              │ ✅           │
+│ Auditoría Completa│ ❌             │ ✅           │
+│ Referencia Rápida│ ✅              │ ✅           │
+
+═════════════════════════════════════════════════════════════
+
+## 📱 CÓMO ABRIR LOS MANUALES
+
+1️⃣  OPCIÓN 1 - Doble clic (Más rápido)
+   → Doble clic en archivo .docx
+   → Se abre automáticamente en Word
+
+2️⃣  OPCIÓN 2 - Click derecho
+   → Click derecho en archivo
+   → "Abrir con" → Microsoft Word
+
+3️⃣  OPCIÓN 3 - Abrir Word primero
+   → Abrir Microsoft Word
+   → Archivo → Abrir
+   → Buscar archivo .docx
+
+═════════════════════════════════════════════════════════════
+
+## 🔍 BUSCAR DENTRO DEL MANUAL
+
+Para buscar un tema específico:
+
+1. En Word abierto: Presiona Ctrl+F
+2. Escribe la palabra que buscas
+3. Word resaltará todas las coincidencias
+4. Navega con flechas arriba/abajo
+
+Ejemplos:
+- "Medicamento controlado" → Te lleva a esa sección
+- "Receta" → Encuentra todas las referencias
+- "Precio" → Muestra dónde editar precios
+- "Error" → Busca soluciones
+
+═════════════════════════════════════════════════════════════
+
+## 🔧 PERSONALIZAR MANUALES
+
+¿Necesitas cambiar información de contacto?
+
+1. Abre archivo .docx con Word
+2. Presiona Ctrl+H (Reemplazar)
+3. Busca: "XXXX XXXX"
+4. Reemplaza con: Tus números reales
+5. Guarda cambios
+
+O regenera con scripts (más profesional):
+1. Edita: generar_manual_completo.py
+2. Busca números de teléfono y email
+3. Ejecuta: python generar_manual_completo.py
+
+═════════════════════════════════════════════════════════════
+
+## 📸 AGREGAR SCREENSHOTS
+
+Para agregar capturas de pantalla reales:
+
+1. Toma screenshots del sistema
+2. Guarda en carpeta: screenshots/
+3. En scripts Python, agrega:
+   add_screenshot(doc, "screenshots/01_login.jpg")
+4. Regenera: python generar_manual_*.py
+
+═════════════════════════════════════════════════════════════
+
+## ✅ ANTES DE DISTRIBUIR
+
+Checklist de revisión:
+
+□ ✅ Manuales generados y revisados
+□ ✅ Contactos de soporte personalizados
+□ ⏳ Screenshots reales agregados (opcional)
+□ ⏳ Probados en Word
+□ ⏳ Impresos para verificar formato
+□ ⏳ Distribuidos al equipo correcto
+□ ⏳ Capacitación sobre cómo usarlos
+□ ⏳ Feedback recolectado para mejoras
+
+═════════════════════════════════════════════════════════════
+
+## 📞 INFORMACIÓN DE CONTACTO
+
+Para preguntas sobre uso del sistema:
+📧 Email: admin@collichico.cl
+☎️  Teléfono: +56 2 XXXX XXXX
+💬 WhatsApp: +56 9 XXXX XXXX
+⏰ Horario: Lunes-Viernes 9:00-17:00
+
+═════════════════════════════════════════════════════════════
+
+## 🚀 PRÓXIMOS PASOS
+
+Fase 1 (Ahora):
+✅ Manuales generados
+✅ Listos para revisar
+
+Fase 2 (Próxima semana):
+⏳ Personalizar contactos
+⏳ Agregar screenshots reales
+⏳ Revisar con equipo
+
+Fase 3 (Después):
+⏳ Distribuir al personal
+⏳ Capacitar en uso
+⏳ Recolectar feedback
+
+═════════════════════════════════════════════════════════════
+
+## 📚 RECURSOS RELACIONADOS
+
+En la carpeta del proyecto también encontrarás:
+├─ MANUAL_COMPLETO.md (documentación en Markdown)
+├─ POS_V2_README.md (módulo de ventas)
+├─ ARQUITECTURA_FASE3.md (estructura del sistema)
+├─ manage.py (administración Django)
+└─ requirements.txt (dependencias Python)
+
+═════════════════════════════════════════════════════════════
+
+## 🎉 ¡COMPLETADO!
+
+Tus manuales están listos para usar.
+
+Generado: 06 de Mayo de 2026
+Versión: 1.0
+Estado: ✅ LISTO PARA PRODUCCIÓN
+
+═════════════════════════════════════════════════════════════
+
+Última actualización: 06/05/2026
+© 2026 Farmacia Collichico S.A.

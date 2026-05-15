@@ -1,0 +1,104 @@
+{% extends "farmacia/base_generic.html" %}
+
+{% block title %}Reporte Global - Farmacia Dr Nahúm{% endblock %}
+
+{% block content %}
+<div class="container-fluid py-4">
+
+  <!-- Encabezado -->
+  <div class="row mb-4">
+    <div class="col">
+      <div class="card border-0 shadow-sm" style="background: linear-gradient(135deg,#4a148c,#9c27b0);">
+        <div class="card-body py-3 px-4 d-flex align-items-center gap-3">
+          <span style="font-size:2rem;">🌐</span>
+          <div>
+            <h1 class="h3 mb-0 text-white fw-bold">Reporte Global del Negocio</h1>
+            <p class="mb-0 text-white opacity-75">Vista consolidada de todas las ventas — Solo Administradores</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- KPIs -->
+  <div class="row g-3 mb-4">
+    <div class="col-6 col-xl-3">
+      <div class="card border-0 shadow-sm text-center">
+        <div class="card-body">
+          <div class="display-6 text-primary fw-bold">{{ total_ventas }}</div>
+          <div class="text-muted small">Total Ventas</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-6 col-xl-3">
+      <div class="card border-0 shadow-sm text-center">
+        <div class="card-body">
+          <div class="display-6 text-success fw-bold">${{ monto_total|floatformat:0 }}</div>
+          <div class="text-muted small">Monto Total</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-6 col-xl-3">
+      <div class="card border-0 shadow-sm text-center">
+        <div class="card-body">
+          <div class="display-6 text-info fw-bold">${{ ticket_promedio|floatformat:0 }}</div>
+          <div class="text-muted small">Ticket Promedio</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-6 col-xl-3">
+      <div class="card border-0 shadow-sm text-center">
+        <div class="card-body">
+          <div class="display-6 text-warning fw-bold">{{ numero_clientes }}</div>
+          <div class="text-muted small">Clientes Únicos</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tabla de ventas por vendedor (Admin) -->
+  <div class="card border-0 shadow-sm mb-4">
+    <div class="card-header bg-white border-0 pt-3 pb-0">
+      <h5 class="mb-0">📋 Resumen Global</h5>
+    </div>
+    <div class="card-body">
+      <p class="text-muted">
+        <i class="bi bi-shield-check me-1 text-success"></i>
+        Vista de <strong>Administrador</strong>: Acceso a todos los datos del negocio.
+      </p>
+      <div class="row">
+        <div class="col-md-6">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item d-flex justify-content-between">
+              <span class="text-muted">Total transacciones</span>
+              <strong>{{ total_ventas }}</strong>
+            </li>
+            <li class="list-group-item d-flex justify-content-between">
+              <span class="text-muted">Ingresos totales</span>
+              <strong class="text-success">${{ monto_total|floatformat:0 }}</strong>
+            </li>
+            <li class="list-group-item d-flex justify-content-between">
+              <span class="text-muted">Ticket promedio</span>
+              <strong>${{ ticket_promedio|floatformat:0 }}</strong>
+            </li>
+            <li class="list-group-item d-flex justify-content-between">
+              <span class="text-muted">Clientes atendidos</span>
+              <strong>{{ numero_clientes }}</strong>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="d-flex gap-2">
+    <a href="{% url 'reporte_finanzas' %}" class="btn btn-outline-purple btn-outline-secondary">
+      <i class="bi bi-graph-up me-1"></i> Ver Reporte Financiero
+    </a>
+    <a href="{% url 'reporte_personal' %}" class="btn btn-outline-secondary">
+      <i class="bi bi-person-lines-fill me-1"></i> Mi Reporte Personal
+    </a>
+  </div>
+
+</div>
+{% endblock %}

@@ -1,0 +1,204 @@
+{% extends 'farmacia/base_generic.html' %}
+
+{% block title %}Dashboard de Inventario - Farmacia Dr Nahúm{% endblock %}
+
+{% block content %}
+<div class="container-fluid mt-4">
+    <h1 class="mb-4">📊 Dashboard de Inventario</h1>
+    
+    <!-- ALERTAS CRÍTICAS -->
+    {% if cantidad_alertas > 0 %}
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <h4 class="alert-heading">⚠️ {{ cantidad_alertas }} Medicamento(s) con Alerta de Vencimiento</h4>
+        <p>Los siguientes medicamentos tienen lotes próximos a vencer (< 7 días). Requieren atención inmediata.</p>
+        <a href="{% url 'reporte_lotes' %}" class="btn btn-danger btn-sm">Ver Reporte Completo</a>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {% endif %}
+    
+    {% if cantidad_vencidos > 0 %}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <h4 class="alert-heading">🚫 {{ cantidad_vencidos }} Lote(s) Vencido(s)</h4>
+        <p>Existen lotes que ya pasaron su fecha de vencimiento. Deben ser descartados.</p>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {% endif %}
+    
+    <!-- ESTADÍSTICAS GENERALES -->
+    <div class="row mb-4">
+        <div class="col-lg-3">
+            <div class="card bg-primary text-white shadow">
+                <div class="card-body">
+                    <h6 class="card-title">Medicamentos Total</h6>
+                    <h2 class="mb-0">{{ total_medicamentos }}</h2>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-3">
+            <div class="card bg-danger text-white shadow">
+                <div class="card-body">
+                    <h6 class="card-title">Medicamentos Agotados</h6>
+                    <h2 class="mb-0">{{ medicamentos_agotados }}</h2>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-3">
+            <div class="card bg-warning text-white shadow">
+                <div class="card-body">
+                    <h6 class="card-title">Lotes Críticos (&lt;7 días)</h6>
+                    <h2 class="mb-0">{{ lotes_criticos|length }}</h2>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-3">
+            <div class="card bg-info text-white shadow">
+                <div class="card-body">
+                    <h6 class="card-title">Medicamentos con Alerta</h6>
+                    <h2 class="mb-0">{{ cantidad_alertas }}</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- LOTES PRÓXIMOS A VENCER -->
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="card shadow-sm mb-4">
+                <div class="card-header bg-warning text-dark">
+                    <h5 class="mb-0">⏰ Lotes Próximos a Vencer (< 7 días)</h5>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-sm mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Medicamento</th>
+                                <th>Lote</th>
+                                <th>Vencimiento</th>
+                                <th>Stock</th>
+                                <th>Días</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for lote in lotes_criticos %}
+                            <tr class="table-warning">
+                                <td><strong>{{ lote.medicamento.nombre }}</strong></td>
+                                <td><code>{{ lote.numero_lote }}</code></td>
+                                <td>{{ lote.fecha_vencimiento|date:"d/m/Y" }}</td>
+                                <td><span class="badge badge-info">{{ lote.cantidad_disponible }}</span></td>
+                                <td>
+                                    <span class="badge badge-danger">
+                                        {{ lote.dias_para_vencer }} días
+                                    </span>
+                                </td>
+                            </tr>
+                            {% empty %}
+                            <tr>
+                                <td colspan="5" class="text-center text-muted py-3">
+                                    ✓ No hay lotes próximos a vencer
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+        <!-- MEDICAMENTOS CON ALERTA -->
+        <div class="col-lg-6">
+            <div class="card shadow-sm mb-4">
+                <div class="card-header bg-info text-white">
+                    <h5 class="mb-0">🚨 Medicamentos con Alerta de Vencimiento</h5>
+                </div>
+                <div class="list-group list-group-flush">
+                    {% for medicamento in medicamentos_alerta %}
+                    <div class="list-group-item d-flex justify-content-between align-items-center">
+                        <div>
+                            <h6 class="mb-1">{{ medicamento.nombre }}</h6>
+                            <small class="text-muted">
+                                SKU: {{ medicamento.sku }} | 
+                                Stock: {{ medicamento.stock }}
+                            </small>
+                        </div>
+                        <a href="{% url 'gestor_lotes' %}?medicamento={{ medicamento.pk }}" 
+                           class="btn btn-sm btn-outline-info">
+                            Ver Lotes
+                        </a>
+                    </div>
+                    {% empty %}
+                    <div class="list-group-item text-center text-muted py-4">
+                        ✓ No hay medicamentos con alerta
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- LOTES VENCIDOS -->
+    {% if lotes_vencidos %}
+    <div class="card shadow-sm alert-danger">
+        <div class="card-header bg-danger text-white">
+            <h5 class="mb-0">🗑️ Lotes Vencidos (Requieren Descarte)</h5>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-sm mb-0">
+                <thead class="table-light">
+                    <tr>
+                        <th>Medicamento</th>
+                        <th>Lote</th>
+                        <th>Vencimiento</th>
+                        <th>Stock</th>
+                        <th>Acción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for lote in lotes_vencidos %}
+                    <tr class="table-danger">
+                        <td><strong>{{ lote.medicamento.nombre }}</strong></td>
+                        <td><code>{{ lote.numero_lote }}</code></td>
+                        <td>{{ lote.fecha_vencimiento|date:"d/m/Y" }}</td>
+                        <td><span class="badge badge-dark">{{ lote.cantidad_disponible }}</span></td>
+                        <td>
+                            <button class="btn btn-sm btn-danger" disabled>
+                                Marcar para Descarte
+                            </button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    {% endif %}
+    
+    <!-- BOTONES DE ACCIÓN -->
+    <div class="mt-4">
+        <a href="{% url 'gestor_lotes' %}" class="btn btn-primary">
+            <i class="fas fa-box"></i> Gestor de Lotes
+        </a>
+        <a href="{% url 'reporte_lotes' %}" class="btn btn-info">
+            <i class="fas fa-chart-bar"></i> Reporte de Lotes
+        </a>
+        <a href="{% url 'terminal_pos_v2' %}" class="btn btn-success">
+            <i class="fas fa-shopping-cart"></i> Terminal POS
+        </a>
+    </div>
+</div>
+
+<style>
+.table-warning {
+    background-color: #fff3cd !important;
+}
+.table-danger {
+    background-color: #f8d7da !important;
+}
+</style>
+{% endblock %}

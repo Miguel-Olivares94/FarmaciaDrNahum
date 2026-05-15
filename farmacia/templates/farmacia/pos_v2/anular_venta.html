@@ -1,0 +1,156 @@
+{% extends 'farmacia/base_generic.html' %}
+{% load static form_tags %}
+
+{% block title %}Anular Venta - Terminal POS v2{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+  <!-- Header -->
+  <div class="row mb-4">
+    <div class="col-md-12">
+      <h1 class="display-5">⚠️ Anular Venta</h1>
+      <p class="text-muted">Confirme la anulación de la venta</p>
+    </div>
+  </div>
+
+  <!-- Mensajes -->
+  {% if messages %}
+    {% for message in messages %}
+      <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+      </div>
+    {% endfor %}
+  {% endif %}
+
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <!-- Advertencia -->
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>⚠️ Advertencia:</strong> Esta acción anulará la venta y revertirá el stock.
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+      </div>
+
+      <!-- Información de la venta -->
+      <div class="card shadow-sm mb-4">
+        <div class="card-header bg-danger text-white">
+          <h5 class="mb-0">Información de la Venta</h5>
+        </div>
+        <div class="card-body">
+          <div class="row mb-3">
+            <div class="col-6">
+              <p><strong>Número de Venta:</strong> {{ venta.numero_venta }}</p>
+              <p><strong>Medicamento:</strong> {{ venta.medicamento.nombre }}</p>
+              <p><strong>Cantidad:</strong> {{ venta.cantidad }} unidades</p>
+            </div>
+            <div class="col-6">
+              <p><strong>Fecha:</strong> {{ venta.fecha|date:"d/m/Y H:i" }}</p>
+              <p><strong>Vendedor:</strong> {{ venta.vendedor.get_full_name }}</p>
+              <p><strong>Total:</strong> ${{ venta.precio }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Formulario de anulación -->
+      <form method="post" class="needs-validation" novalidate>
+        {% csrf_token %}
+
+        <!-- Motivo -->
+        <div class="card shadow-sm mb-4">
+          <div class="card-header bg-info text-white">
+            <h5 class="mb-0">Motivo de Anulación</h5>
+          </div>
+          <div class="card-body">
+            <div class="mb-3">
+              <label for="{{ form.motivo.id_for_label }}" class="form-label">
+                Motivo (requerido)
+              </label>
+              {{ form.motivo|add_class:"form-control form-control-lg" }}
+              {% if form.motivo.errors %}
+                <div class="invalid-feedback d-block">
+                  {{ form.motivo.errors.0 }}
+                </div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+
+        <!-- Observaciones -->
+        <div class="card shadow-sm mb-4">
+          <div class="card-header bg-secondary text-white">
+            <h5 class="mb-0">Observaciones (Opcional)</h5>
+          </div>
+          <div class="card-body">
+            <div class="mb-3">
+              <label for="{{ form.observaciones.id_for_label }}" class="form-label">
+                Detalles adicionales
+              </label>
+              {{ form.observaciones|add_class:"form-control" }}
+            </div>
+          </div>
+        </div>
+
+        <!-- Autorización de supervisor -->
+        <div class="card shadow-sm mb-4">
+          <div class="card-header bg-danger text-white">
+            <h5 class="mb-0">🔐 Autorización Requerida</h5>
+          </div>
+          <div class="card-body">
+            <div class="alert alert-info">
+              <strong>Se requiere contraseña de supervisor para anular esta venta.</strong>
+            </div>
+            <div class="mb-3">
+              <label for="{{ form.contrasena_supervisor.id_for_label }}" class="form-label">
+                Contraseña del Supervisor
+              </label>
+              {{ form.contrasena_supervisor|add_class:"form-control form-control-lg" }}
+              {% if form.contrasena_supervisor.errors %}
+                <div class="invalid-feedback d-block">
+                  {{ form.contrasena_supervisor.errors.0 }}
+                </div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+
+        <!-- Errores generales -->
+        {% if form.non_field_errors %}
+          <div class="alert alert-danger" role="alert">
+            <strong>Error:</strong>
+            {% for error in form.non_field_errors %}
+              <div>{{ error }}</div>
+            {% endfor %}
+          </div>
+        {% endif %}
+
+        <!-- Botones de acción -->
+        <div class="d-grid gap-2">
+          <button type="submit" class="btn btn-danger btn-lg" onclick="return confirm('¿Confirma la anulación de esta venta?')">
+            <i class="bi bi-trash"></i> Confirmar Anulación
+          </button>
+          <a href="{% url 'pos_historial_ventas' %}" class="btn btn-secondary btn-lg">
+            <i class="bi bi-arrow-left"></i> Cancelar
+          </a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+// Validación de Bootstrap
+(function() {
+  const forms = document.querySelectorAll('.needs-validation');
+  Array.from(forms).forEach(form => {
+    form.addEventListener('submit', event => {
+      if (!form.checkValidity()) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+      form.classList.add('was-validated');
+    }, false);
+  });
+})();
+</script>
+{% endblock %}

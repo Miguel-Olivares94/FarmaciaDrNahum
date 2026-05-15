@@ -1,0 +1,72 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+
+# Entornos virtuales
+env/
+venv/
+.venv/
+ENV/
+
+# Django
+*.log
+db.sqlite3
+/logs/
+/staticfiles/
+/screenshots/
+/htmlcov/
+
+# Archivos temporales Word/Office
+~$*.docx
+~$*.xlsx
+
+# Archivos Word generados (el script los regenera)
+MANUAL_COMPLETO_FARMACIA.docx
+MANUAL_FARMACIA_COMPLETO.docx
+MANUAL_ADMINISTRADOR_FARMACIA.docx
+
+# Variables de entorno
+.env
+.env.*
+!.env.example
+
+# IDE
+.idea/
+.vscode/
+*.swp
+.DS_Store
+Thumbs.db
+
+# Tests
+.pytest_cache/
+.coverage
+htmlcov/
+test_results.txt
+script_output.txt
+
+# Scripts de utilidad / análisis (no necesarios en producción)
+capturar_*.py
+capturar_*.ps1
+capture_screenshots.py
+crear_screenshots_placeholder.py
+generar_manual_admin.py
+generar_manual_completo.py
+generar_manual_desde_cero.py
+generar_manual_django_admin.py
+generate_complete_manual_farmacia.py
+generate_django_admin_manual_farmacia.py
+guia_captura_manual.py
+get_tables.py
+search_client.py
+verificar_urls.py
+check_recetas.py
+crear_recetas.py
+create_recetas.py
+crear_medicamentos.py
+listar_medicamentos.py
+verificar_receta.py
+seed_lotes.py

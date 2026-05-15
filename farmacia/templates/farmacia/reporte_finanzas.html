@@ -1,0 +1,86 @@
+{% extends "farmacia/base_generic.html" %}
+
+{% block title %}Reporte Financiero - Farmacia Dr Nahúm{% endblock %}
+
+{% block content %}
+<div class="container-fluid py-4">
+
+  <!-- Encabezado -->
+  <div class="row mb-4">
+    <div class="col">
+      <div class="card border-0 shadow-sm" style="background: linear-gradient(135deg,#b71c1c,#ef5350);">
+        <div class="card-body py-3 px-4 d-flex align-items-center gap-3">
+          <span style="font-size:2rem;">💰</span>
+          <div>
+            <h1 class="h3 mb-0 text-white fw-bold">Reporte Financiero</h1>
+            <p class="mb-0 text-white opacity-75">Costos, márgenes y utilidades — Acceso Restringido</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- KPIs -->
+  <div class="row g-3 mb-4">
+    <div class="col-6 col-xl-3">
+      <div class="card border-0 shadow-sm text-center">
+        <div class="card-body">
+          <div class="display-6 text-primary fw-bold">{{ total_ventas }}</div>
+          <div class="text-muted small">Total Ventas</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-6 col-xl-3">
+      <div class="card border-0 shadow-sm text-center">
+        <div class="card-body">
+          <div class="display-6 text-success fw-bold">${{ monto_total|floatformat:0 }}</div>
+          <div class="text-muted small">Ingresos Totales</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Advertencia acceso restringido -->
+  <div class="alert alert-warning border-0 shadow-sm d-flex align-items-center gap-3 mb-4">
+    <span style="font-size:1.5rem;">⚠️</span>
+    <div>
+      <strong>Información confidencial</strong><br>
+      <small>Los datos financieros (costos, márgenes, utilidades) son visibles únicamente para el Administrador y Contador.
+      Los vendedores no tienen acceso a esta sección.</small>
+    </div>
+  </div>
+
+  <!-- Tabla financiera -->
+  <div class="card border-0 shadow-sm mb-4">
+    <div class="card-header bg-white border-0 pt-3 pb-0">
+      <h5 class="mb-0">📈 Resumen Financiero</h5>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-6">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item d-flex justify-content-between">
+              <span class="text-muted">Total transacciones</span>
+              <strong>{{ total_ventas }}</strong>
+            </li>
+            <li class="list-group-item d-flex justify-content-between">
+              <span class="text-muted">Ingresos por ventas</span>
+              <strong class="text-success">${{ monto_total|floatformat:0 }}</strong>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="d-flex gap-2">
+    <a href="{% url 'reporte_global' %}" class="btn btn-outline-secondary">
+      <i class="bi bi-arrow-left me-1"></i> Reporte Global
+    </a>
+    <a href="{% url 'dashboard' %}" class="btn btn-outline-primary">
+      <i class="bi bi-house me-1"></i> Dashboard
+    </a>
+  </div>
+
+</div>
+{% endblock %}

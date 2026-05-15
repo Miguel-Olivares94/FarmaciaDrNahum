@@ -1,0 +1,150 @@
+<!-- farmacia/templates/farmacia/email/boleta_email.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            color: #333;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .header {
+            border-bottom: 3px solid #007bff;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            color: #007bff;
+            margin: 0;
+            font-size: 24px;
+        }
+        .header p {
+            margin: 5px 0 0 0;
+            color: #666;
+            font-size: 14px;
+        }
+        .content {
+            margin: 20px 0;
+        }
+        .content p {
+            margin: 10px 0;
+            line-height: 1.6;
+        }
+        .boleta-info {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-left: 4px solid #007bff;
+            margin: 15px 0;
+        }
+        .boleta-info .label {
+            font-weight: bold;
+            color: #333;
+            display: inline-block;
+            width: 120px;
+        }
+        .boleta-info .value {
+            color: #666;
+        }
+        .button {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+        .footer {
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+            margin-top: 20px;
+            text-align: center;
+            font-size: 12px;
+            color: #999;
+        }
+        .alert {
+            background-color: #fffacd;
+            border-left: 4px solid #ffc107;
+            padding: 12px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        .alert p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- HEADER -->
+        <div class="header">
+            <h1>{{ farmacia }}</h1>
+            <p>Su Boleta de Compra</p>
+        </div>
+
+        <!-- CONTENIDO -->
+        <div class="content">
+            <p>Estimado(a) <strong>{{ cliente_nombre }}</strong>,</p>
+
+            <p>Le agradecemos su compra en nuestra farmacia. Adjunto encontrará el PDF de su boleta para sus registros.</p>
+
+            <!-- INFORMACIÓN BOLETA -->
+            <div class="boleta-info">
+                <div>
+                    <span class="label">Número Boleta:</span>
+                    <span class="value">{{ numero_boleta }}</span>
+                </div>
+                <div>
+                    <span class="label">Fecha:</span>
+                    <span class="value">{{ fecha }}</span>
+                </div>
+                <div>
+                    <span class="label">Total:</span>
+                    <span class="value" style="font-weight: bold; color: #007bff;">{{ total }}</span>
+                </div>
+            </div>
+
+            <p>El PDF adjunto contiene todos los detalles de su compra:</p>
+            <ul>
+                <li>Medicamentos adquiridos</li>
+                <li>Cantidades y precios</li>
+                <li>Desglose de impuestos</li>
+                <li>Método de pago utilizado</li>
+            </ul>
+
+            <!-- ALERTA -->
+            <div class="alert">
+                <p><strong>⚠️ Importante:</strong> Este documento es válido como comprobante fiscal y debe ser conservado para sus registros contables.</p>
+            </div>
+
+            <p>Si tiene alguna duda o necesita asistencia, no dude en contactarnos.</p>
+
+            <p style="text-align: center; margin-top: 30px;">
+                <a href="#" class="button" style="pointer-events: none; opacity: 0.7;">Ver en Línea</a>
+            </p>
+        </div>
+
+        <!-- FOOTER -->
+        <div class="footer">
+            <p><strong>FARMACIA COLLICO</strong></p>
+            <p>Este es un email automático. Por favor no responda a este mensaje.</p>
+            <p>&copy; {{ current_year }} Farmacia Collico. Todos los derechos reservados.</p>
+        </div>
+    </div>
+</body>
+</html>

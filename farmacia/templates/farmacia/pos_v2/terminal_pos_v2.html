@@ -1,0 +1,600 @@
+{% extends 'farmacia/base_generic.html' %}
+{% load static %}
+
+{% block title %}Terminal POS v2 - Farmacia Collico{% endblock %}
+
+{% block extra_css %}
+<style>
+  .medicamento-card {
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: 2px solid #e0e0e0;
+  }
+  
+  .medicamento-card:hover {
+    border-color: #28a745;
+    box-shadow: 0 4px 12px rgba(40, 167, 69, 0.15);
+    transform: translateY(-2px);
+  }
+  
+  .medicamento-card.sin-stock {
+    opacity: 0.6;
+    pointer-events: none;
+  }
+  
+  .carrito-item {
+    animation: slideIn 0.3s ease;
+  }
+  
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateX(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  .badge-stock {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-weight: bold;
+  }
+  
+  .badge-stock.alto { background-color: #28a745; color: white; }
+  .badge-stock.medio { background-color: #ffc107; color: black; }
+  .badge-stock.bajo { background-color: #dc3545; color: white; }
+  
+  #carrito-totales {
+    background-color: #f8f9fa;
+    border: 2px solid #dee2e6;
+    border-radius: 8px;
+    padding: 15px;
+    margin-top: 20px;
+  }
+  
+  .total-principal {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #28a745;
+    word-break: keep-all;
+    white-space: nowrap;
+  }
+  
+  .btn-pago {
+    background-color: #28a745;
+    border-color: #28a745;
+  }
+  
+  .btn-pago:hover {
+    background-color: #218838;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid py-4">
+  <!-- Header -->
+  <div class="row mb-4">
+    <div class="col-md-12">
+      <div class="card bg-light border-success">
+        <div class="card-body">
+          <h1 class="card-title">🏪 Terminal POS v2</h1>
+          <p class="card-text text-muted">Farmacia Dr Nahúm - Punto de Venta</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mensajes -->
+  {% if messages %}
+    {% for message in messages %}
+      <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+      </div>
+    {% endfor %}
+  {% endif %}
+
+  <!-- Inyectar CSRF token en variable global -->
+  <script>
+    window.CSRF_TOKEN = "{{ csrf_token }}";
+  </script>
+
+  <div class="row">
+    <!-- COLUMNA IZQUIERDA: BÚSQUEDA Y PRODUCTOS -->
+    <div class="col-md-8">
+      <!-- Búsqueda -->
+      <div class="card mb-4 shadow-sm">
+        <div class="card-header bg-primary text-white">
+          <h5 class="mb-0">🔍 Buscar Medicamentos</h5>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <!-- OPCIÓN 1: BÚSQUEDA POR NOMBRE -->
+            <div class="col-md-6">
+              <h6 class="text-secondary mb-2">
+                <i class="bi bi-search"></i> Opción 1: Buscar por Nombre
+              </h6>
+              <form method="get" class="form-inline">
+                <div class="input-group w-100">
+                  <input 
+                    type="text" 
+                    name="busqueda" 
+                    class="form-control form-control-lg" 
+                    placeholder="Nombre, SKU, laboratorio..."
+                    value="{{ busqueda }}"
+                  >
+                  <button type="submit" class="btn btn-primary btn-lg">
+                    <i class="bi bi-search"></i> Buscar
+                  </button>
+                  {% if busqueda %}
+                    <a href="{% url 'terminal_pos_v2' %}" class="btn btn-secondary btn-lg">Limpiar</a>
+                  {% endif %}
+                </div>
+              </form>
+              <small class="text-muted d-block mt-2">Ingresa el nombre del medicamento o SKU y presiona Buscar</small>
+            </div>
+
+            <!-- OPCIÓN 2: ESCÁNER DE CÓDIGOS -->
+            <div class="col-md-6">
+              <h6 class="text-secondary mb-2">
+                <i class="bi bi-barcode"></i> Opción 2: Escanear Código
+              </h6>
+              <input 
+                type="text" 
+                id="codigo-barras-input"
+                class="form-control form-control-lg"
+                placeholder="Escanea aquí con tu lector..."
+                style="font-size: 1rem;"
+              >
+              <small class="text-muted d-block mt-2">💡 Conecta tu lector de códigos USB/Bluetooth y escanea</small>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Productos -->
+      <div class="card shadow-sm">
+        <div class="card-header bg-info text-white">
+          <h5 class="mb-0">
+            {% if busqueda %}
+              Resultados ({{ medicamentos.count }})
+            {% else %}
+              Ingrese búsqueda para ver productos
+            {% endif %}
+          </h5>
+        </div>
+        <div class="card-body">
+          {% if medicamentos %}
+            <div class="row g-3">
+              {% for med in medicamentos %}
+                <div class="col-md-6 col-lg-4">
+                  <div class="card medicamento-card">
+                    <!-- Stock Badge -->
+                    {% if med.stock > 50 %}
+                      <span class="badge-stock alto">{{ med.stock }} un</span>
+                    {% elif med.stock > 10 %}
+                      <span class="badge-stock medio">{{ med.stock }} un</span>
+                    {% else %}
+                      <span class="badge-stock bajo">{{ med.stock }} un</span>
+                    {% endif %}
+
+                    <div class="card-body">
+                      <h6 class="card-title">{{ med.nombre }}</h6>
+                      <p class="card-text text-muted small">{{ med.laboratorio }}</p>
+
+                      <!-- Badge tipo de venta -->
+                      {% if med.tipo_venta == 'receta_simple' %}
+                        <span class="badge bg-warning text-dark mb-2"><i class="bi bi-file-medical"></i> Receta simple</span>
+                      {% elif med.tipo_venta == 'receta_retenida' %}
+                        <span class="badge bg-danger mb-2"><i class="bi bi-file-medical-fill"></i> Receta retenida</span>
+                      {% elif med.tipo_venta == 'controlado' %}
+                        <span class="badge bg-dark mb-2"><i class="bi bi-shield-lock"></i> Controlado</span>
+                      {% endif %}
+
+                      <!-- Forma de agregar -->
+                      <form class="agregar-medicamento-form" data-medicamento-id="{{ med.id }}" data-requiere-receta="{% if med.requiere_receta %}true{% else %}false{% endif %}" data-tipo-receta="{{ med.tipo_venta }}">
+                        {% csrf_token %}
+                        <div class="input-group mb-2">
+                          <input 
+                            type="number" 
+                            name="cantidad" 
+                            class="form-control" 
+                            min="1" 
+                            max="{{ med.stock }}"
+                            value="1"
+                            style="text-align: center;"
+                          >
+                          <button 
+                            type="submit" 
+                            class="btn btn-success btn-sm"
+                            title="Agregar al carrito"
+                          >
+                            <i class="bi bi-plus-circle"></i> Agregar
+                          </button>
+                        </div>
+                      </form>
+
+                      <p class="card-text text-success fw-bold">
+                        ${{ med.precio|default:"0" }}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+          {% elif busqueda %}
+            <div class="alert alert-warning">
+              <i class="bi bi-exclamation-triangle"></i> No se encontraron medicamentos que coincidan con "{{ busqueda }}"
+            </div>
+          {% else %}
+            <div class="alert alert-info">
+              <i class="bi bi-info-circle"></i> Escriba en la búsqueda para ver los productos disponibles
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+    <!-- COLUMNA DERECHA: CARRITO -->
+    <div class="col-md-4">
+      <div class="card shadow-sm position-sticky" style="top: 20px;">
+        <div class="card-header bg-success text-white">
+          <h5 class="mb-0">🛒 Carrito (<span id="cantidad-items">{{ cantidad_items }}</span>)</h5>
+        </div>
+        <div class="card-body" style="max-height: 500px; overflow-y: auto;">
+          {% if items %}
+            <div id="carrito-items-list">
+              {% for item in items %}
+                <div class="carrito-item border-bottom pb-2 mb-2">
+                  <div class="d-flex justify-content-between align-items-start">
+                    <div>
+                      <strong>{{ item.medicamento.nombre }}</strong>
+                      <br>
+                      <small class="text-muted">Cantidad: {{ item.cantidad }}</small>
+                      <br>
+                      <small class="text-success">${{ item.precio_unitario }}</small>
+                    </div>
+                    <button 
+                      type="button" 
+                      class="btn btn-sm btn-danger btn-eliminar-item"
+                      data-medicamento-id="{{ item.medicamento.id }}"
+                      title="Eliminar del carrito"
+                    >
+                      <i class="bi bi-trash"></i>
+                    </button>
+                  </div>
+                  <div class="text-end">
+                    <span class="fw-bold text-primary">${{ item.subtotal }}</span>
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+          {% else %}
+            <div class="alert alert-secondary text-center">
+              <i class="bi bi-cart-x"></i>
+              <p class="mb-0">Carrito vacío</p>
+            </div>
+          {% endif %}
+        </div>
+
+        <!-- Totales -->
+        {% if items %}
+          <div id="carrito-totales">
+            <div class="d-flex justify-content-between mb-2">
+              <span>Subtotal:</span>
+              <span>${{ carrito.subtotal|floatformat:0 }}</span>
+            </div>
+            {% if carrito.descuento_monto > 0 %}
+              <div class="d-flex justify-content-between mb-2 text-danger">
+                <span>Descuento:</span>
+                <span>-${{ carrito.descuento_monto|floatformat:0 }}</span>
+              </div>
+            {% endif %}
+            <div class="d-flex justify-content-between mb-2">
+              <span>Base imponible:</span>
+              <span>${{ carrito.base_imponible|floatformat:0 }}</span>
+            </div>
+            <div class="d-flex justify-content-between mb-2">
+              <span>IVA (19%):</span>
+              <span class="text-info">${{ carrito.iva|floatformat:0 }}</span>
+            </div>
+            <hr>
+            <div class="d-flex justify-content-between align-items-center">
+              <strong>TOTAL:</strong>
+              <span class="total-principal" id="total-carrito">${{ total_carrito|floatformat:0 }}</span>
+            </div>
+          </div>
+
+          <!-- Botones de acción -->
+          <div class="mt-3 d-grid gap-2">
+            <a href="{% url 'pos_seleccionar_cliente' %}" class="btn btn-info btn-lg">
+              <i class="bi bi-person-check"></i> Cliente
+            </a>
+            <a href="{% url 'pos_aplicar_descuento' %}" class="btn btn-warning btn-lg">
+              <i class="bi bi-percent"></i> Descuento
+            </a>
+            <a href="{% url 'pos_procesar_pago' %}" class="btn btn-success btn-lg btn-pago">
+              <i class="bi bi-credit-card"></i> Procesar Pago
+            </a>
+            <button 
+              type="button" 
+              class="btn btn-danger btn-lg"
+              id="btn-vaciar-carrito"
+              onclick="vaciarCarrito()"
+            >
+              <i class="bi bi-trash"></i> Vaciar Carrito
+            </button>
+          </div>
+        {% else %}
+          <div class="mt-3">
+            <p class="text-muted text-center">Agregue medicamentos al carrito</p>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Scripts AJAX -->
+<script>
+// Agregar medicamento al carrito (AJAX) - Usando event delegation
+document.addEventListener('submit', function(e) {
+  // Solo procesar si es un formulario de agregar medicamento
+  if (e.target.classList.contains('agregar-medicamento-form')) {
+    e.preventDefault();
+    
+    const form = e.target;
+    const medicamentoId = form.dataset.medicamentoId;
+    const cantidad = form.querySelector('input[name="cantidad"]').value;
+    const csrf = form.querySelector('[name="csrfmiddlewaretoken"]').value;
+    
+    if (!medicamentoId) {
+      mostrarAlerta('❌ Error: ID de medicamento no encontrado', 'danger');
+      return;
+    }
+    
+    if (!csrf) {
+      mostrarAlerta('❌ Error de seguridad: CSRF token no encontrado', 'danger');
+      return;
+    }
+
+    // Verificar si requiere receta ANTES de llamar al backend
+    const requiereReceta = form.dataset.requiereReceta === 'true';
+    if (requiereReceta) {
+      mostrarModalReceta(medicamentoId, cantidad, csrf, form.dataset.tipoReceta);
+      return;
+    }
+    
+    fetch(`/farmacia/pos/agregar/${medicamentoId}/`, {
+      method: 'POST',
+      headers: {
+        'X-CSRFToken': csrf,
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: `cantidad=${cantidad}`
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.success) {
+        mostrarAlerta('✅ ' + data.message, 'success');
+        const cantidadItems = document.getElementById('cantidad-items');
+        const totalCarrito = document.getElementById('total-carrito');
+        if (cantidadItems) cantidadItems.textContent = data.carrito_items;
+        if (totalCarrito) totalCarrito.textContent = '$' + data.carrito_total;
+        // Recargar página para actualizar carrito
+        setTimeout(() => location.reload(), 1000);
+      } else if (data.requiere_receta) {
+        mostrarAlerta('⚠️ ' + data.error, 'warning');
+      } else {
+        mostrarAlerta('❌ ' + data.error, 'danger');
+      }
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      mostrarAlerta('❌ Error al agregar medicamento', 'danger');
+    });
+  }
+});
+
+// Aviso para medicamentos con receta
+function mostrarModalReceta(medicamentoId, cantidad, csrf, tipoReceta) {
+  const labels = {
+    'receta_simple':   'Receta Simple',
+    'receta_retenida': 'Receta Retenida (se queda en farmacia)',
+    'controlado':      'Medicamento Controlado'
+  };
+  const msg = labels[tipoReceta] || 'con receta';
+  const ok = confirm(
+    `⚠️ ATENCIÓN\n\nEste medicamento requiere: ${msg}\n\n` +
+    `✅ Confirme que el paciente presentó la receta física.\n` +
+    `(Si la receta debe retenerse, guárdela en la farmacia)\n\n` +
+    `Para registrar la receta en el sistema, vaya a:\n` +
+    `Admin > Recetas Médicas > Agregar\n\n` +
+    `¿Desea continuar?`
+  );
+  if (!ok) return;
+  mostrarAlerta('⚠️ Para agregar este medicamento, primero registre la receta en Admin > Recetas Médicas, luego use el ID de receta.', 'warning');
+}
+
+// Eliminar item del carrito
+document.querySelectorAll('.btn-eliminar-item').forEach(btn => {
+  btn.addEventListener('click', function() {
+    const medicamentoId = this.dataset.medicamentoId;
+    const csrf = window.CSRF_TOKEN || '';
+    
+    if (!csrf) {
+      mostrarAlerta('❌ Error de seguridad: CSRF token no encontrado', 'danger');
+      return;
+    }
+    
+    if(confirm('¿Eliminar este item del carrito?')) {
+      fetch(`/farmacia/pos/eliminar/${medicamentoId}/`, {
+        method: 'POST',
+        headers: {
+          'X-CSRFToken': csrf,
+        }
+      })
+      .then(response => response.json())
+      .then(data => {
+        if(data.success) {
+          mostrarAlerta('✅ Item eliminado del carrito', 'success');
+          setTimeout(() => location.reload(), 800);
+        } else {
+          mostrarAlerta('❌ Error: ' + (data.error || 'No se pudo eliminar'), 'danger');
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        mostrarAlerta('❌ Error al eliminar item', 'danger');
+      });
+    }
+  });
+});
+
+// Vaciar carrito
+function vaciarCarrito() {
+  if(confirm('¿Está seguro que desea vaciar el carrito?')) {
+    const csrf = window.CSRF_TOKEN || '';
+    
+    if (!csrf) {
+      mostrarAlerta('❌ Error de seguridad: CSRF token no encontrado', 'danger');
+      return;
+    }
+    
+    fetch('/farmacia/pos/vaciar/', {
+      method: 'POST',
+      headers: {
+        'X-CSRFToken': csrf,
+      }
+    })
+    .then(response => response.json())
+    .then(data => {
+      if(data.success) {
+        mostrarAlerta('✅ Carrito vaciado correctamente', 'success');
+        setTimeout(() => location.reload(), 800);
+      } else {
+        mostrarAlerta('❌ Error: ' + (data.error || 'No se pudo vaciar el carrito'), 'danger');
+      }
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      mostrarAlerta('❌ Error al vaciar carrito', 'danger');
+    });
+  }
+}
+
+// Mostrar alerta
+function mostrarAlerta(mensaje, tipo) {
+  const alertDiv = document.createElement('div');
+  alertDiv.className = `alert alert-${tipo} alert-dismissible fade show position-fixed`;
+  alertDiv.style.top = '20px';
+  alertDiv.style.right = '20px';
+  alertDiv.style.zIndex = '9999';
+  alertDiv.innerHTML = `
+    ${mensaje}
+    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+  `;
+  document.body.appendChild(alertDiv);
+  
+  setTimeout(() => {
+    alertDiv.remove();
+  }, 4000);
+}
+
+// =====================================================================
+// LECTOR DE CÓDIGO DE BARRAS (Escáner USB/Bluetooth)
+// =====================================================================
+const codigoBarrasInput = document.getElementById('codigo-barras-input');
+
+// Detectar entrada del escáner (emite código + Enter)
+codigoBarrasInput.addEventListener('keypress', function(e) {
+  if (e.key === 'Enter') {
+    e.preventDefault();
+    const codigo = this.value.trim();
+    
+    if (!codigo) {
+      mostrarAlerta('❌ Código vacío', 'warning');
+      return;
+    }
+    
+    // Agregar medicamento por código de barras
+    agregarPorCodigoBarras(codigo);
+    
+    // Limpiar input para próximo escaneo
+    this.value = '';
+  }
+});
+
+// Función para agregar por código de barras
+function agregarPorCodigoBarras(codigo) {
+  // Obtener CSRF token de variable global (inyectada en template)
+  const csrfToken = window.CSRF_TOKEN || '';
+  
+  if (!csrfToken) {
+    mostrarAlerta('❌ Error de seguridad: CSRF token no encontrado', 'danger');
+    return;
+  }
+  
+  // Mostrar loading
+  mostrarAlerta('🔍 Buscando medicamento...', 'info');
+  
+  fetch('/farmacia/pos/codigo_barras/', {
+    method: 'POST',
+    headers: {
+      'X-CSRFToken': csrfToken,
+      'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    body: `codigo_barras=${encodeURIComponent(codigo)}&cantidad=1`
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (data.success) {
+      mostrarAlerta(
+        `✅ ${data.producto.nombre}\n+${data.producto.cantidad} unid.\n📦 Stock: ${data.producto.stock_restante}`,
+        'success'
+      );
+      
+      // Actualizar carrito en interfaz (si existen los elementos)
+      const cantidadItems = document.getElementById('cantidad-items');
+      const totalCarrito = document.getElementById('total-carrito');
+      
+      if (cantidadItems) cantidadItems.textContent = data.carrito_items;
+      if (totalCarrito) totalCarrito.textContent = '$' + data.carrito_total;
+      
+      // Recargar después de 1 segundo para refrescar UI
+      setTimeout(() => location.reload(), 1200);
+    } else {
+      mostrarAlerta('❌ ' + data.error, 'danger');
+    }
+  })
+  .catch(error => {
+    console.error('Error:', error);
+    mostrarAlerta('❌ Error al procesar código', 'danger');
+  });
+}
+
+// Enfocar el escáner SOLO si el usuario hace clic en él o en su área
+const codigoBarrasContainer = codigoBarrasInput.closest('.col-md-6');
+if (codigoBarrasContainer) {
+  codigoBarrasContainer.addEventListener('click', function(e) {
+    // Solo enfocar si hace clic dentro de esta columna (Opción 2)
+    if (e.target === codigoBarrasInput || codigoBarrasInput.closest('.col-md-6').contains(e.target)) {
+      codigoBarrasInput.focus();
+    }
+  });
+}
+
+// NO enfocar al cargar (permitir que el usuario escriba donde quiera primero)
+// window.addEventListener('load', function() {
+//   codigoBarrasInput.focus();
+// });
+</script>
+{% endblock %}

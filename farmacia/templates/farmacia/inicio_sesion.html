@@ -1,0 +1,166 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#0f2942">
+    <title>Iniciar Sesión — Farmacia Dr Nahúm</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+        html, body { height: 100%; }
+        /* Login fullscreen móvil */
+        @media (max-width: 767px) {
+            .login-page         { flex-direction: column; min-height: 100dvh; }
+            .login-mobile-top   { display: flex !important; }
+            .login-form-panel   { width: 100%; flex: 1; justify-content: flex-start; padding: 2rem 1.5rem; padding-bottom: calc(2rem + env(safe-area-inset-bottom)); }
+            .login-form-inner   { max-width: 100%; }
+        }
+        .login-mobile-top {
+            display: none;
+            background: linear-gradient(135deg, #0f2942, #1a3a5c);
+            padding: 2.5rem 1.5rem 2rem;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            color: #fff;
+        }
+        .login-mobile-top .m-icon {
+            width: 64px; height: 64px;
+            background: linear-gradient(135deg, #059669, #34d399);
+            border-radius: 18px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.8rem; color: #fff;
+            margin: 0 auto .9rem;
+            box-shadow: 0 6px 20px rgba(5,150,105,.4);
+        }
+        .login-mobile-top h1 { font-size: 1.45rem; font-weight: 800; margin: 0 0 .3rem; }
+        .login-mobile-top p  { color: rgba(255,255,255,.65); font-size: .875rem; margin: 0; }
+    </style>
+</head>
+<body style="background:#f1f5f9;">
+<div class="login-page">
+
+    <!-- ── Top card móvil ── -->
+    <div class="login-mobile-top">
+        <div class="m-icon"><i class="bi bi-capsule-pill"></i></div>
+        <h1>Farmacia Dr Nahúm</h1>
+        <p>Sistema de Gestión Farmacéutica</p>
+    </div>
+
+    <!-- ── Panel izquierdo (desktop) ── -->
+    <div class="login-brand-panel d-none d-md-flex">
+        <div class="login-brand-icon">
+            <i class="bi bi-capsule-pill"></i>
+        </div>
+        <h1 class="login-brand-title">Farmacia Dr&nbsp;Nahúm</h1>
+        <p class="login-brand-sub">Sistema Integral de Gestión Farmacéutica</p>
+        <ul class="login-features">
+            <li><i class="bi bi-check-circle-fill"></i> Control de inventario en tiempo real</li>
+            <li><i class="bi bi-check-circle-fill"></i> Terminal POS integrada</li>
+            <li><i class="bi bi-check-circle-fill"></i> Gestión de lotes y vencimientos</li>
+            <li><i class="bi bi-check-circle-fill"></i> Reportes y estadísticas de ventas</li>
+            <li><i class="bi bi-check-circle-fill"></i> Roles y permisos de usuario</li>
+        </ul>
+    </div>
+
+    <!-- ── Panel formulario ── -->
+    <div class="login-form-panel">
+        <div class="login-form-inner">
+            <p class="form-title">Bienvenido de vuelta</p>
+            <p class="form-sub">Ingresa tus credenciales para continuar</p>
+
+            {% if form.non_field_errors %}
+            <div class="alert alert-danger mb-4">
+                <i class="bi bi-x-circle-fill"></i>
+                <div>
+                    <strong>Credenciales incorrectas</strong>
+                    {% for error in form.non_field_errors %}
+                    <div style="font-size:.85rem;">{{ error }}</div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+
+            <form method="post" novalidate autocomplete="on">
+                {% csrf_token %}
+
+                <div class="mb-3">
+                    <label class="form-label" for="id_username">
+                        <i class="bi bi-person"></i> Usuario
+                    </label>
+                    <input type="text"
+                           id="id_username"
+                           name="username"
+                           class="form-control form-control-lg {% if form.username.errors %}is-invalid{% endif %}"
+                           placeholder="Tu nombre de usuario"
+                           autofocus
+                           autocomplete="username"
+                           inputmode="text"
+                           spellcheck="false"
+                           autocorrect="off"
+                           autocapitalize="none">
+                    {% if form.username.errors %}
+                    <div class="invalid-feedback">
+                        {% for e in form.username.errors %}{{ e }}{% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+
+                <div class="mb-4">
+                    <label class="form-label" for="id_password">
+                        <i class="bi bi-lock"></i> Contraseña
+                    </label>
+                    <div class="position-relative">
+                        <input type="password"
+                               id="id_password"
+                               name="password"
+                               class="form-control form-control-lg {% if form.password.errors %}is-invalid{% endif %}"
+                               placeholder="Tu contraseña"
+                               autocomplete="current-password">
+                        <button type="button"
+                                class="btn position-absolute top-50 end-0 translate-middle-y me-1 px-3 border-0 bg-transparent text-muted"
+                                tabindex="-1"
+                                onclick="togglePass(this)"
+                                style="min-height:44px;">
+                            <i class="bi bi-eye"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-lg w-100">
+                    <i class="bi bi-box-arrow-in-right"></i> Iniciar Sesión
+                </button>
+            </form>
+
+            <div class="text-center mt-4 pt-3" style="border-top:1px solid #e2e8f0;">
+                <small class="text-muted">
+                    <i class="bi bi-shield-lock"></i>
+                    Conexión segura · Datos protegidos
+                </small>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+function togglePass(btn) {
+    const inp = document.getElementById('id_password');
+    const ico = btn.querySelector('i');
+    if (inp.type === 'password') {
+        inp.type = 'text';
+        ico.className = 'bi bi-eye-slash';
+    } else {
+        inp.type = 'password';
+        ico.className = 'bi bi-eye';
+    }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,318 @@
+{% extends 'farmacia/base_generic.html' %}
+{% load static %}
+
+{% block title %}Boleta {{ boleta.numero_boleta }}{% endblock %}
+
+{% block extra_css %}
+<style>
+  @media print {
+    body {
+      background-color: white;
+    }
+    .btn, .no-print, .navbar, footer {
+      display: none;
+    }
+    .boleta-container {
+      width: 80mm;
+      margin: 0;
+      padding: 0;
+      box-shadow: none;
+      border: none;
+    }
+    .boleta-content {
+      page-break-after: avoid;
+    }
+  }
+  
+  @media screen {
+    .boleta-container {
+      max-width: 85mm;
+      margin: 0 auto;
+    }
+  }
+  
+  .boleta-container {
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 0;
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    line-height: 1.4;
+  }
+  
+  .boleta-header {
+    border-bottom: 2px solid #000;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .boleta-header h1 {
+    margin: 0;
+    font-size: 14px;
+    font-weight: bold;
+  }
+  
+  .boleta-header p {
+    margin: 2px 0;
+    font-size: 10px;
+  }
+  
+  .boleta-numero {
+    border: 1px solid #000;
+    padding: 5px;
+    margin: 5px;
+    text-align: center;
+    font-weight: bold;
+  }
+  
+  .boleta-numero .label {
+    font-size: 9px;
+    display: block;
+  }
+  
+  .boleta-numero .valor {
+    font-size: 12px;
+  }
+  
+  .boleta-info {
+    padding: 10px;
+    border-bottom: 1px dashed #000;
+    font-size: 10px;
+  }
+  
+  .boleta-info .label {
+    font-weight: bold;
+  }
+  
+  .boleta-items {
+    padding: 10px;
+    border-bottom: 1px dashed #000;
+  }
+  
+  .boleta-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    border-bottom: 1px dotted #ccc;
+    padding-bottom: 3px;
+  }
+  
+  .boleta-item-nombre {
+    flex: 1;
+    word-break: break-word;
+  }
+  
+  .boleta-item-qty {
+    margin: 0 3px;
+    width: 30px;
+    text-align: right;
+  }
+  
+  .boleta-item-precio {
+    text-align: right;
+    width: 40px;
+  }
+  
+  .boleta-totales {
+    padding: 10px;
+    text-align: right;
+  }
+  
+  .boleta-total-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 3px;
+    border-bottom: 1px solid #000;
+    padding-bottom: 3px;
+  }
+  
+  .boleta-total-row.total-final {
+    font-weight: bold;
+    font-size: 13px;
+    border-bottom: 2px solid #000;
+    border-top: 2px solid #000;
+    padding: 5px 0;
+    margin-top: 5px;
+  }
+  
+  .boleta-footer {
+    padding: 10px;
+    text-align: center;
+    font-size: 9px;
+    border-top: 1px solid #000;
+  }
+  
+  .boleta-footer p {
+    margin: 2px 0;
+  }
+  
+  .header-section {
+    background-color: #f8f9fa;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+  }
+  
+  .btn-group-print {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+  
+  .btn-group-print button,
+  .btn-group-print a {
+    flex: 1;
+    min-width: 150px;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+  <!-- Header -->
+  <div class="header-section">
+    <h1 class="display-5 no-print">✅ ¡Venta Realizada!</h1>
+    <p class="lead text-muted no-print">Comprobante de venta generado correctamente</p>
+    
+    <div class="btn-group-print no-print" id="btn-acciones">
+      <button onclick="window.print()" class="btn btn-primary btn-lg">
+        <i class="bi bi-printer"></i> Imprimir Boleta
+      </button>
+      <a href="{% url 'terminal_pos_v2' %}" class="btn btn-success btn-lg">
+        <i class="bi bi-plus-circle"></i> Nueva Venta
+      </a>
+      <a href="{% url 'pos_historial_ventas' %}" class="btn btn-info btn-lg">
+        <i class="bi bi-history"></i> Historial
+      </a>
+    </div>
+  </div>
+
+  <!-- BOLETA (Imprimible) -->
+  <div class="boleta-container mx-auto">
+    <div class="boleta-content">
+      <!-- Header -->
+      <div class="boleta-header">
+        <h1>FARMACIA COLLICO</h1>
+        <p>RUT: {{ boleta.rut_farmacia }}</p>
+        <p>{{ boleta.direccion_farmacia }}</p>
+        <p>📞 Teléfono | 📧 Email</p>
+      </div>
+
+      <!-- Número de boleta -->
+      <div class="boleta-numero">
+        <div class="label">BOLETA Nº</div>
+        <div class="valor">{{ boleta.numero_boleta }}</div>
+        <div class="label" style="font-size: 8px;">FOLIO: {{ boleta.folio }}</div>
+      </div>
+
+      <!-- Información general -->
+      <div class="boleta-info">
+        <div>Fecha: {{ boleta.fecha|date:"d/m/Y H:i" }}</div>
+        {% if boleta.cliente_nombre %}
+          <div>Cliente: {{ boleta.cliente_nombre }}</div>
+          {% if boleta.cliente_rut %}
+            <div>RUT: {{ boleta.cliente_rut }}</div>
+          {% endif %}
+        {% else %}
+          <div>Cliente: CONSUMIDOR FINAL</div>
+        {% endif %}
+        <div>Vendedor: {{ boleta.vendedor.first_name }} {{ boleta.vendedor.last_name }}</div>
+      </div>
+
+      <!-- Detalle de items -->
+      <div class="boleta-items">
+        {% for item in carrito.items.all %}
+          <div class="boleta-item">
+            <div class="boleta-item-nombre">{{ item.medicamento.nombre|truncatewords:4 }}</div>
+            <div class="boleta-item-qty">{{ item.cantidad }}</div>
+            <div class="boleta-item-precio">${{ item.subtotal|floatformat:0 }}</div>
+          </div>
+        {% endfor %}
+      </div>
+
+      <!-- Totales -->
+      <div class="boleta-totales">
+        <div class="boleta-total-row">
+          <span>SUBTOTAL:</span>
+          <span>${{ carrito.subtotal|floatformat:0 }}</span>
+        </div>
+        
+        {% if carrito.descuento_monto > 0 %}
+          <div class="boleta-total-row" style="color: red;">
+            <span>DESCUENTO:</span>
+            <span>-${{ carrito.descuento_monto|floatformat:0 }}</span>
+          </div>
+        {% endif %}
+        
+        <div class="boleta-total-row">
+          <span>BASE IMP:</span>
+          <span>${{ carrito.base_imponible|floatformat:0 }}</span>
+        </div>
+        
+        <div class="boleta-total-row">
+          <span>IVA (19%):</span>
+          <span>${{ carrito.iva|floatformat:0 }}</span>
+        </div>
+        
+        <div class="boleta-total-row total-final">
+          <span>TOTAL:</span>
+          <span>${{ carrito.total|floatformat:0 }}</span>
+        </div>
+      </div>
+
+      <!-- Información de pago -->
+      <div class="boleta-info">
+        <div><label class="label">Método Pago:</label> {{ boleta.metodo_pago }}</div>
+        {% if boleta.referencia_pago %}
+          <div><label class="label">Referencia:</label> {{ boleta.referencia_pago }}</div>
+        {% endif %}
+        {% if pago.cambio > 0 %}
+          <div><label class="label">Cambio:</label> ${{ pago.cambio|floatformat:0 }}</div>
+        {% endif %}
+      </div>
+
+      <!-- Footer -->
+      <div class="boleta-footer">
+        <p>GRACIAS POR SU COMPRA</p>
+        <p>Validación SII en www.sii.cl</p>
+        <p style="margin-top: 5px;">Documento emitido con sistema certificado</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Información adicional (no imprime) -->
+  <div class="card mt-4 no-print">
+    <div class="card-header bg-light">
+      <h5 class="mb-0">📊 Información de la Venta</h5>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-6">
+          <p><strong>Número de Venta:</strong> {{ boleta.carrito.ventas.first.numero_venta }}</p>
+          <p><strong>Boleta:</strong> {{ boleta.numero_boleta }}</p>
+          <p><strong>Folio:</strong> {{ boleta.folio }}</p>
+          <p><strong>Fecha/Hora:</strong> {{ boleta.fecha|date:"d/m/Y H:i" }}</p>
+        </div>
+        <div class="col-md-6">
+          <p><strong>Vendedor:</strong> {{ boleta.vendedor.get_full_name }}</p>
+          <p><strong>Método de Pago:</strong> {{ boleta.metodo_pago }}</p>
+          <p><strong>Total:</strong> <strong class="text-success" style="font-size: 1.2rem;">${{ carrito.total|floatformat:0 }}</strong></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Notas del sistema -->
+  <div class="alert alert-info mt-3 no-print">
+    <i class="bi bi-info-circle"></i>
+    <strong>Nota:</strong> Asegúrese de imprimir la boleta para entregar al cliente. 
+    El sistema puede enviar la boleta por correo electrónico bajo solicitud.
+  </div>
+</div>
+
+<script>
+// Cambiar a vista de impresión cuando se carga la página (opcional)
+// window.print();
+</script>
+{% endblock %}

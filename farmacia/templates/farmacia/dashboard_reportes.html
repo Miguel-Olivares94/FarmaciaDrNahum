@@ -1,0 +1,366 @@
+<!-- farmacia/templates/farmacia/dashboard_reportes.html -->
+{% extends 'farmacia/base_generic.html' %}
+{% load static %}
+
+{% block title %}Dashboard - Reportes de Ventas{% endblock %}
+
+{% block extra_css %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js"></script>
+<style>
+    .dashboard-header {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 30px 20px;
+        border-radius: 8px;
+        margin-bottom: 30px;
+    }
+
+    .dashboard-header h1 {
+        margin: 0;
+        font-size: 32px;
+    }
+
+    .dashboard-header p {
+        margin: 5px 0 0 0;
+        opacity: 0.9;
+    }
+
+    .metric-card {
+        background: white;
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 20px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        border-left: 4px solid #667eea;
+    }
+
+    .metric-card.total {
+        border-left-color: #28a745;
+    }
+
+    .metric-card.promedio {
+        border-left-color: #ffc107;
+    }
+
+    .metric-card.cantidad {
+        border-left-color: #17a2b8;
+    }
+
+    .metric-card h3 {
+        margin: 0 0 10px 0;
+        color: #666;
+        font-size: 14px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .metric-card .valor {
+        font-size: 28px;
+        font-weight: bold;
+        color: #333;
+    }
+
+    .metric-card .subtexto {
+        margin-top: 10px;
+        font-size: 12px;
+        color: #999;
+    }
+
+    .chart-container {
+        position: relative;
+        height: 300px;
+        background: white;
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 20px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .chart-container h3 {
+        margin-top: 0;
+        color: #333;
+    }
+
+    .products-list {
+        background: white;
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 20px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .products-list h3 {
+        margin-top: 0;
+        color: #333;
+        border-bottom: 2px solid #667eea;
+        padding-bottom: 10px;
+    }
+
+    .product-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 0;
+        border-bottom: 1px solid #eee;
+    }
+
+    .product-item:last-child {
+        border-bottom: none;
+    }
+
+    .product-name {
+        font-weight: 500;
+        color: #333;
+    }
+
+    .product-cantidad {
+        background: #e7f3ff;
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 12px;
+        color: #17a2b8;
+        font-weight: bold;
+    }
+
+    .periodo-selector {
+        margin-bottom: 20px;
+    }
+
+    .periodo-selector select {
+        padding: 8px 12px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 14px;
+    }
+
+    .vendedor-item {
+        display: flex;
+        justify-content: space-between;
+        padding: 12px 0;
+        border-bottom: 1px solid #eee;
+    }
+
+    .vendedor-item:last-child {
+        border-bottom: none;
+    }
+
+    .vendedor-nombre {
+        font-weight: 500;
+        color: #333;
+    }
+
+    .vendedor-stats {
+        display: flex;
+        gap: 20px;
+        font-size: 12px;
+        color: #666;
+    }
+
+    .export-buttons {
+        margin-top: 20px;
+        display: flex;
+        gap: 10px;
+    }
+
+    .btn-export {
+        padding: 10px 20px;
+        background: #667eea;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-block;
+        font-weight: 500;
+    }
+
+    .btn-export:hover {
+        background: #5568d3;
+    }
+
+    .btn-export.secondary {
+        background: #6c757d;
+    }
+
+    .btn-export.secondary:hover {
+        background: #5a6268;
+    }
+
+    @media (max-width: 768px) {
+        .metric-card .valor {
+            font-size: 20px;
+        }
+
+        .chart-container {
+            height: 250px;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <!-- HEADER -->
+    <div class="dashboard-header">
+        <h1>📊 Dashboard de Ventas</h1>
+        <p>Análisis y métricas del período {{ fecha_inicio|date:"d/m/Y" }} al {{ fecha_fin|date:"d/m/Y" }}</p>
+    </div>
+
+    <!-- SELECTOR DE PERÍODO -->
+    <div class="periodo-selector">
+        <form method="get" style="display: inline-block;">
+            <label for="periodo">Período:</label>
+            <select name="periodo" id="periodo" onchange="this.form.submit()">
+                <option value="7" {% if periodo == '7' %}selected{% endif %}>Últimos 7 días</option>
+                <option value="30" {% if periodo == '30' %}selected{% endif %}>Últimos 30 días</option>
+                <option value="90" {% if periodo == '90' %}selected{% endif %}>Últimos 90 días</option>
+                <option value="365" {% if periodo == '365' %}selected{% endif %}>Este año</option>
+            </select>
+        </form>
+    </div>
+
+    <!-- MÉTRICAS PRINCIPALES -->
+    <div class="row">
+        <div class="col-md-4">
+            <div class="metric-card total">
+                <h3>💰 Total de Ventas</h3>
+                <div class="valor">{{ total_ventas }}</div>
+                <div class="subtexto">Período seleccionado</div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="metric-card cantidad">
+                <h3>📋 Transacciones</h3>
+                <div class="valor">{{ cantidad_ventas }}</div>
+                <div class="subtexto">Venta completadas</div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="metric-card promedio">
+                <h3>📈 Venta Promedio</h3>
+                <div class="valor">{{ promedio_venta }}</div>
+                <div class="subtexto">Por transacción</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- GRÁFICO DE VENTAS -->
+        <div class="col-md-8">
+            <div class="chart-container">
+                <h3>Ventas por Día</h3>
+                <canvas id="chartVentasDiarias"></canvas>
+            </div>
+        </div>
+
+        <!-- TOP PRODUCTOS -->
+        <div class="col-md-4">
+            <div class="products-list">
+                <h3>🏆 Top 10 Productos</h3>
+                {% for producto in top_productos %}
+                <div class="product-item">
+                    <div>
+                        <div class="product-name">{{ producto.nombre }}</div>
+                        <small style="color: #999;">Stock: {{ producto.stock }}</small>
+                    </div>
+                    <div class="product-cantidad">{{ producto.venta_set.count }} vendidos</div>
+                </div>
+                {% empty %}
+                <p style="color: #999; text-align: center;">Sin datos</p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- TOP VENDEDORES -->
+        <div class="col-md-6">
+            <div class="products-list">
+                <h3>⭐ Vendedores Top</h3>
+                {% for vendedor in vendedores_top %}
+                <div class="vendedor-item">
+                    <div class="vendedor-nombre">
+                        {{ vendedor.vendedor__first_name }} {{ vendedor.vendedor__last_name }}
+                    </div>
+                    <div class="vendedor-stats">
+                        <span><strong>${{ vendedor.total|stringformat:"d" }}</strong></span>
+                        <span>{{ vendedor.cantidad }} transacciones</span>
+                    </div>
+                </div>
+                {% empty %}
+                <p style="color: #999; text-align: center;">Sin datos</p>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- EXPORTAR -->
+        <div class="col-md-6">
+            <div class="products-list">
+                <h3>📥 Exportar Reportes</h3>
+                <p style="color: #666; margin: 10px 0;">Descargar datos en diferentes formatos para análisis adicional.</p>
+
+                <div class="export-buttons">
+                    <a href="{% url 'descargar_reporte_pdf' %}?dias={{ periodo }}" class="btn-export">
+                        📄 Descargar PDF
+                    </a>
+                    <a href="{% url 'reporte_ventas_diarias' %}?dias={{ periodo }}" class="btn-export secondary">
+                        📊 JSON API
+                    </a>
+                </div>
+
+                <div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid #eee;">
+                    <h4 style="margin-top: 0; color: #333;">APIs Disponibles</h4>
+                    <ul style="font-size: 12px; color: #666; margin: 5px 0;">
+                        <li><code>/pos/v2/reportes/ventas-diarias/?dias=30</code></li>
+                        <li><code>/pos/v2/reportes/top-productos/?limite=10</code></li>
+                        <li><code>/pos/v2/reportes/vendedores/?dias=30</code></li>
+                        <li><code>/pos/v2/reportes/ingresos/</code></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Gráfico de ventas diarias
+    const ctxVentas = document.getElementById('chartVentasDiarias').getContext('2d');
+    const chartVentas = new Chart(ctxVentas, {
+        type: 'line',
+        data: {
+            labels: {{ dias_labels|safe }},
+            datasets: [{
+                label: 'Ventas ($)',
+                data: {{ dias_data|safe }},
+                borderColor: '#667eea',
+                backgroundColor: 'rgba(102, 126, 234, 0.1)',
+                tension: 0.4,
+                fill: true,
+                borderWidth: 2,
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'top',
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        callback: function(value) {
+                            return '$' + value.toLocaleString();
+                        }
+                    }
+                }
+            }
+        }
+    });
+</script>
+{% endblock %}

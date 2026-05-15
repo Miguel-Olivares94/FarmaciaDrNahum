@@ -1,0 +1,204 @@
+{% extends 'farmacia/base_generic.html' %}
+
+{% block title %}Reporte de Lotes - Farmacia Dr Nahúm{% endblock %}
+
+{% block content %}
+<div class="container-fluid mt-4">
+    <h1 class="mb-4">📊 Reporte Completo de Lotes</h1>
+    
+    <div class="row mb-4">
+        <div class="col-lg-4">
+            <div class="card bg-success text-white shadow">
+                <div class="card-body text-center">
+                    <h6 class="card-title">Stock Vigente</h6>
+                    <h3 class="mb-0">{{ total_stock_vigente }}</h3>
+                    <small>unidades</small>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-4">
+            <div class="card bg-warning text-white shadow">
+                <div class="card-body text-center">
+                    <h6 class="card-title">Stock Crítico</h6>
+                    <h3 class="mb-0">{{ total_stock_critico }}</h3>
+                    <small>unidades (&lt; 7 días)</small>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-4">
+            <div class="card bg-danger text-white shadow">
+                <div class="card-body text-center">
+                    <h6 class="card-title">Stock Vencido</h6>
+                    <h3 class="mb-0">{{ total_stock_vencido }}</h3>
+                    <small>unidades para descartar</small>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- LOTES VIGENTES -->
+    <div class="card shadow-sm mb-4">
+        <div class="card-header bg-success text-white">
+            <h5 class="mb-0">
+                ✓ Lotes Vigentes {{ lotes_vigentes.count }} unidades)
+                <span class="float-right">{{ lotes_vigentes.count }} lotes</span>
+            </h5>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-sm mb-0">
+                <thead class="table-light">
+                    <tr>
+                        <th>Medicamento</th>
+                        <th>Lote</th>
+                        <th>Vencimiento</th>
+                        <th>Cantidad</th>
+                        <th>Precio</th>
+                        <th>Proveedor</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for lote in lotes_vigentes %}
+                    <tr>
+                        <td>{{ lote.medicamento.nombre }}</td>
+                        <td><code>{{ lote.numero_lote }}</code></td>
+                        <td>{{ lote.fecha_vencimiento|date:"d/m/Y" }}</td>
+                        <td>{{ lote.cantidad_disponible }}</td>
+                        <td>${{ lote.precio_costo|floatformat:0 }}</td>
+                        <td>{{ lote.proveedor.nombre|default:"—" }}</td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="6" class="text-center text-muted py-3">No hay lotes vigentes</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <!-- LOTES CRÍTICOS -->
+    <div class="card shadow-sm mb-4">
+        <div class="card-header bg-warning text-dark">
+            <h5 class="mb-0">
+                ⏰ Lotes Críticos (Vencen en < 7 días) ({{ total_stock_critico }} unidades)
+                <span class="float-right">{{ lotes_criticos.count }} lotes</span>
+            </h5>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-sm mb-0">
+                <thead class="table-light">
+                    <tr>
+                        <th>Medicamento</th>
+                        <th>Lote</th>
+                        <th>Vencimiento</th>
+                        <th>Días Restantes</th>
+                        <th>Cantidad</th>
+                        <th>Acción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for lote in lotes_criticos %}
+                    <tr class="table-warning">
+                        <td><strong>{{ lote.medicamento.nombre }}</strong></td>
+                        <td><code>{{ lote.numero_lote }}</code></td>
+                        <td>{{ lote.fecha_vencimiento|date:"d/m/Y" }}</td>
+                        <td>
+                            <span class="badge badge-danger">{{ lote.dias_para_vencer }} días</span>
+                        </td>
+                        <td>{{ lote.cantidad_disponible }}</td>
+                        <td>
+                            <a href="{% url 'medicamento_detail' lote.medicamento.pk %}" 
+                               class="btn btn-sm btn-warning">
+                                Ver Medicamento
+                            </a>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="6" class="text-center text-muted py-3">✓ No hay lotes críticos</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <!-- LOTES VENCIDOS -->
+    <div class="card shadow-sm alert-danger mb-4">
+        <div class="card-header bg-danger text-white">
+            <h5 class="mb-0">
+                🗑️ Lotes Vencidos ({{ total_stock_vencido }} unidades)
+                <span class="float-right">{{ lotes_vencidos.count }} lotes</span>
+            </h5>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-sm mb-0">
+                <thead class="table-light">
+                    <tr>
+                        <th>Medicamento</th>
+                        <th>Lote</th>
+                        <th>Vencimiento</th>
+                        <th>Días desde Vencimiento</th>
+                        <th>Cantidad</th>
+                        <th>Acción Requerida</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for lote in lotes_vencidos %}
+                    <tr class="table-danger">
+                        <td><strong>{{ lote.medicamento.nombre }}</strong></td>
+                        <td><code>{{ lote.numero_lote }}</code></td>
+                        <td>{{ lote.fecha_vencimiento|date:"d/m/Y" }}</td>
+                        <td>
+                            <span class="badge badge-dark">{{ lote.dias_para_vencer|add:999 }} días</span>
+                        </td>
+                        <td>{{ lote.cantidad_disponible }}</td>
+                        <td>
+                            <button class="btn btn-sm btn-danger" disabled>
+                                <i class="fas fa-trash"></i> Marcar para Descarte
+                            </button>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="6" class="text-center text-muted py-3">✓ No hay lotes vencidos</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <!-- BOTONES DE DESCARGA/IMPRESIÓN -->
+    <div class="mt-4">
+        <button onclick="window.print()" class="btn btn-primary">
+            <i class="fas fa-print"></i> Imprimir Reporte
+        </button>
+        <a href="{% url 'gestor_lotes' %}" class="btn btn-info">
+            <i class="fas fa-box"></i> Gestor de Lotes
+        </a>
+        <a href="{% url 'dashboard_inventario' %}" class="btn btn-success">
+            <i class="fas fa-chart-pie"></i> Dashboard
+        </a>
+    </div>
+</div>
+
+<style>
+.table-warning {
+    background-color: #fff3cd;
+}
+
+.table-danger {
+    background-color: #f8d7da;
+}
+
+@media print {
+    .btn, .card-header {
+        background-color: #f5f5f5 !important;
+        color: #333 !important;
+    }
+}
+</style>
+{% endblock %}
