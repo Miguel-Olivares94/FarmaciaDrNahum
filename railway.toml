@@ -2,5 +2,5 @@
 builder = "nixpacks"
 
 [deploy]
-startCommand = "/opt/venv/bin/python manage.py collectstatic --noinput && /opt/venv/bin/python manage.py migrate --noinput && /opt/venv/bin/gunicorn collico_sw.wsgi:application --bind 0.0.0.0:$PORT --workers 1 --timeout 120"
+startCommand = "python manage.py migrate --noinput && gunicorn collico_sw.wsgi:application --bind 0.0.0.0:$PORT --workers 1 --timeout 120"
 restartPolicyType = "on_failure"
