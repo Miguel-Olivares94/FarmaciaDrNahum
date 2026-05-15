@@ -6,8 +6,8 @@ import os
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Security settings
-DEBUG = config('DEBUG', default=True, cast=bool)
-SECRET_KEY = config('SECRET_KEY', default='django-insecure-f_w_k(ibheyyjwjz&dx*bbk!pn3r9s)#6zh!p$)d-h5amfje+6')
+DEBUG = config('DEBUG', default=False, cast=bool)
+SECRET_KEY = config('SECRET_KEY')  # Obligatorio — definir en .env o variables de entorno
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='localhost,127.0.0.1', cast=lambda v: [s.strip() for s in v.split(',')])
 
 # HTTPS lo maneja el proxy (Railway/Nginx) — nunca redirigir aquí
