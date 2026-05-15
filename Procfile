@@ -1,2 +1,1 @@
-web: gunicorn collico_sw.wsgi:application --bind 0.0.0.0:$PORT --workers 2 --timeout 60
-release: python manage.py migrate --noinput
+web: python manage.py migrate --noinput && gunicorn collico_sw.wsgi:application --bind 0.0.0.0:$PORT --workers 1 --timeout 120
