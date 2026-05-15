@@ -1,7 +1,7 @@
 import os
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'collico_sw.settings_prod')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'sistema_farmacia.settings_prod')
 
 _django_app = get_wsgi_application()
 

@@ -45,7 +45,7 @@ MIDDLEWARE = [
     'farmacia.middleware.VerificacionRolMiddleware',  # Middleware de seguridad de roles
 ]
 
-ROOT_URLCONF = 'collico_sw.urls'
+ROOT_URLCONF = 'sistema_farmacia.urls'
 
 TEMPLATES = [
     {
@@ -69,7 +69,7 @@ TIME_ZONE = 'America/Santiago'
 USE_I18N = True
 USE_TZ = True
 
-WSGI_APPLICATION = 'collico_sw.wsgi.application'
+WSGI_APPLICATION = 'sistema_farmacia.wsgi.application'
 
 
 # Database
