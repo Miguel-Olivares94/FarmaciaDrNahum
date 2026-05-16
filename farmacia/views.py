@@ -369,62 +369,133 @@ class ProveedorDeleteView(LoginRequiredMixin, DeleteView):
     
 
 
+import json
+from datetime import date, timedelta
 from django.shortcuts import render
-from django.db.models import Sum
-from django.db.models.functions import TruncWeek, TruncMonth, TruncYear
+from django.db.models import Sum, Count, Q
+from django.db.models.functions import TruncWeek, TruncMonth, TruncYear, TruncDate
 from django.views.decorators.cache import cache_page
 from django.core.cache import cache
-from .models import Medicamento, Venta
+from .models import Medicamento, Venta, Boleta, CarritoVenta
 
 @login_required(login_url='inicio_sesion')
-@cache_page(60 * 60)  # Cache 1 hora
 def dashboard(request):
-    """
-    Dashboard con estadísticas de ventas y stock.
-    Resultado cacheado por 1 hora para mejorar performance.
-    """
-    # Cache key única
-    cache_key = 'dashboard_data'
-    
-    # Intentar obtener del caché
-    cached_data = cache.get(cache_key)
-    if cached_data:
-        return render(request, 'dashboard.html', cached_data)
-    
-    # Si no está en caché, calcular
-    medicamentos = Medicamento.objects.all()
+    hoy = date.today()
+    hace_7 = hoy - timedelta(days=6)
+    hace_30 = hoy - timedelta(days=29)
 
-    # Obtener nivel de stock para cada medicamento
-    for medicamento in medicamentos:
-        medicamento.nivel_stock = medicamento.get_nivel_stock()
+    # ── KPIs principales ────────────────────────────────────────────
+    ventas_hoy = Venta.objects.filter(
+        fecha__date=hoy, estado='COMPLETADA'
+    ).aggregate(total=Sum('precio'), count=Count('id'))
 
-    total_stock_vendido = Venta.objects.aggregate(total_stock_vendido=Sum('cantidad'))['total_stock_vendido'] or 0
+    ventas_mes = Venta.objects.filter(
+        fecha__date__gte=hace_30, estado='COMPLETADA'
+    ).aggregate(total=Sum('precio'), count=Count('id'))
 
-    total_ventas = Venta.objects.count()
+    total_ventas_all = Venta.objects.filter(estado='COMPLETADA').aggregate(
+        total=Sum('precio'), count=Count('id'), unidades=Sum('cantidad')
+    )
 
-    total_monto_vendido = Venta.objects.aggregate(total_monto_vendido=Sum('precio'))['total_monto_vendido'] or 0
+    # ── Gráfico barras: ventas últimos 7 días ────────────────────────
+    ventas_7dias = (
+        Venta.objects
+        .filter(fecha__date__gte=hace_7, estado='COMPLETADA')
+        .annotate(dia=TruncDate('fecha'))
+        .values('dia')
+        .annotate(total=Sum('precio'), count=Count('id'))
+        .order_by('dia')
+    )
+    labels_7dias = []
+    data_montos = []
+    data_count = []
+    dias_map = {v['dia']: v for v in ventas_7dias}
+    for i in range(7):
+        d = hace_7 + timedelta(days=i)
+        dias_es = ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom']
+        labels_7dias.append(f"{dias_es[d.weekday()]} {d.day}/{d.month}")
+        v = dias_map.get(d, {})
+        data_montos.append(float(v.get('total') or 0))
+        data_count.append(int(v.get('count') or 0))
 
-    medicamentos_vendidos = [venta.medicamento.nombre for venta in Venta.objects.select_related('medicamento')]
+    # ── Gráfico dona: métodos de pago ───────────────────────────────
+    metodos = (
+        Boleta.objects
+        .filter(estado='EMITIDA')
+        .values('metodo_pago')
+        .annotate(count=Count('id'))
+        .order_by('-count')
+    )
+    labels_metodos = [m['metodo_pago'] for m in metodos]
+    data_metodos = [m['count'] for m in metodos]
 
-    # Obtener estadísticas de ventas semanales, mensuales y anuales
-    ventas_semanales = Venta.objects.annotate(week=TruncWeek('fecha')).values('week').annotate(total=Sum('precio')).order_by('week')
-    ventas_mensuales = Venta.objects.annotate(month=TruncMonth('fecha')).values('month').annotate(total=Sum('precio')).order_by('month')
-    ventas_anuales = Venta.objects.annotate(year=TruncYear('fecha')).values('year').annotate(total=Sum('precio')).order_by('year')
+    # ── Top 5 productos más vendidos ─────────────────────────────────
+    top_productos = (
+        Venta.objects
+        .filter(estado='COMPLETADA')
+        .values('medicamento__nombre')
+        .annotate(total_uds=Sum('cantidad'), total_monto=Sum('precio'))
+        .order_by('-total_uds')[:5]
+    )
 
-    # Guardar en caché por 1 hora
+    # ── Alertas ──────────────────────────────────────────────────────
+    stock_bajo = Medicamento.objects.filter(stock__lt=50, stock__gt=0).count()
+    agotados = Medicamento.objects.filter(stock=0).count()
+    vencen_pronto = Medicamento.objects.filter(
+        fecha_vencimiento__lte=hoy + timedelta(days=30),
+        fecha_vencimiento__gte=hoy
+    ).count()
+
+    # ── Medicamentos bajo stock (para tabla) ─────────────────────────
+    meds_bajo_stock = Medicamento.objects.filter(stock__lt=100).order_by('stock')[:10]
+
+    # ── Ventas semanales/mensuales/anuales (legacy) ──────────────────
+    ventas_semanales = (
+        Venta.objects.annotate(week=TruncWeek('fecha'))
+        .values('week').annotate(total=Sum('precio')).order_by('-week')[:4]
+    )
+    ventas_mensuales = (
+        Venta.objects.annotate(month=TruncMonth('fecha'))
+        .values('month').annotate(total=Sum('precio')).order_by('-month')[:6]
+    )
+    ventas_anuales = (
+        Venta.objects.annotate(year=TruncYear('fecha'))
+        .values('year').annotate(total=Sum('precio')).order_by('-year')[:3]
+    )
+
+    es_demo = request.user.username.endswith('_demo')
+
     context = {
-        'medicamentos': medicamentos,
-        'stock_vendido': total_stock_vendido,
-        'total_ventas': total_ventas,
-        'monto_total_vendido': total_monto_vendido,
-        'medicamentos_vendidos': medicamentos_vendidos,
+        # KPIs
+        'ventas_hoy_monto': ventas_hoy.get('total') or 0,
+        'ventas_hoy_count': ventas_hoy.get('count') or 0,
+        'ventas_mes_monto': ventas_mes.get('total') or 0,
+        'ventas_mes_count': ventas_mes.get('count') or 0,
+        'monto_total_vendido': total_ventas_all.get('total') or 0,
+        'total_ventas': total_ventas_all.get('count') or 0,
+        'stock_vendido': total_ventas_all.get('unidades') or 0,
+        # Alertas
+        'stock_bajo': stock_bajo,
+        'agotados': agotados,
+        'vencen_pronto': vencen_pronto,
+        # Tabla bajo stock
+        'medicamentos': meds_bajo_stock,
+        # Gráficos (JSON para Chart.js)
+        'labels_7dias_json': json.dumps(labels_7dias),
+        'data_montos_json': json.dumps(data_montos),
+        'data_count_json': json.dumps(data_count),
+        'labels_metodos_json': json.dumps(labels_metodos),
+        'data_metodos_json': json.dumps(data_metodos),
+        # Top productos
+        'top_productos': top_productos,
+        # Legacy
         'ventas_semanales': ventas_semanales,
         'ventas_mensuales': ventas_mensuales,
         'ventas_anuales': ventas_anuales,
+        'es_demo': es_demo,
+        'hoy': hoy,
     }
-    cache.set(cache_key, context, 60 * 60)  # Cache 1 hora
-    
-    return render(request, 'dashboard.html', context)
+    return render(request, 'farmacia/dashboard.html', context)
 
 
 

@@ -241,6 +241,19 @@
 
     <!-- Contenido principal -->
     <main class="main-content">
+
+        {% if user.is_authenticated and user.username|slice:"-5:" == "_demo" %}
+        <div class="alert alert-warning alert-dismissible py-2 mb-3 d-flex align-items-center gap-2" role="alert">
+            <i class="bi bi-play-circle-fill"></i>
+            <div class="small">
+                <strong>MODO DEMO</strong> —
+                Usuario: <code>{{ user.username }}</code> |
+                <a href="{% url 'inicio_sesion' %}" class="alert-link">Cambiar cuenta</a>
+            </div>
+            <button type="button" class="btn-close ms-auto" data-bs-dismiss="alert"></button>
+        </div>
+        {% endif %}
+
         {% if messages %}
         <div class="mb-3">
             {% for message in messages %}
